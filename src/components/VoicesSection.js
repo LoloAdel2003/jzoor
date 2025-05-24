@@ -1,0 +1,101 @@
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import Title from "./Title";
+
+const voices = [
+  {
+    id: 1,
+    name: "Mary Eqdaih",
+    img: "imges/088e081a-65fa-4068-9219-2cc7ae45cb40.png",
+    rating: 4,
+    review: "Reminds me of my teta’s garden. The zaatar was perfect.",
+  },
+  {
+    id: 2,
+    name: "Amna Emad",
+    img: "imges/Young smiling fair-haired woman in a garden….png",
+    rating: 5,
+    review: "Lovely tea set, just wished the shipping was faster.",
+  },
+  {
+    id: 1,
+    name: "Mary Eqdaih",
+    img: "imges/088e081a-65fa-4068-9219-2cc7ae45cb40.png",
+    rating: 4,
+    review: "Reminds me of my teta’s garden. The zaatar was perfect.",
+  },
+  {
+    id: 2,
+    name: "Amna Emad",
+    img: "imges/Young smiling fair-haired woman in a garden….png",
+    rating: 5,
+    review: "Lovely tea set, just wished the shipping was faster.",
+  },
+];
+
+function VoicesSection() {
+  return (
+    <section className="voices pt-[60px] pb-[60px]">
+        <Title name="Voices Rooted in Trust" description=" these voices bloom like jasmin" />
+     
+
+      <div className="content py-5 px-6 sm:px-6 md:px-20">
+        <Swiper
+          modules={[Navigation]}
+          navigation
+          spaceBetween={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+          }}
+          className="relative "
+        >
+          {voices.map((voice) => (
+            <SwiperSlide key={voice.id}>
+              <div className="bg-[#A8C686]/50 shadow-xl rounded-lg p-8 flex items-center gap-4 relative w-[300px] md:w-[350px] lg:w-[500px] mx-auto">
+               
+                <div className="imging relative w-16 md:w-20 lg:w-36 flex-shrink-0 after:w-[20px] after:left-[-10px] after:md:w-[40px] after:md:left-[-20px]">
+                  <img
+                    src={voice.img}
+                    alt="User"
+                    className="relative z-10 w-full h-full object-cover"
+                  />
+                </div>
+                <div className="content flex flex-col justify-center">
+                  <h3 className="text-sm lg:text-md font-bold text-[#4B5929] flex items-center">
+                    {voice.name}
+                    <span className="hidden md:inline-block ml-2 text-blue-500 text-sm">✓</span>
+                  </h3>
+                  <div className="flex items-center mt-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span
+                        key={i}
+                        className={`text-xl ${i < voice.rating ? "text-yellow-400" : "text-white"}`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-1 md:mt-2 text-sm text-gray-700 max-w-[200px] font-bold">
+                    {voice.review}
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      <div className="flex justify-center mt-8 relative">
+        <button className="relative  bg-[#4B5929] hover:bg-[#A8C686] text-white font-medium text-lg px-3 h-[50px] rounded-[10px] transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer">
+          <a href="Gifts.html" className="no-underline text-white" >Write a review &gt;</a>
+        </button>
+      </div>
+    </section>
+  );
+}
+
+export default VoicesSection;

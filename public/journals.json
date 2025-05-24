@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "title": "Olive Trees: More Than Just Fruit",
+      "description": "Discover the tree that holds generations of love, land, and loss",
+      "content": "Palestinian olive trees are a symbol of resistance and life. These trees have been passed down from generation to generation...",
+      "image": "imges/flor-saurina-xWijL2q3xAM-unsplash.png"
+    },
+    {
+      "id": 2,
+      "title": "The story Of the Kufiya",
+      "description": "Explore the roots of Palestine's most iconic thread",
+      "content": "The black-and-white kufiya is more than a fashion statement. It is a symbol of identity and history...",
+      "image": "imges/pexels-alfomedeiros-19544029.png"
+    },
+    {
+      "id": 3,
+      "title": "How to Care For A Zaater Plant?",
+      "description": "A beginner’s guide to planting, watering, and harvesting zaatar at home",
+      "content": "Zaater is a staple herb in many Palestinian dishes. Here's how to grow and maintain it...",
+      "image": "imges/7ebe9701-9d09-46bf-875e-7bf3e26817fc.png"
+    }
+  ]
+  

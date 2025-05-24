@@ -1,0 +1,39 @@
+[
+    {
+      "id": 100,
+      "name": "Taste Of Palestine",
+      "subtitle": "Cultural Heritage 🌿",
+      "description": "A delicious curated olive oil, za’atar in a ceramic jar & handcrafted dipping dish.",
+      "new_price": 22.00,
+      "prev_price":25.00,
+      "img": "imges/roberta-sorge-uOBApnN_K7w-unsplash.png"
+    },
+    {
+      "id": 101,
+      "name": "Tatreez Clutch",
+      "subtitle": "Perfect for Eid 💝",
+      "description": "A modern accessory featuring traditional Palestinian embroidery.",
+      "new_price": 40.00,
+      "prev_price":50.00,
+      "img": "imges/010519f6-ea7b-42ca-be24-476a49f4c3ad.png"
+    },
+    {
+      "id": 102,
+      "name": "Tatreez Mug",
+      "subtitle": "Modern Style ☕",
+      "description": "A ceramic mug featuring traditional Palestinian embroidery patterns.",
+      "new_price": 35.00,
+      "prev_price" :40.00,
+      "img": "imges/f769ad49-1fc1-4c9c-b61e-6f8308e2897d.png"
+    },
+    {
+      "id": 103,
+      "name": "Jasmine & Linen Set",
+      "subtitle": "Welcome Box Gift 🎁",
+      "description": "A soothing blend of jasmine tea paired with handcrafted linen napkin.",
+      "new_price": 23.00,
+      "prev_price":30.00,
+      "img": "imges/sanju-pandita-xcVkgD7bcLA-unsplash.png"
+    }
+  ]
+  
