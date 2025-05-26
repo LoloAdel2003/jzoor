@@ -17,7 +17,7 @@ export default function HeroSection() {
       
 
         {/* النص */}
-        <div className="w-full order-1 md:w-1/2 pt-5 md:pt-0 flex flex-col items-center md:items-start sm:text-center md:text-left">
+        <div className="w-full order-1 md:w-1/2 sm:pt-5 md:pt-0 flex flex-col items-center md:items-start sm:text-center md:text-left">
         <h1 className="text-[30px] md:text-[36px] lg:text-[44px] font-bold leading-tight mb-4 relative  ">
             <img
               src="imges/twemoji_olive.png"
