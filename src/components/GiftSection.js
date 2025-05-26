@@ -85,7 +85,7 @@ const GiftSection = () => {
                     <span className="line-through text-gray-400">
                       ${product.prev_price}
                     </span>
-                    <span className="text-[#af926a] font-semibold">
+                    <span className="text-[#af926a] font-bold text-[18px]" >
                       ${product.new_price}
                     </span>
                   </div>

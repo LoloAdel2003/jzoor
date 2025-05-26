@@ -91,7 +91,7 @@ function VoicesSection() {
 
       <div className="flex justify-center mt-8 relative">
         <button className="relative  bg-[#4B5929] hover:bg-[#A8C686] text-white font-medium text-lg px-3 h-[50px] rounded-[10px] transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer">
-          <a href="Gifts.html" className="no-underline text-white" >Write a review &gt;</a>
+          <a href="#" className="no-underline text-white" >Write a review &gt;</a>
         </button>
       </div>
     </section>

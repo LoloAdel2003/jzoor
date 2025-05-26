@@ -17,7 +17,7 @@ export default function Navbar() {
   const menuBtnRef = useRef();
   const mobileNavRef = useRef();
 
-  const { products } = useContext(ProductContext);
+  const { products,setSelectedProduct } = useContext(ProductContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,6 +82,7 @@ export default function Navbar() {
   const handleSuggestionClick = (product) => {
     setSearchInput("");
     setSuggestions([]);
+    setSelectedProduct(product)
     navigate(`/product/${product.id}`);
   };
 
@@ -193,7 +194,7 @@ export default function Navbar() {
                 />
                 <i className="fa-solid fa-magnifying-glass text-[#4B5929] text-lg ml-2"></i>
                 {suggestions.length > 0 && (
-                  <ul className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded mt-1 z-10">
+                  <ul className="h-[400px] overflow-y-auto absolute top-full left-0 w-full bg-white border border-gray-200 rounded mt-1 z-10">
                     {suggestions.map((product) => (
                       <li
                         key={product.id}
