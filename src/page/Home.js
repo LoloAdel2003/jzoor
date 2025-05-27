@@ -7,10 +7,12 @@ import Contact from '../components/Contact'
 import ToolsSection from '../components/ToolsSection'
 import VoicesSection from '../components/VoicesSection'
 import OliveJournal from '../components/journalData'
+import AboutSection from '../components/AboutSection'
 const Home = () => {
   return (
     <div>
       <HeroSection />
+      <AboutSection />
       <ProductSection />
       
   <section className="mogilat relative lg:h-[250px]">
