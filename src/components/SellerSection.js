@@ -53,11 +53,12 @@ const sellers = [
 
 function SellerSection() {
   return (
-    <section className="seller pt-[60px] pb-[60px] lg:pb-0 bg-[#FAF7F2] relative">
+    <div className="bg-[#FAF7F2]">
+    <section className="seller pt-[60px] pb-[60px] lg:pb-0  relative container">
       <Title name="Seller Community" description="Meet the people behind the plants" />
 
       {/* حاوية المحتوى بالكامل بـ px-20 */}
-      <div className="content px-5 sm:px-10 lg:px-20 relative lg:mb-5">
+      <div className="content bg-white rounded-xl  relative lg:mb-5 ">
         {/* تغيير لون أزرار Swiper عبر tailwind override */}
         <style>
   {`
@@ -94,7 +95,7 @@ function SellerSection() {
         <Swiper
           modules={[Navigation]}
           navigation
-          spaceBetween={4}
+          spaceBetween={3}
           slidesPerView={1}
           breakpoints={{
             640: { slidesPerView: 1 },
@@ -105,7 +106,7 @@ function SellerSection() {
         >
           {sellers.map((seller) => (
             <SwiperSlide key={seller.id}>
-              <div className="p-2 text-center bg-white rounded-xl shadow-md max-w-[300px] mx-auto">
+              <div className="p-2 text-center bg-white rounded-xl shadow-md w-full h-full ">
                 <img
                   src={seller.img}
                   alt={seller.name}
@@ -129,7 +130,7 @@ function SellerSection() {
                 <p className="text-xs text-gray-700 mt-2">{seller.specialty}</p>
                 <Link
                   to="/SellerProduct"
-                  className="no-underline inline-block mt-4 bg-[#4B5929] hover:bg-[#6c825f] text-white px-4 py-2 rounded-full font-semibold transition"
+                  className="no-underline mb-3 inline-block mt-4 bg-[#4B5929] hover:bg-[#6c825f] text-white px-4 py-2 rounded-full font-semibold transition"
                 >
                   Seller Product
                 </Link>
@@ -138,8 +139,13 @@ function SellerSection() {
           ))}
         </Swiper>
 
-        {/* زر JOIN NOW للموبايل */}
-        <div className=" lg:hidden text-center pb-4 my-6 bg-[#A8C686]/50">
+      
+      </div>
+
+     
+    </section>
+      {/* زر JOIN NOW للموبايل */}
+      <div className=" lg:hidden text-center pb-4 my-6 bg-[#A8C686]/50">
         <h3 className="font-bold text-xl   rounded-tr-3xl py-2 ">
               Join Our Sellers Team!
             </h3>
@@ -154,10 +160,8 @@ function SellerSection() {
             JOIN NOW
           </Link>
         </div>
-      </div>
-
-      {/* قسم التسجيل الثابت في الأسفل */}
-      <div className="hidden lg:block w-[70%] px-20 bg-[#A8C686]/50 mt-20 p-8 rounded-tr-3xl">
+     {/* قسم التسجيل الثابت في الأسفل */}
+     <div className="hidden lg:block w-[70%] px-20 bg-[#A8C686]/50 mt-20 p-8 rounded-tr-3xl">
         <div className="flex items-center flex-wrap gap-16 relative">
           <div>
             {/* <h3 className=" absolute top-[-88px] -left-20 pl-20 pr-4 rounded-tr-3xl py-3 bg-[#A8C686]/30">
@@ -180,7 +184,7 @@ function SellerSection() {
           <img src="imges/famicons_arrow-undo (6).png" alt="" />
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

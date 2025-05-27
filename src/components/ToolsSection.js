@@ -3,10 +3,10 @@ import Title from "./Title";
 import { Link } from "react-router-dom";
 const ToolsSection = () => {
   return (
-    <section className="tools pt-[60px] pb-[60px]" id="Tools">
+    <section className="tools pt-[60px] pb-[60px] container" id="Tools">
      <Title name="Tools & Care" description="Because every leaf deserves a little extra care" />
     
-     <div className="px-10 sm:px-10 lg:px-20 py-2 cardss mx-auto grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">
+     <div className=" sm:py-2 md:py-5 cardss mx-auto grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">
   {[
     {
       title: 'Pots',
@@ -28,7 +28,7 @@ const ToolsSection = () => {
   ].map((card, index) => (
     <div
       key={index}
-      className="group cursor-pointer relative rounded-xl overflow-hidden bg-white w-full h-[400px]"
+      className="group cursor-pointer relative rounded-xl overflow-hidden bg-white max-w-sm w-full h-[400px]"
     >
       <img
         src={card.img}

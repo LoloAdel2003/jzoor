@@ -23,7 +23,7 @@ const FavoriteSection = () => {
 //   products.filter((product) => isFavorite(product.id));
 
   return (
-    <section className="pt-[120px] pb-[60px] px-6 sm:px-10 lg:px-20 bg-[#fdf9f3]" id="Favorites">
+    <section className="pt-[120px] pb-[60px] container " id="Favorites">
                   <h2 className="text-3xl font-bold text-[#4B5929]">Your Favorites</h2>
 
       <div className="content">

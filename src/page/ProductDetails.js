@@ -38,7 +38,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <section className="bg-[#fdf9f3] min-h-screen py-16 px-6 sm:px-10 md:px-20 pt-[120px]">
+    <section className=" min-h-screen py-16 container pt-[120px]">
       <div className="max-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white p-6 md:p-10 rounded-2xl shadow-lg">
         
         {/* صورة المنتج */}

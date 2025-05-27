@@ -7,8 +7,9 @@ const OliveJournal = () => {
   const { journals } = useContext(ProductContext);
 
   return (
+    <div className="bg-[#FAF7F2]">
     <section
-      className="journal relative pt-[60px] pb-[60px] overflow-hidden bg-[#FAF7F2]"
+      className="journal relative pt-[60px] pb-[60px] overflow-hidden container "
       id="Journals"
     >
       <Title
@@ -17,12 +18,12 @@ const OliveJournal = () => {
       />
 
       <div className="">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch py-5 px-20 sm:px-10 lg:px-20">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch sm:py-2 md:py-5 ">
           {journals.map((journal) => (
             <Link
               to={`/JournalDetails/${journal.id}`}
               key={journal.id}
-              className="no-underline group block bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-[1.02] duration-300"
+              className="no-underline max-w-sm group block bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-[1.02] duration-300"
             >
               <div className="relative w-full h-60 sm:h-64 md:h-72 overflow-hidden image">
                 <img
@@ -44,6 +45,7 @@ const OliveJournal = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

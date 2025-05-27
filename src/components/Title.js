@@ -2,7 +2,7 @@ import React from 'react'
 
 const Title = (props) => {
   return (
-    <div className="head relative flex flex-col items-center justify-center py-6 text-center">
+    <div className="head relative flex flex-col items-center justify-center py-10 text-center">
       <img 
         src="imges/Screenshot_2025-05-04_210646-removebg-preview.png" 
         alt="" 

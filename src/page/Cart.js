@@ -8,7 +8,7 @@ const Cart = () => {
   const total = cart.reduce((acc, item) => acc + item.new_price * item.quantity, 0);
 
   return (
-    <div className="pt-[120px] px-6 sm:px-10 md:px-20 grid grid-cols-1 lg:grid-cols-3 gap-10 min-h-screen">
+    <div className="pt-[120px] container grid grid-cols-1 lg:grid-cols-3 gap-10 min-h-screen">
       {/* Cart Table */}
       <div className="lg:col-span-2">
         <div className="flex justify-between items-center mb-6">

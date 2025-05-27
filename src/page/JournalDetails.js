@@ -14,20 +14,22 @@ const JournalDetails = () => {
   }
 
   return (
-    <div className="px-6 sm:px-10 md:px-20 py-10 max-w-6xl mx-auto">
+    <div className="container py-10 max-w-6xl mx-auto pt-[90px]">
       {/* المقال الأساسي */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
+      <div className="bg-white flex flex-col md:flex-row sm:gap-2 md:gap-5 rounded-2xl shadow-lg p-6 mb-12">
         <img
           src={journal.image}
           alt={journal.title}
-          className="w-full h-[300px] md:h-[400px] object-cover rounded-xl mb-6 shadow"
+          className="w-full md:w-[300px] h-[300px] md:h-[400px] object-cover rounded-xl mb-4 md:mb-0 shadow"
         />
-        <h1 className="text-2xl md:text-3xl font-bold mb-4 text-[#4B5929]">
-          {journal.title}
-        </h1>
-        <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-          {journal.content}
-        </p>
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-[#4B5929]">
+            {journal.title}
+          </h1>
+          <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+            {journal.content}
+          </p>
+        </div>
       </div>
 
       {/* مقالات إضافية */}

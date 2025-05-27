@@ -2,12 +2,13 @@ import React from 'react'
 
 const Contact = () => {
   return (
-    <div>
-       <section className="contact px-5 sm:px-10 lg:px-20 pt-[50px] pb-[50px] relative" id="contact">
-          <img src="imges/c0136404-6fed-4452-9bfa-984132cc8c2c 1.png "
+    <div className="relative">
+ <img src="imges/c0136404-6fed-4452-9bfa-984132cc8c2c 1.png "
                alt="Contact background"
                className="absolute inset-0 w-full h-full object-cover -z-10 opacity-80" />
         
+       <section className="contact container pt-[50px] pb-[50px] relative" id="contact">
+         
           <div className="content bg-white flex flex-col md:flex-row justify-between shadow-lg rounded-lg  overflow-hidden">
             
             <div className="img  md:order-2 p-6  w-full lg:w-1/2 relative flex flex-col items-center justify-center">

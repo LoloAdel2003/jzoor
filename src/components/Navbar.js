@@ -98,7 +98,7 @@ export default function Navbar() {
 
   return (
     <section className="w-full bg-white fixed z-50 shadow-md">
-      <div className="containerheader">
+      <div className="container">
         <header className="flex justify-between items-center gap-6 flex-wrap relative ">
           <Link to="/">
             <img
@@ -124,7 +124,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4 xl:gap-5 text-xl mr-2">
+          <div className="flex items-center gap-4 xl:gap-5 text-xl ">
             <button
               className="block lg:hidden text-xl order-last"
               id="menuBtn"

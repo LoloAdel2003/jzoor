@@ -31,7 +31,8 @@ const ProductSection = () => {
   const productset = products.slice(0, 8);
 
   return (
-    <section className="py-[60px] px-4 bg-[#fdf9f3]" id="Products">
+    <div className="bg-[#fdf9f3]">
+    <section className="py-[60px] container " id="Products">
       {showToast && (
         <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
           ✅ Added to cart!
@@ -40,7 +41,7 @@ const ProductSection = () => {
 
       <Title name="Products" description="Top picks from Palestinian gardens we love" />
       <div className="content">
-        <div className="cards py-5 px-5 sm:px-10 lg:px-20">
+        <div className="cards sm:py-2  md:py-5">
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">
             {productset.map((product) => (
               <div
@@ -114,6 +115,7 @@ const ProductSection = () => {
         </Link>
       </div>
     </section>
+    </div>
   );
 };
 

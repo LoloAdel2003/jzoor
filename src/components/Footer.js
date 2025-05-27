@@ -5,7 +5,7 @@ const Footer = () => {
     <>
             {/* <div className="h-[1px] w-full bg-gray-200 mt-4"></div> */}
 
-    <footer className="bg-white pt-5 pb-2 px-6 md:px-20 pt-[10px] pb-[30px]">
+    <footer className="bg-white pt-5 pb-2 container pt-[10px] pb-[30px]">
 
 
       {/*   <img src="imges/Logo.png" className="block w-[80px] h-auto md:w-[100px]  md:ml-0 " /> */}

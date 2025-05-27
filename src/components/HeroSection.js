@@ -6,12 +6,11 @@ export default function HeroSection() {
   return (
     <section
       id="Home"
-      className="px-6 sm:px-10 md:px-20 bg-[#FAF7F2] pt-[86px] md:pt-[145.5px] min-h-screen flex flex-col justify-center overflow-hidden pb-10"
+      className=" bg-[#FAF7F2] pt-[64px]  min-h-screen flex flex-col justify-center overflow-hidden pb-10"
     >
-      {/* أيقونة الوردة في الخلفية - مخفية في الموبايل */}
-      <div className="hidden lg:block absolute text-[100px] text-white right-10 top-20 opacity-20">
-        <PiFlowerLotusLight />
-      </div>
+      <div className="container" >
+        {/* أيقونة الوردة في الخلفية - مخفية في الموبايل */}
+     
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-20 ">
       
@@ -22,7 +21,7 @@ export default function HeroSection() {
             <img
               src="imges/twemoji_olive.png"
               alt="Olive"
-              className="hidden lg:block absolute w-[60px] right-[70px] top-[-10px]"
+              className="hidden lg:block absolute w-[60px] right-[40px] top-[-10px]"
             />
             Rooted in <span className="text-[#4B5929]">Heritage,</span>{" "}
             <span className="text-[#4B5929]">Blooming</span> in Beauty
@@ -45,13 +44,28 @@ export default function HeroSection() {
         </div>
           
         {/* الصورة */}
-        <div className="w-full order-2 md:w-1/2 flex justify-center md:justify-end">
+        <div className="relative w-full order-2 md:w-1/2 flex justify-center md:justify-end">
+        <div className=" lg:block absolute text-[60px] text-green/50 right-10 top-[85%] opacity-20">
+        <PiFlowerLotusLight />
+      </div>
+      <div className=" lg:block absolute text-[60px] text-green/50 left-10 top-[50%] opacity-20">
+        <IoFlowerOutline />
+      </div>
+      <div className=" lg:block absolute text-[60px] text-green/50 right-0 top-[5%] opacity-20">
+        <IoFlowerOutline />
+      </div>
+
+      
+      
+      
+
           <img
             src="imges/pngtree-white-lily-of-the-valley-bouquet-in-decorative-ceramic-vase-serene-png-image_16177895.png"
             alt="Flower Vase"
             className="w-[250px]   md:w-[350px] lg:w-[400px] "
           />
         </div>
+      </div>
       </div>
     </section>
   );

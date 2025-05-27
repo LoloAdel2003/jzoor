@@ -31,8 +31,9 @@ const GiftSection = () => {
   const giftsToShow = gifts.slice(0, 4);
 
   return (
+    <div className="bg-[#FAF7F2]">
     <section
-      className="gift relative pt-[60px] pb-[60px] bg-[#FAF7F2] overflow-hidden"
+      className="gift relative pt-[60px] pb-[60px]  overflow-hidden container"
       id="Gifts"
     >
       {showToast && (
@@ -46,7 +47,7 @@ const GiftSection = () => {
         description="Thoughtful keepsakes rooted in the land"
       />
 
-      <div className="cards bg-[#FAF7F2] py-5 px-20 sm:px-10 lg:px-20">
+      <div className="cards bg-[#FAF7F2] sm:py-2 md:py-5 ">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">
             {giftsToShow.map((product) => (
@@ -120,6 +121,7 @@ const GiftSection = () => {
         </Link>
       </div>
     </section>
+    </div>
   );
 };
 
