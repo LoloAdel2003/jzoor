@@ -22,11 +22,13 @@ import SellerDash from './page/SellerDash';
 import FavoriteSection from './page/FavoriteSection';
 import JournalDetails from './page/JournalDetails';
 import GiftDetails from './page/GiftDetails';
+import ScrollToTopButton from './components/ScrollToTopButton';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
   <>
     <Navbar />
+
     <Outlet />
     <Footer />
   </>
@@ -36,6 +38,9 @@ const App = () => {
    
   return (
     <ProductProvider>
+      <ScrollToTopButton />
+
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
