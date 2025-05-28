@@ -1,9 +1,8 @@
-import React from 'react';
+import React,{useContext, useEffect} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ProductProvider } from './context/ProductContext';
+import { ProductContext, ProductProvider } from './context/ProductContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
 import Home from './page/Home';
 import Login from './page/Login';
 import Register from './page/Register';
@@ -22,6 +21,9 @@ import SellerLogin from './page/SellerLogin';
 import SellerDash from './page/SellerDash';
 import FavoriteSection from './page/FavoriteSection';
 import JournalDetails from './page/JournalDetails';
+import GiftDetails from './page/GiftDetails';
+// import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
+
 const Layout = () => (
   <>
     <Navbar />
@@ -31,6 +33,7 @@ const Layout = () => (
 );
 
 const App = () => {
+   
   return (
     <ProductProvider>
       <BrowserRouter>
@@ -48,7 +51,7 @@ const App = () => {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/ForgetPass" element={<ForgetPass />} />
             <Route path="/VerifyCode?" element={<VerifyCode />} />
-            <Route path="/gift/:id" element={<ProductDetails />} />
+            <Route path="/gift/:id" element={<GiftDetails />} />
             <Route path="/SetPass" element={<SetPass />} />
             <Route path="/favorites" element={<FavoriteSection />} />
             <Route path="/JournalDetails/:id" element={<JournalDetails />} />

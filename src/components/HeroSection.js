@@ -1,8 +1,11 @@
 import React from "react";
 import { IoFlowerOutline } from "react-icons/io5";
 import { PiFlowerLotusLight } from "react-icons/pi";
-
+import useScrollReveal from "../assets/useScrollReveal";
+// useScrollReveal
 export default function HeroSection() {
+  useScrollReveal('.reveal-zoom', 'zoom');  
+  useScrollReveal('.reveal-top', 'top');
   return (
     <section
       id="Home"
@@ -16,7 +19,7 @@ export default function HeroSection() {
       
 
         {/* النص */}
-        <div className="w-full order-1 md:w-1/2 sm:pt-5 md:pt-0 flex flex-col items-center md:items-start sm:text-center md:text-left">
+        <div className="reveal-top w-full order-1 md:w-1/2 sm:pt-5 md:pt-0 flex flex-col items-center md:items-start sm:text-center md:text-left">
         <h1 className="text-[30px] md:text-[36px] lg:text-[44px] font-bold leading-tight mb-4 relative  ">
             <img
               src="imges/twemoji_olive.png"
@@ -45,13 +48,13 @@ export default function HeroSection() {
           
         {/* الصورة */}
         <div className="relative w-full order-2 md:w-1/2 flex justify-center md:justify-end">
-        <div className=" lg:block absolute text-[60px] text-green/50 right-10 top-[85%] opacity-20">
+        <div className="animate-movingy lg:block absolute text-[60px] text-green/50 right-10 top-[85%] opacity-20">
         <PiFlowerLotusLight />
       </div>
-      <div className=" lg:block absolute text-[60px] text-green/50 left-10 top-[50%] opacity-20">
+      <div className="animate-rotating lg:block absolute text-[60px] text-green/50 left-10 top-[50%] opacity-20">
         <IoFlowerOutline />
       </div>
-      <div className=" lg:block absolute text-[60px] text-green/50 right-0 top-[5%] opacity-20">
+      <div className="animate-rotating lg:block absolute text-[60px] text-green/50 right-0 top-[5%] opacity-20">
         <IoFlowerOutline />
       </div>
 
@@ -62,7 +65,7 @@ export default function HeroSection() {
           <img
             src="imges/pngtree-white-lily-of-the-valley-bouquet-in-decorative-ceramic-vase-serene-png-image_16177895.png"
             alt="Flower Vase"
-            className="w-[250px]   md:w-[350px] lg:w-[400px] "
+            className="w-[250px]   md:w-[350px] lg:w-[400px] reveal-zoom"
           />
         </div>
       </div>

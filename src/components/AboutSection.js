@@ -1,13 +1,21 @@
 import React from "react";
+import useScrollReveal from "../assets/useScrollReveal";
 
 const AboutSection = () => {
+    useScrollReveal('.reveal-left', 'left');  
+  useScrollReveal('.reveal-right', 'right');
+  useScrollReveal('.reveal-top', 'top');
+
+  useScrollReveal('.reveal-top-hero', 'topInterval');
+
+
   return (
-    <section className="bg-white pt-6 md:py-16">
+    <section className="bg-white pt-6 md:py-16" id="About">
       <div className="container mx-auto max-w-6xl px-4">
         {/* القسم الرئيسي */}
         <div className="flex flex-col md:flex-row items-start md:items-center sm:gap-2 md:gap-5 px-4">
           {/* الصورة */}
-          <div className="hidden md:block flex-shrink-0 w-full md:w-1/2">
+          <div className="reveal-left hidden md:block flex-shrink-0 w-full md:w-1/2">
             <img
               src="imges/Group 84 (1).png"
               alt="Olive Tree"
@@ -16,7 +24,7 @@ const AboutSection = () => {
           </div>
 
           {/* النص */}
-          <div className="w-full md:w-1/2 sm:text-center md:text-left">
+          <div className="reveal-right w-full md:w-1/2 sm:text-center md:text-left">
             <h2 className="text-xl md:text-2xl font-bold mb-4 text-[#1d1d1d]">
               About Us – Deeply Rooted in Palestine
             </h2>
@@ -40,27 +48,24 @@ const AboutSection = () => {
       </div>
       
         {/* القيم */}
-        <div className="bg-[#D1E7C1] mt-12 p-6 rounded-lg text-center">
-  <h3 className="text-lg md:text-xl font-semibold text-[#4B5929] mb-2">
+        <div className="bg-[#D1E7C1] mt-12 p-6 rounded-lg text-center hidden md:block">
+  <h3 className="reveal-top text-lg md:text-xl font-semibold text-[#4B5929] mb-2">
     Our Values
   </h3>
-  <p className="italic font-medium text-[#4B5929] mb-6">
+  <p className="reveal-top italic font-medium text-[#4B5929] mb-6">
     "Rooted in the land. Grown with love."
   </p>
 
-  {/* صف أفقي قابل للتمرير على الشاشات الصغيرة */}
-  <div className="flex flex-row overflow-x-auto gap-4 sm:gap-6 md:grid md:grid-cols-5 md:gap-6 justify-items-center px-2">
+  {/* شبكة تظهر 3 أعمدة على الشاشات الصغيرة و5 أعمدة على المتوسطة وما فوق */}
+  <div className="grid  grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 justify-items-center">
     {[
       { src: "imges/twemoji_olive (2).png", label: "Connection" },
       { src: "imges/carbon_sustainability.png", label: "Sustainability" },
       { src: "imges/Screenshot 2025-05-04 205611.png", label: "Heritage" },
       { src: "imges/Group.png", label: "Quality" },
-      // { src: "imges/Vector.png", label: "Care & Nurture" },
+      { src: "imges/Vector.png", label: "Care & Nurture" },
     ].map((item, index) => (
-      <div
-        key={index}
-        className="flex flex-col items-center min-w-[100px] flex-shrink-0 md:min-w-0"
-      >
+      <div key={index} className="reveal-top-hero flex flex-col items-center">
         <div className="w-20 h-20 bg-white rounded-full border-2 border-[#4B5929] flex items-center justify-center shadow-md transition-transform hover:scale-110">
           <img
             src={item.src}
@@ -75,6 +80,7 @@ const AboutSection = () => {
     ))}
   </div>
 </div>
+
 
 
     </section>

@@ -1,7 +1,11 @@
 import React from "react";
 import Title from "./Title";
 import { Link } from "react-router-dom";
+import useScrollReveal from "../assets/useScrollReveal";
+
 const ToolsSection = () => {
+    useScrollReveal('.reveal-top-tools', 'topInterval');
+  
   return (
     <section className="tools pt-[60px] pb-[60px] container" id="Tools">
      <Title name="Tools & Care" description="Because every leaf deserves a little extra care" />
@@ -28,7 +32,7 @@ const ToolsSection = () => {
   ].map((card, index) => (
     <div
       key={index}
-      className="group cursor-pointer relative rounded-xl overflow-hidden bg-white max-w-sm w-full h-[400px]"
+      className="reveal-top-tools group cursor-pointer relative rounded-xl overflow-hidden bg-white max-w-sm w-full h-[400px]"
     >
       <img
         src={card.img}

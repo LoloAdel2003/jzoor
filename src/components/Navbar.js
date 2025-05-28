@@ -88,11 +88,12 @@ export default function Navbar() {
 
   const sections = [
     "Home",
+    "About",
     "Products",
     "Gifts",
     "Tools",
     "Journals",
-    "About",
+    
     "contact",
   ];
 

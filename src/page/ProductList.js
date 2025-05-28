@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Title from "../components/Title";
+import ScrollReveal from "scrollreveal";
 
 const ProductList = () => {
+  
   const {
     products,
     handleAddToCart,
@@ -13,6 +15,21 @@ const ProductList = () => {
     isFavorite,
     setSelectedProduct,
   } = useContext(ProductContext);
+   useEffect(() => {
+      if (products.length > 0) {
+        ScrollReveal().reveal(".reveal-top-Product", {
+          origin: "top",
+          distance: "50px",
+          duration: 1000,
+          delay: 200,
+          easing: "ease",
+          reset: false,
+          opacity: 0,
+          scale: 0.9,
+          interval: 100,
+        });
+      }
+    }, [products]);
 
   const [showToast, setShowToast] = useState(false);
 
@@ -43,7 +60,7 @@ const ProductList = () => {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 max-w-sm w-full cursor-pointer"
+                className="reveal-top-Product group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 max-w-sm w-full cursor-pointer"
               >
                 <div className="relative w-full h-60 overflow-hidden">
                   <img

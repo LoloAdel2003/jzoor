@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 import Title from "../components/Title";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ScrollReveal from "scrollreveal";
 
 const GiftList = () => {
   const {
@@ -13,7 +14,21 @@ const GiftList = () => {
     handleAddToFavorite,
     handleRemoveFromFavorite,
   } = useContext(ProductContext);
-
+ useEffect(() => {
+      if (gifts.length > 0) {
+        ScrollReveal().reveal(".reveal-top-Gift", {
+          origin: "top",
+          distance: "50px",
+          duration: 1000,
+          delay: 200,
+          easing: "ease",
+          reset: false,
+          opacity: 0,
+          scale: 0.9,
+          interval: 100,
+        });
+      }
+    }, [gifts]);
   const [showToast, setShowToast] = useState(false);
 
   const handleProductClick = (product) => {
@@ -52,7 +67,7 @@ const GiftList = () => {
             {giftsToShow.map((product) => (
               <div
                 key={product.id}
-                className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 max-w-sm w-full cursor-pointer"
+                className="reveal-top-Gift group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 max-w-sm w-full cursor-pointer"
               >
                 <div className="relative w-full h-60 overflow-hidden">
                   <img

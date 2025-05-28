@@ -45,8 +45,23 @@ module.exports = {
       
     }
     },
+    keyframes:{
+      move:{
+        '50%':{transform:'translateY(-1rem)'}
+      },
+      rotate:{
+        "0%":{transform:"rotate(0deg)"},
+        "100%":{transform:"rotate(360deg)"},
+
+      },
+    },
+    animation:{
+      movingy:'move 3s linear infinite',
+      rotating:"rotate 15s linear infinite"
+    }
       
   },
+
   plugins: [],
 }
 

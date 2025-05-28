@@ -1,35 +1,34 @@
 import React, { useContext, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 
-const ProductDetails = () => {
+const GiftDetails = () => {
   const {
-    selectedProduct,
+    selectedGift,
     handleAddToCart,
     handleAddToFavorite,
     favorites,
   } = useContext(ProductContext);
 
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState("M");
-  const [selectedColor, setSelectedColor] = useState(0);
+//   const [selectedSize, setSelectedSize] = useState("M");
+//   const [selectedColor, setSelectedColor] = useState(0);
   const [showToast, setShowToast] = useState(false);
 
-  if (!selectedProduct) {
+  if (!selectedGift) {
     return (
       <div className="text-center py-20 text-gray-500 text-lg">
-        No product selected.
+        No Gift selected.
       </div>
     );
   }
 
-  const isFavorite = favorites?.some((item) => item.id === selectedProduct.id);
+  const isFavorite = favorites?.some((item) => item.id === selectedGift.id);
 
   const AddToCart = () => {
     const productWithOptions = {
-      ...selectedProduct,
+      ...selectedGift,
       quantity,
-      size: selectedSize,
-      color: selectedColor,
+     
     };
     handleAddToCart(productWithOptions);
     setShowToast(true);
@@ -37,7 +36,7 @@ const ProductDetails = () => {
   };
 
   const AddToFavorites = () => {
-    handleAddToFavorite(selectedProduct);
+    handleAddToFavorite(selectedGift);
   };
 
   return (
@@ -46,15 +45,15 @@ const ProductDetails = () => {
         {/* صورة المنتج */}
         <div>
           <img
-            src={selectedProduct.img}
-            alt={selectedProduct.name}
+            src={selectedGift.img}
+            alt={selectedGift.name}
             className="w-full h-[420px] object-cover rounded-xl shadow"
           />
         </div>
 
         {/* معلومات المنتج */}
         <div className="flex flex-col gap-1 text-[#4B5929]">
-          <h2 className="text-3xl font-bold">{selectedProduct.name}</h2>
+          <h2 className="text-3xl font-bold">{selectedGift.name}</h2>
           <p className="text-gray-600">
             A hardy evergreen with silver-green leaves, perfect for patios and indoor spaces.
           </p>
@@ -71,45 +70,9 @@ const ProductDetails = () => {
           </div>
 
           {/* السعر */}
-          <p className="text-2xl font-bold mt-2">${selectedProduct.new_price}</p>
+          <p className="text-2xl font-bold mt-2">${selectedGift.new_price}</p>
 
-          {/* الحجم */}
-          <div className="mt-3">
-            <p className="font-semibold mb-1">Pot Size</p>
-            <div className="flex gap-2">
-              {["S", "M", "L"].map((size) => (
-                <button
-                  key={size}
-                  className={`w-9 h-9 rounded-full border ${
-                    selectedSize === size
-                      ? "bg-[#af926a] text-white"
-                      : "bg-white text-[#4B5929] border-[#af926a]"
-                  }`}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* اللون */}
-          <div className="mt-3">
-            <p className="font-semibold mb-1">Pot Colors</p>
-            <div className="flex gap-3">
-              {["#4B5929", "#c4a484", "#e0d6cd", "#a67c52"].map((color, index) => (
-                <button
-                  key={color}
-                  className={`w-7 h-7 rounded-full border-2 ${
-                    selectedColor === index ? "border-[#4B5929]" : "border-white"
-                  }`}
-                  onClick={() => setSelectedColor(index)}
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-            </div>
-          </div>
-
+         
           {/* الكمية والمفضلة */}
           <div className="mt-4 flex items-center gap-3 flex-wrap">
             <div className="flex items-center border border-[#af926a] rounded-full overflow-hidden">
@@ -161,4 +124,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default GiftDetails;

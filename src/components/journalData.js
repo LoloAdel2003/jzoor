@@ -23,7 +23,7 @@ const OliveJournal = () => {
             <Link
               to={`/JournalDetails/${journal.id}`}
               key={journal.id}
-              className="no-underline max-w-sm group block bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-[1.02] duration-300"
+              className= "reveal-top-card no-underline max-w-sm group block bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-[1.02] duration-300"
             >
               <div className="relative w-full h-60 sm:h-64 md:h-72 overflow-hidden image">
                 <img

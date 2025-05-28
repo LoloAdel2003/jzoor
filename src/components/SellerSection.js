@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import { Link } from "react-router-dom";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import Title from "./Title";
+import useScrollReveal from "../assets/useScrollReveal";
 
 const sellers = [
   {
@@ -52,6 +53,8 @@ const sellers = [
 ];
 
 function SellerSection() {
+  useScrollReveal('.reveal-left-Seller', 'leftInterval');
+
   return (
     <div className="bg-[#FAF7F2]">
     <section className="seller pt-[60px] pb-[60px] lg:pb-0  relative container">
@@ -106,7 +109,7 @@ function SellerSection() {
         >
           {sellers.map((seller) => (
             <SwiperSlide key={seller.id}>
-              <div className="p-2 text-center bg-white rounded-xl shadow-md w-full h-full ">
+              <div className="reveal-left-Seller p-2 text-center bg-white rounded-xl shadow-md w-full h-full ">
                 <img
                   src={seller.img}
                   alt={seller.name}

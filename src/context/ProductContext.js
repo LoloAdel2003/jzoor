@@ -9,6 +9,7 @@ export const ProductProvider = ({ children }) => {
 
   const [cart, setCart] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedGift, setSelectedGift] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [selectedJournal, setSelectedJournal] = useState(null);
   // تحميل البيانات من JSON باستخدام fetch
@@ -124,6 +125,8 @@ const handleRemoveFromFavorite = (id) => {
         setCart,
         selectedProduct,
         setSelectedProduct,
+        selectedGift,
+        setSelectedGift,
         favorites,
         setFavorites,
         handleAddToCart,

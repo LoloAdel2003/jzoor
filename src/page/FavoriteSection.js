@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -6,7 +6,6 @@ import Title from "../components/Title";
 
 const FavoriteSection = () => {
   const {
-    products,
     favorites,
     handleAddToCart,
     handleAddToFavorite,
@@ -15,16 +14,31 @@ const FavoriteSection = () => {
     setSelectedProduct,
   } = useContext(ProductContext);
 
+  const [showToast, setShowToast] = useState(false);
+
+  const handleAddToCartWithToast = (product) => {
+    handleAddToCart(product);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1000);
+  };
+
   const handleProductClick = (product) => {
     setSelectedProduct(product);
   };
 
   const favoriteProducts = favorites;
-//   products.filter((product) => isFavorite(product.id));
 
   return (
     <section className="pt-[120px] pb-[60px] container " id="Favorites">
-                  <h2 className="text-3xl font-bold text-[#4B5929]">Your Favorites</h2>
+      {showToast && (
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
+          ✅ Added to cart!
+        </div>
+      )}
+
+      <h2 className="text-3xl font-bold text-[#4B5929]">Your Favorites</h2>
 
       <div className="content">
         <div className="cards py-5 px-5 sm:px-10 lg:px-20">
@@ -66,13 +80,13 @@ const FavoriteSection = () => {
                     <span className="line-through text-gray-400">
                       ${product.prev_price}
                     </span>
-                    <span className="text-[#af926a] font-bold text-[16px]">
+                    <span className="text-[#af926a] font-bold text-[18px]">
                       ${product.new_price}
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-all duration-300 p-4 flex flex-col items-center gap-2 bg-white/90">
                     <button
-                      onClick={() => handleAddToCart(product)}
+                      onClick={() => handleAddToCartWithToast(product)}
                       className="bg-[#af926a] no-underline text-white w-full text-center py-2 rounded-full hover:bg-[#8B6F47] transition"
                     >
                       Add To Cart

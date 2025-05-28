@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Title from "./Title";
 import "./VoicesSection.css"; // ملف CSS خارجي
+import useScrollReveal from "../assets/useScrollReveal";
 
 const voices = [
   {
@@ -38,6 +39,8 @@ const voices = [
 ];
 
 function VoicesSection() {
+    useScrollReveal('.reveal-left-voices', 'leftInterval');
+  
   return (
     <section className="voices pt-[60px] pb-[60px] container">
       <Title name="Voices Rooted in Trust" description=" these voices bloom like jasmin" />
@@ -55,7 +58,7 @@ function VoicesSection() {
         >
           {voices.map((voice) => (
             <SwiperSlide key={voice.id}>
-              <div className="bg-[#A8C686]/50 shadow-xl rounded-lg p-8 flex items-center gap-4 relative w-[300px] md:w-[350px] lg:w-[500px] mx-auto">
+              <div className="reveal-left-voices bg-[#A8C686]/50 shadow-xl rounded-lg p-8 flex items-center gap-4 relative w-[300px] md:w-[350px] lg:w-[500px] mx-auto">
                 <div className="imging relative w-16 md:w-20 lg:w-36 flex-shrink-0 after:w-[20px] after:left-[-10px] after:md:w-[40px] after:md:left-[-20px]">
                   <img
                     src={voice.img}
