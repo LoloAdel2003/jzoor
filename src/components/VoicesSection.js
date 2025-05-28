@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Title from "./Title";
-import "./VoicesSection.css"; // ملف CSS خارجي
+import "./VoicesSection.css";
 import useScrollReveal from "../assets/useScrollReveal";
 
-const voices = [
+const initialVoices = [
   {
     id: 1,
     name: "Mary Eqdaih",
@@ -39,14 +39,42 @@ const voices = [
 ];
 
 function VoicesSection() {
-    useScrollReveal('.reveal-left-voices', 'leftInterval');
-  
+  const [voicesList, setVoicesList] = useState(initialVoices);
+  const [showForm, setShowForm] = useState(false);
+  const [newReview, setNewReview] = useState({
+    name: "",
+    rating: 5,
+    review: "",
+    img: "imges/Young smiling fair-haired woman in a garden….png", // صورة افتراضية
+  });
+
+  useScrollReveal(".reveal-left-voices", "leftInterval");
+
+  const handleConfirmReview = () => {
+    const newVoice = {
+      id: voicesList.length + 1,
+      ...newReview,
+    };
+    setVoicesList([...voicesList, newVoice]);
+    setShowForm(false);
+    setNewReview({
+      name: "",
+      rating: 5,
+      review: "",
+      img: "imges/Young smiling fair-haired woman in a garden….png",
+    });
+  };
+
   return (
     <section className="voices pt-[60px] pb-[60px] container">
-      <Title name="Voices Rooted in Trust" description=" these voices bloom like jasmin" />
+      <Title
+        name="Voices Rooted in Trust"
+        description=" these voices bloom like jasmin"
+      />
 
       <div className="content sm:py-2 md:py-5">
         <Swiper
+         key={voicesList.length} 
           modules={[Pagination]}
           pagination={{ clickable: true }}
           spaceBetween={0}
@@ -56,7 +84,7 @@ function VoicesSection() {
           }}
           className="relative custom-swiper"
         >
-          {voices.map((voice) => (
+          {voicesList.map((voice) => (
             <SwiperSlide key={voice.id}>
               <div className="reveal-left-voices bg-[#A8C686]/50 shadow-xl rounded-lg p-8 flex items-center gap-4 relative w-[300px] md:w-[350px] lg:w-[500px] mx-auto">
                 <div className="imging relative w-16 md:w-20 lg:w-36 flex-shrink-0 after:w-[20px] after:left-[-10px] after:md:w-[40px] after:md:left-[-20px]">
@@ -90,14 +118,68 @@ function VoicesSection() {
           ))}
         </Swiper>
       </div>
+      {showForm && (
+        <div className="mt-6 bg-white rounded-lg shadow-lg p-6 max-w-xl mx-auto space-y-4">
+          <div className="flex items-center gap-4">
+            <img
+              src="imges/088e081a-65fa-4068-9219-2cc7ae45cb40.png"
+              alt="default"
+              className="w-16 h-16 object-cover rounded-full"
+            />
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="border p-2 rounded w-full"
+              value={newReview.name}
+              onChange={(e) =>
+                setNewReview({ ...newReview, name: e.target.value })
+              }
+            />
+          </div>
 
+          <textarea
+            rows="3"
+            placeholder="Write your review..."
+            className="border p-2 rounded w-full"
+            value={newReview.review}
+            onChange={(e) =>
+              setNewReview({ ...newReview, review: e.target.value })
+            }
+          ></textarea>
+
+          <div className="flex items-center gap-2">
+            <label className="text-[#4B5929] font-medium">Rating:</label>
+            {[1, 2, 3, 4, 5].map((num) => (
+              <button
+                key={num}
+                className={`text-2xl ${
+                  newReview.rating >= num ? "text-yellow-400" : "text-gray-300"
+                }`}
+                onClick={() => setNewReview({ ...newReview, rating: num })}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={handleConfirmReview}
+            className="bg-[#af926a] text-white px-4 py-2 rounded hover:bg-[#8B6F47] transition"
+          >
+            Confirm Review
+          </button>
+        </div>
+      )}
       <div className="flex justify-center mt-8 relative">
-        <button className="relative bg-[#4B5929] hover:bg-[#A8C686] text-white font-medium text-lg px-3 h-[50px] rounded-[10px] transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer">
-          <a href="#" className="no-underline text-white">
+        <button
+          onClick={() => setShowForm(true)}
+          className="relative bg-[#4B5929] hover:bg-[#A8C686] text-white font-medium text-lg px-3 h-[50px] rounded-[10px] transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer"
+        >
             Write a review &gt;
-          </a>
         </button>
       </div>
+
+     
     </section>
   );
 }
