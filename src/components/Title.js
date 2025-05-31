@@ -6,13 +6,13 @@ const Title = (props) => {
       <img 
         src="imges/Screenshot_2025-05-04_210646-removebg-preview.png" 
         alt="" 
-        className="block absolute left-[20px] md:left-20 top-1/4 -translate-y-1/2 w-[50px] md:w-[80px]"
+        className="block absolute left-[15px] md:left-20 top-1/4 -translate-y-1/2 w-[50px] md:w-[80px]"
         />
     
       <img 
         src="imges/Screenshot_2025-05-04_210646-removebg-preview.png" 
         alt="" 
-        className=" md:block absolute right-[20px] md:right-20 top-1/4 -translate-y-1/2 w-[50px] md:w-[80px]"
+        className=" md:block absolute right-[15px] md:right-20 top-1/4 -translate-y-1/2 w-[50px] md:w-[80px]"
       />
     
       <h1 className="font-bold text-[25px] md:text-[30px] lg:text-[40px]">{props.name}</h1>

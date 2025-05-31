@@ -24,8 +24,8 @@ const Footer = () => {
           <div className="mb-6 md:mb-0 ">
               <h5 className="text-md md:text-lg font-semibold text-[#4B5929] mb-2">Newsletter</h5>
               <div className="flex">
-                  <input type="email" placeholder="juzoor@gmail.com" class="bg-gray-100 border border-gray-300 rounded-md py-2 sm:px-2 md:px-4 focus:outline-none focus:border-green" />
-                  <button className="bg-[#4B5929] text-white rounded-md py-2 sm:px-2 md:px-4 ml-4 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-[#A8C686]">Subscribe</button>
+                  <input type="email" placeholder="juzoor@gmail.com" class="bg-gray-100 border border-gray-300 rounded-md py-2 px-2 md:px-4 focus:outline-none focus:border-green" />
+                  <button className="bg-[#4B5929] text-white rounded-md py-2 px-2 md:px-4 ml-4 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-[#A8C686]">Subscribe</button>
               </div>
           </div>
       </div>

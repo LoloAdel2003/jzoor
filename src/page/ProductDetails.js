@@ -152,12 +152,17 @@ const ProductDetails = () => {
       </div>
 
       {/* Toast Message */}
-      {showToast && (
-        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
-          ✅ Added to cart!
-        </div>
-      )}
+      {showToast && <Toast message="Added to cart!" />}
     </section>
+  );
+};
+
+// ✅ مكون التوست المدمج داخل نفس الملف
+const Toast = ({ message }) => {
+  return (
+    <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
+      ✅ {message}
+    </div>
   );
 };
 

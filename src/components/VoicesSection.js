@@ -45,7 +45,7 @@ function VoicesSection() {
     name: "",
     rating: 5,
     review: "",
-    img: "imges/Young smiling fair-haired woman in a garden….png", // صورة افتراضية
+    img: "imges/Profile.png", // صورة افتراضية
   });
 
   useScrollReveal(".reveal-left-voices", "leftInterval");
@@ -61,7 +61,7 @@ function VoicesSection() {
       name: "",
       rating: 5,
       review: "",
-      img: "imges/Young smiling fair-haired woman in a garden….png",
+      img: "imges/Profile.png",
     });
   };
 
@@ -122,7 +122,7 @@ function VoicesSection() {
         <div className="mt-6 bg-white rounded-lg shadow-lg p-6 max-w-xl mx-auto space-y-4">
           <div className="flex items-center gap-4">
             <img
-              src="imges/088e081a-65fa-4068-9219-2cc7ae45cb40.png"
+              src="imges/Profile.png"
               alt="default"
               className="w-16 h-16 object-cover rounded-full"
             />

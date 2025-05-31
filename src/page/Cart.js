@@ -8,11 +8,11 @@ const Cart = () => {
   const total = cart.reduce((acc, item) => acc + item.new_price * item.quantity, 0);
 
   return (
-    <div className="pt-[120px] container grid grid-cols-1 lg:grid-cols-3 gap-10 min-h-screen">
+    <div className="pt-[60px] md:pt-[120px] container grid grid-cols-1 lg:grid-cols-3 gap-10 min-h-screen">
       {/* Cart Table */}
       <div className="lg:col-span-2">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-[#4B5929]">Shopping Cart</h2>
+          <h2 className="text-md md:text-3xl font-bold text-[#4B5929]">Shopping Cart</h2>
           <p className="font-medium">{cart.length} Items</p>
         </div>
         <div className="hidden md:grid grid-cols-4 text-sm font-semibold border-b pb-2 text-gray-700">

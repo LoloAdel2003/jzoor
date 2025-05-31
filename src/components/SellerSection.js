@@ -24,7 +24,7 @@ const sellers = [
     id: 2,
     name: "Huda Rayan",
     location: "Jerusalem",
-    img: "imges/Ellipse 22.png",
+    img: "imges/y.jpg",
     rating: 5,
     sales: 520,
     satisfaction: 90,
@@ -44,7 +44,7 @@ const sellers = [
     id: 4,
     name: "Layla Salim",
     location: "Nablus",
-    img: "imges/Ellipse 21.png",
+    img: "imges/x.jpg",
     rating: 5,
     sales: 600,
     satisfaction: 94,
@@ -57,7 +57,7 @@ function SellerSection() {
 
   return (
     <div className="bg-[#FAF7F2]">
-    <section className="seller pt-[60px] pb-[60px] lg:pb-0  relative container">
+    <section id="Sellers" className="seller pt-[60px] pb-[60px] lg:pb-0  relative container">
       <Title name="Seller Community" description="Meet the people behind the plants" />
 
       {/* حاوية المحتوى بالكامل بـ px-20 */}
@@ -131,12 +131,12 @@ function SellerSection() {
                   <span className="font-semibold">{seller.satisfaction}%</span>
                 </p>
                 <p className="text-xs text-gray-700 mt-2">{seller.specialty}</p>
-                <Link
+                {/* <Link
                   to="/SellerProduct"
                   className="no-underline mb-3 inline-block mt-4 bg-[#4B5929] hover:bg-[#6c825f] text-white px-4 py-2 rounded-full font-semibold transition"
                 >
                   Seller Product
-                </Link>
+                </Link> */}
               </div>
             </SwiperSlide>
           ))}
@@ -144,11 +144,18 @@ function SellerSection() {
 
       
       </div>
-
+<div className=" flex justify-center mt-8 relative">
+          <Link
+            to="/SellerProduct"
+            className="no-underline relative bg-[#4B5929] text-center hover:bg-[#A8C686] text-white font-medium text-lg px-3 py-3 rounded-[10px] transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer"
+          >
+            See Seller Product
+          </Link>
+        </div>
      
     </section>
       {/* زر JOIN NOW للموبايل */}
-      <div className=" lg:hidden text-center pb-4 my-6 bg-[#A8C686]/50">
+      <div className=" md:hidden text-center pb-4 my-6 bg-[#A8C686]/50">
         <h3 className="font-bold text-xl   rounded-tr-3xl py-2 ">
               Join Our Sellers Team!
             </h3>
@@ -164,27 +171,29 @@ function SellerSection() {
           </Link>
         </div>
      {/* قسم التسجيل الثابت في الأسفل */}
-     <div className="hidden lg:block w-[70%] px-20 bg-[#A8C686]/50 mt-20 p-8 rounded-tr-3xl">
-        <div className="flex items-center flex-wrap gap-16 relative">
+     <div className="hidden  md:block w-[100%] px-20 bg-[#A8C686]/50 mt-20 p-8 ">
+        <div className="flex container justify-around items-center flex-wrap gap-16 relative">
           <div>
             {/* <h3 className=" absolute top-[-88px] -left-20 pl-20 pr-4 rounded-tr-3xl py-3 bg-[#A8C686]/30">
-             
+              
             </h3> */}
-            <p className="text-gray-600 text-md pr-2">
-              <span className="font-bold text-2xl text-[#5a3e2b]"> Join Our Sellers Team!</span>
+            <p className="text-gray-600 md:text-md lg:text-xl pr-2">
+              <span className="font-bold md:text-xl lg:text-3xl text-[#5a3e2b]"> Join Our Sellers Team!</span>
             <br/>
               Let’s grow together... <br />
               your plants, your story, your shop!
             </p>
           </div>
+          <div className="flex md:gap-2 lg:gap-5"> 
           <img src="imges/famicons_arrow-undo (3).png" alt="" />
           <Link
             to="/RegisterSeller"
-            className="bg-[#5a3e2b] hover:bg-[#5a3e2b]/80 no-underline text-white px-12 py-3 rounded-full text-md font-semibold shadow-lg transition duration-300"
+            className="bg-[#5a3e2b]  hover:bg-[#5a3e2b]/80 no-underline text-white md:px-6 lg:px-12 py-3 rounded-full text-md font-bold shadow-lg transition duration-300"
           >
             JOIN NOW
           </Link>
           <img src="imges/famicons_arrow-undo (6).png" alt="" />
+          </div>
         </div>
       </div>
     </div>

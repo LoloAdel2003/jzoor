@@ -4,8 +4,16 @@ export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [Sellerproducts, setSellerProducts] = useState([]);
   const [gifts, setGifts] = useState([]);
   const [journals, setJournals] = useState([]);
+  const [pots, setPots] = useState([]);
+  const [storage, setStorage] = useState([]);
+  const [care, setCare] = useState([]);
+  const [Accessories, setAccessories] = useState([]);
+
+
+
 
   const [cart, setCart] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -18,6 +26,16 @@ export const ProductProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data); // عرض أول 8 منتجات فقط
+      })
+      .catch((err) => {
+        console.error('حدث خطأ أثناء تحميل المنتجات:', err);
+      });
+  }, []);
+  useEffect(() => {
+    fetch('SellerProduct.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setSellerProducts(data); // عرض أول 8 منتجات فقط
       })
       .catch((err) => {
         console.error('حدث خطأ أثناء تحميل المنتجات:', err);
@@ -45,7 +63,51 @@ export const ProductProvider = ({ children }) => {
         console.error('حدث خطأ:', err);
       });
   }, []);
+  useEffect(() => {
+    fetch('Care.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setCare(data); //ض أول 
+      })
+      .catch((err) => {
+        console.error('حدث خطأ:', err);
+      });
+  }, []);
 
+
+  useEffect(() => {
+    fetch('Pots.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setPots(data); //ض أول 
+      })
+      .catch((err) => {
+        console.error('حدث خطأ:', err);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch('Accessories.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setAccessories(data); //ض أول 
+      })
+      .catch((err) => {
+        console.error('حدث خطأ:', err);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    fetch('Storage.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setStorage(data); //ض أول 
+      })
+      .catch((err) => {
+        console.error('حدث خطأ:', err);
+      });
+  }, []);
 
   // تحقق مما إذا كان المنتج موجود بالمفضلة
 const isFavorite = (id) => {
@@ -118,6 +180,7 @@ const handleRemoveFromFavorite = (id) => {
     <ProductContext.Provider
       value={{
         products,
+        Sellerproducts,
         setProducts,
         gifts,
         setGifts,
@@ -138,7 +201,11 @@ const handleRemoveFromFavorite = (id) => {
         isFavorite,
         journals,
         setSelectedJournal,
-        selectedJournal
+        selectedJournal,
+        pots,
+        Accessories,
+        storage,
+        care
       }}
     >
       {children}

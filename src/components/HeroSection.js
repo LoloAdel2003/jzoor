@@ -65,7 +65,7 @@ export default function HeroSection() {
           <img
             src="imges/pngtree-white-lily-of-the-valley-bouquet-in-decorative-ceramic-vase-serene-png-image_16177895.png"
             alt="Flower Vase"
-            className="w-[250px]   md:w-[350px] lg:w-[400px] reveal-zoom"
+            className="w-[250px]    md:w-[350px] lg:w-[400px] reveal-zoom"
           />
         </div>
       </div>

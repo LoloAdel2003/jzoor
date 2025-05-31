@@ -23,6 +23,18 @@ import FavoriteSection from './page/FavoriteSection';
 import JournalDetails from './page/JournalDetails';
 import GiftDetails from './page/GiftDetails';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import SellerProduct from './page/SellerProduct';
+import SellerProductDetails from './page/SellerProductDetails';
+import Profile from './page/Profile';
+import Pots from './page/Pots'
+import MyProfile from './page/MyProfile';
+import MyAccount from './page/MyAccount';
+import Orders from './page/Orders';
+import Storage from './page/Storage';
+import Care from './page/Care';
+import Accessories from './page/Accessories';
+
+import Notifications from './page/Notifications';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -49,18 +61,39 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/favarate" element={<Favarate />} />
+            <Route path="/Pots" element={<Pots />} />
+
             <Route path="/productList" element={<ProductList />} />
             <Route path="/giftList" element={<GiftList />} />
             <Route path="/SellerLogin" element={<SellerLogin />} />
             <Route path="/SellerDash" element={<SellerDash />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            
+                        <Route path="/SellerProduct/:id" element={<SellerProductDetails />} />
+
             <Route path="/ForgetPass" element={<ForgetPass />} />
             <Route path="/VerifyCode?" element={<VerifyCode />} />
             <Route path="/gift/:id" element={<GiftDetails />} />
+            <Route path="/pots/:id" element={<GiftDetails />} />
+            <Route path="/storage/:id" element={<GiftDetails />} />
+            <Route path="/care/:id" element={<GiftDetails />} />
+            <Route path="/Accessories/:id" element={<GiftDetails />} />
+
+<Route path="/Accessories" element={<Accessories />} />
+<Route path="/care" element={<Care />} />
+<Route path="/Storage" element={<Storage />} />
+
+
             <Route path="/SetPass" element={<SetPass />} />
             <Route path="/favorites" element={<FavoriteSection />} />
             <Route path="/JournalDetails/:id" element={<JournalDetails />} />
-
+            <Route path="/SellerProduct" element={<SellerProduct />} />
+            <Route path="/profile" element={<MyProfile />}>
+              <Route index element={<MyAccount />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="notifications" element={<Notifications />} />
+              {/* <Route path="my-vouchers" element={<MyVouchers />} /> */}
+            </Route>
 
             <Route path="login-seller" element={<LoginSeller />} />
             <Route path="register-seller" element={<RegisterSeller />} />

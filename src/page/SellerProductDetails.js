@@ -1,31 +1,35 @@
 import React, { useContext, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 
-const GiftDetails = () => {
+const SellerProductDetails = () => {
   const {
-    selectedGift,
+    selectedProduct,
     handleAddToCart,
     handleAddToFavorite,
     favorites,
   } = useContext(ProductContext);
 
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedColor, setSelectedColor] = useState(0);
   const [showToast, setShowToast] = useState(false);
 
-  if (!selectedGift) {
+  if (!selectedProduct) {
     return (
       <div className="text-center py-20 text-gray-500 text-lg">
-        No Gift selected.
+        No product selected.
       </div>
     );
   }
 
-  const isFavorite = favorites?.some((item) => item.id === selectedGift.id);
+  const isFavorite = favorites?.some((item) => item.id === selectedProduct.id);
 
   const AddToCart = () => {
     const productWithOptions = {
-      ...selectedGift,
+      ...selectedProduct,
       quantity,
+      size: selectedSize,
+      color: selectedColor,
     };
     handleAddToCart(productWithOptions);
     setShowToast(true);
@@ -33,27 +37,30 @@ const GiftDetails = () => {
   };
 
   const AddToFavorites = () => {
-    handleAddToFavorite(selectedGift);
+    handleAddToFavorite(selectedProduct);
   };
 
   return (
     <section className="min-h-screen py-16 container pt-[120px]">
       <div className="max-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white p-6 md:p-10 rounded-2xl shadow-lg">
-        {/* صورة الهدية */}
+        {/* صورة المنتج */}
         <div>
           <img
-            src={selectedGift.img}
-            alt={selectedGift.name}
+            src={selectedProduct.img}
+            alt={selectedProduct.name}
             className="w-full h-[420px] object-cover rounded-xl shadow"
           />
         </div>
 
-        {/* معلومات الهدية */}
+        {/* معلومات المنتج */}
         <div className="flex flex-col gap-1 text-[#4B5929]">
-          <h2 className="text-3xl font-bold">{selectedGift.name}</h2>
+          <h2 className="text-3xl font-bold">{selectedProduct.name}</h2>
+
           <p className="text-gray-600">
             A hardy evergreen with silver-green leaves, perfect for patios and indoor spaces.
           </p>
+          <h3 className="text-xl font-bold text-green">Seller: <span className="text-[#a67c52]">{selectedProduct.Seller}</span> </h3>
+
 
           {/* التقييم */}
           <div className="flex items-center gap-2 text-yellow-500 mt-1">
@@ -67,7 +74,44 @@ const GiftDetails = () => {
           </div>
 
           {/* السعر */}
-          <p className="text-2xl font-bold mt-2">${selectedGift.new_price}</p>
+          <p className="text-2xl font-bold mt-2">${selectedProduct.new_price}</p>
+
+          {/* الحجم */}
+          <div className="mt-3">
+            <p className="font-semibold mb-1">Pot Size</p>
+            <div className="flex gap-2">
+              {["S", "M", "L"].map((size) => (
+                <button
+                  key={size}
+                  className={`w-9 h-9 rounded-full border ${
+                    selectedSize === size
+                      ? "bg-[#af926a] text-white"
+                      : "bg-white text-[#4B5929] border-[#af926a]"
+                  }`}
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* اللون */}
+          <div className="mt-3">
+            <p className="font-semibold mb-1">Pot Colors</p>
+            <div className="flex gap-3">
+              {["#4B5929", "#c4a484", "#e0d6cd", "#a67c52"].map((color, index) => (
+                <button
+                  key={color}
+                  className={`w-7 h-7 rounded-full border-2 ${
+                    selectedColor === index ? "border-[#4B5929]" : "border-white"
+                  }`}
+                  onClick={() => setSelectedColor(index)}
+                  style={{ backgroundColor: color }}
+                />
+              ))}
+            </div>
+          </div>
 
           {/* الكمية والمفضلة */}
           <div className="mt-4 flex items-center gap-3 flex-wrap">
@@ -111,17 +155,13 @@ const GiftDetails = () => {
       </div>
 
       {/* Toast Message */}
-      {showToast && <Toast message="Added to cart!" />}
+      {showToast && (
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
+          ✅ Added to cart!
+        </div>
+      )}
     </section>
   );
 };
 
-const Toast = ({ message }) => {
-  return (
-    <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
-      ✅ {message}
-    </div>
-  );
-};
-
-export default GiftDetails;
+export default SellerProductDetails;

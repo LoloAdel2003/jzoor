@@ -14,19 +14,23 @@ const ToolsSection = () => {
   {[
     {
       title: 'Pots',
+      to:'/Pots',
       img: '/imges/Keep ALIVE_ 10 Best LOW Light Indoor Plants (Easy….png', // استبدل باسم صورة حقيقي
     },
     {
       title: 'Care',
+      to:'/Care',
       img: '/imges/Person Holding Green Succulent Plant · Free Stock….png',
     },
     {
+      to:'/Accessories',
       title: 'Accessories',
       img: '/imges/Monstera Macrame Wristlet, Leaf Macrame Wristlet….png',
     },
     {
-        title: 'Care',
-        img: '/imges/Person Holding Green Succulent Plant · Free Stock….png',
+      to:'/Storage',
+        title: 'Storage & Maintenance',
+        img: '/imges/Storage.jpg',
       },
      
   ].map((card, index) => (

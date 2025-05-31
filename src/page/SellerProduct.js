@@ -1,22 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
-import Title from "../components/Title";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Title from "../components/Title";
 import ScrollReveal from "scrollreveal";
 
-const GiftList = () => {
+const SellerProduct = () => {
+  
   const {
-    gifts,
-    setSelectedGift,
+    Sellerproducts,
     handleAddToCart,
-    isFavorite,
     handleAddToFavorite,
     handleRemoveFromFavorite,
+    isFavorite,
+    setSelectedProduct,
   } = useContext(ProductContext);
- useEffect(() => {
-      if (gifts.length > 0) {
-        ScrollReveal().reveal(".reveal-top-Gift", {
+   useEffect(() => {
+      if (Sellerproducts.length > 0) {
+        ScrollReveal().reveal(".reveal-top-Product", {
           origin: "top",
           distance: "50px",
           duration: 1000,
@@ -28,11 +29,12 @@ const GiftList = () => {
           interval: 100,
         });
       }
-    }, [gifts]);
+    }, [Sellerproducts]);
+
   const [showToast, setShowToast] = useState(false);
 
   const handleProductClick = (product) => {
-    setSelectedGift(product);
+    setSelectedProduct(product);
   };
 
   const handleAddToCartWithToast = (product) => {
@@ -43,31 +45,22 @@ const GiftList = () => {
     }, 1000);
   };
 
-  const giftsToShow = gifts;
-
   return (
-    <section
-      className="gift relative pt-[100px] pb-[60px] bg-[#FAF7F2] overflow-hidden"
-      id="Gifts"
-    >
+    <section className="pb-[60px] pt-[100px] container" id="Products">
       {showToast && (
         <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
           ✅ Added to cart!
         </div>
       )}
 
-      <Title
-        name="Gift Of Palestine"
-        description="Thoughtful keepsakes rooted in the land"
-      />
-
-      <div className="cards bg-[#FAF7F2] py-5 px-20 sm:px-10 lg:px-20">
-        <div className="max-w-7xl mx-auto">
+      <Title name="Seller Products" description="Top picks from Palestinian gardens we love" />
+      <div className="content">
+        <div className="cards py-5 ">
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">
-            {giftsToShow.map((product) => (
+            {Sellerproducts.map((product) => (
               <div
                 key={product.id}
-                className="reveal-top-Gift group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 max-w-sm w-full cursor-pointer"
+                className="reveal-top-Product group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 max-w-sm w-full cursor-pointer"
               >
                 <div className="relative w-full h-60 overflow-hidden">
                   <img
@@ -76,6 +69,7 @@ const GiftList = () => {
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+
                   <button
                     onClick={() =>
                       isFavorite(product.id)
@@ -112,7 +106,7 @@ const GiftList = () => {
                       Add To Cart
                     </button>
                     <Link
-                      to={`/gift/${product.id}`}
+                      to={`/SellerProduct/${product.id}`}
                       className="bg-[#333]/10 no-underline text-[#8B6F47] w-full text-center py-2 rounded-full border-[##8B6F47] hover:bg-[#8B6F47] hover:text-white transition"
                       onClick={() => handleProductClick(product)}
                     >
@@ -125,10 +119,8 @@ const GiftList = () => {
           </div>
         </div>
       </div>
-
-      <div className="flex justify-center mt-8 relative"></div>
     </section>
   );
 };
 
-export default GiftList;
+export default SellerProduct;
