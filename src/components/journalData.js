@@ -18,7 +18,7 @@ const OliveJournal = () => {
       />
 
       <div className="">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch sm:py-2 md:py-5 ">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 justify-center items-stretch sm:py-2 md:py-5 ">
           {journals.map((journal) => (
             <Link
               to={`/JournalDetails/${journal.id}`}

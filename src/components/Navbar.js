@@ -173,13 +173,13 @@ export default function Navbar() {
 
             <Link
               to="/login"
-              className="hover:text-[#4B5929] font-bold hover:underline text-[20px] hidden  text-black no-underline"
+              className="hover:text-[#4B5929] hidden font-bold hover:underline text-[20px]   text-black no-underline"
             >
               <i className="fas fa-sign-in-alt"></i>
             </Link>
             <Link
               to="/profile"
-              className="bg-[#4B5929] font-bold hover:underline h-[24px] w-[24px] rounded-full text-[20px] hidden md:inline-block text-black no-underline"
+              className="bg-[#4B5929] font-bold hover:underline h-[24px] w-[24px] hidden rounded-full text-[20px] hidden md:inline-block text-black no-underline"
             > 
             <img src="imges/Profile.png" alt="profile" />
             </Link>

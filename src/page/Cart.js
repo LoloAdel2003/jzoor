@@ -8,7 +8,14 @@ const Cart = () => {
   const total = cart.reduce((acc, item) => acc + item.new_price * item.quantity, 0);
 
   return (
-    <div className="pt-[60px] md:pt-[120px] container grid grid-cols-1 lg:grid-cols-3 gap-10 min-h-screen">
+    <>
+    {cart.length === 0 ? (<div className="flex justify-center text-center items-center h-svh"> <div>
+      <img src="imges/a.png" alt="empty" className="w-[150px] md:w-[250px] lg:w-[350px] block mr-auto ml-auto" />
+      <p className="text-green text-xl md:text-3xl pt-2 font-bold">Oops! Nothing here yet</p>
+      <p className="text-gray-600">Lets fix that!</p>
+      <Link to="/productList" className="bg-green  no-underline text-white w-full text-center px-2 md:py-4 py-2 rounded-md border-[##8B6F47] hover:bg-green-hover hover:text-white transition shadow-md">Start Shoping </Link>
+      <p className="pt-2 md:pt-4 text-gray-500">Browse product and find your next favorite!</p>
+      </div></div>): ( <div className="pt-[60px] md:pt-[120px] container grid grid-cols-1 lg:grid-cols-3 gap-10 min-h-screen">
       {/* Cart Table */}
       <div className="lg:col-span-2">
         <div className="flex justify-between items-center mb-6">
@@ -111,7 +118,8 @@ const Cart = () => {
           </button> */}
         </div>
       </div>
-    </div>
+    </div>)}
+  </> 
   );
 };
 
