@@ -54,14 +54,22 @@ module.exports = {
         "100%":{transform:"rotate(360deg)"},
 
       },
+      slideDown: {
+        '0%': { opacity: '0', transform: 'translateY(-10px)' },
+        '100%': { opacity: '1', transform: 'translateY(0)' },
+      },
     },
     animation:{
       movingy:'move 3s linear infinite',
-      rotating:"rotate 15s linear infinite"
+      rotating:"rotate 15s linear infinite",
+      slideDown: 'slideDown 0.3s ease-out',
+
     }
       
   },
 
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide'),
+  ],
 }
 

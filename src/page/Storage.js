@@ -52,7 +52,7 @@ const ProductList = () => {
         </div>
       )}
 
-      <Title name="storage Tools" description="Top picks from Palestinian gardens we love" />
+      <Title name="Storage Tools" description="Top picks from Palestinian gardens we love" />
       <div className="content">
         <div className="cards py-5 ">
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">

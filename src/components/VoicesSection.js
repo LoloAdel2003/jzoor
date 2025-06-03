@@ -24,17 +24,17 @@ const initialVoices = [
   },
   {
     id: 3,
-    name: "Mary Eqdaih",
-    img: "imges/088e081a-65fa-4068-9219-2cc7ae45cb40.png",
+    name: "Alaa Adel",
+    img: "imges/a555d57c-b093-4ca1-9c58-1d5a743ba78f.png",
     rating: 4,
-    review: "Reminds me of my teta’s garden. The zaatar was perfect.",
+    review: "The emroidery on the pouch is stunning -- my mom loved it as a gift!",
   },
   {
     id: 4,
-    name: "Amna Emad",
-    img: "imges/Young smiling fair-haired woman in a garden….png",
+    name: "Rawan Ahmad",
+    img: "imges/0c11d118-d0f7-4028-b0d3-c0db53d7f8a2.png",
     rating: 5,
-    review: "Lovely tea set, just wished the shipping was faster.",
+    review: "The olive oil reminded me of our family farm in Jenin. Will definitely order again.",
   },
 ];
 
@@ -45,7 +45,7 @@ function VoicesSection() {
     name: "",
     rating: 5,
     review: "",
-    img: "imges/Profile.png", // صورة افتراضية
+    img: "imges/a555d57c-b093-4ca1-9c58-1d5a743ba78f.png", // صورة افتراضية
   });
 
   useScrollReveal(".reveal-left-voices", "leftInterval");
@@ -61,7 +61,7 @@ function VoicesSection() {
       name: "",
       rating: 5,
       review: "",
-      img: "imges/Profile.png",
+      img: "imges/a555d57c-b093-4ca1-9c58-1d5a743ba78f.png",
     });
   };
 
@@ -122,11 +122,11 @@ function VoicesSection() {
         <div className="mt-6 bg-white rounded-lg shadow-lg p-6 max-w-xl mx-auto space-y-4">
           <div className="flex items-center gap-4">
             <img
-              src="imges/Profile.png"
+              src="imges/a555d57c-b093-4ca1-9c58-1d5a743ba78f.png"
               alt="default"
               className="w-16 h-16 object-cover rounded-full"
             />
-            <input
+            {/* <input
               type="text"
               placeholder="Your Name"
               className="border p-2 rounded w-full"
@@ -134,7 +134,7 @@ function VoicesSection() {
               onChange={(e) =>
                 setNewReview({ ...newReview, name: e.target.value })
               }
-            />
+            /> */}
           </div>
 
           <textarea

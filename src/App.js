@@ -18,7 +18,7 @@ import ForgetPass from './page/ForgetPass';
 import VerifyCode from './page/VerifyCode';
 import SetPass from './page/SetPass';
 import SellerLogin from './page/SellerLogin';
-import SellerDash from './page/SellerDash';
+// import SellerDash from './page/SellerDash';
 import FavoriteSection from './page/FavoriteSection';
 import JournalDetails from './page/JournalDetails';
 import GiftDetails from './page/GiftDetails';
@@ -35,6 +35,21 @@ import Care from './page/Care';
 import Accessories from './page/Accessories';
 
 import Notifications from './page/Notifications';
+import Dashboard from './Admin/Dashboard';
+import AdminDash from './Admin/AdminDash';
+import AdminOrder from './Admin/AdminOrder';
+import AdminArticle from './Admin/AdminArticle';
+import AdminCoupons from './Admin/AdminCoupons';
+import AdminCategory from './Admin/AdminCategory';
+import AdminTransaction from './Admin/AdminTransaction';
+import AdminAdd from './Admin/AdminAdd';
+import AdminListProduct from './Admin/AdminListProduct';
+import AdminReview from './Admin/AdminReview';
+import AdminRole from './Admin/AdminRole';
+import SellerDashboard from './Seller/SellerDashboard';
+import SellerDash from './Seller/SellerDash';
+import DeliveryDashboard from './Delivery/DeliveryDashboard';
+import DeliveryDash from './Delivery/DeliveryDash';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -66,7 +81,7 @@ const App = () => {
             <Route path="/productList" element={<ProductList />} />
             <Route path="/giftList" element={<GiftList />} />
             <Route path="/SellerLogin" element={<SellerLogin />} />
-            <Route path="/SellerDash" element={<SellerDash />} />
+            {/* <Route path="/SellerDash" element={<SellerDash />} /> */}
             <Route path="/product/:id" element={<ProductDetails />} />
             
                         <Route path="/SellerProduct/:id" element={<SellerProductDetails />} />
@@ -98,6 +113,59 @@ const App = () => {
             <Route path="login-seller" element={<LoginSeller />} />
             <Route path="register-seller" element={<RegisterSeller />} />
           </Route>
+          {/* admin route  */}
+          <Route path="/admin" element={<Dashboard />}>
+          <Route index element={<AdminDash />} />
+         <Route path="Order" element={<AdminOrder />} />
+         <Route path="Article" element={<AdminArticle />} />
+         <Route path="coupons" element={<AdminCoupons />} />
+         <Route path="category" element={<AdminCategory />} />
+         <Route path="transaction" element={<AdminTransaction />} />
+         <Route path="addProduct" element={<AdminAdd />} />
+         <Route path="productList" element={<AdminListProduct />} />
+         <Route path="productReview" element={<AdminReview />} />
+         <Route path="role" element={<AdminRole />} />
+
+
+
+        </Route>
+        {/* end admin route  */}
+        {/* seller route  */}
+        <Route path="/seller" element={<SellerDashboard />}>
+          <Route index element={<SellerDash />} />
+         <Route path="Order" element={<AdminOrder />} />
+         <Route path="Article" element={<AdminArticle />} />
+         <Route path="coupons" element={<AdminCoupons />} />
+         <Route path="category" element={<AdminCategory />} />
+         <Route path="transaction" element={<AdminTransaction />} />
+         <Route path="addProduct" element={<AdminAdd />} />
+         <Route path="productList" element={<AdminListProduct />} />
+         <Route path="productReview" element={<AdminReview />} />
+         <Route path="role" element={<AdminRole />} />
+
+
+
+        </Route>
+        {/* end seller route  */}
+        {/* delivery route  */}
+        <Route path="/delivery" element={<DeliveryDashboard />}>
+          <Route index element={<DeliveryDash />} />
+         <Route path="Order" element={<AdminOrder />} />
+         <Route path="Article" element={<AdminArticle />} />
+         <Route path="coupons" element={<AdminCoupons />} />
+         <Route path="category" element={<AdminCategory />} />
+         <Route path="transaction" element={<AdminTransaction />} />
+         <Route path="addProduct" element={<AdminAdd />} />
+         <Route path="productList" element={<AdminListProduct />} />
+         <Route path="productReview" element={<AdminReview />} />
+         <Route path="role" element={<AdminRole />} />
+
+
+
+        </Route>
+         {/* end delivery route  */}
+          
+       
         </Routes>
       </BrowserRouter>
     </ProductProvider>

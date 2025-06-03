@@ -1,11 +1,11 @@
 import React from 'react'
 
-const SellerDash = () => {
+const AdminOrder = () => {
   return (
     <div>
-      
+      order
     </div>
   )
 }
 
-export default SellerDash
+export default AdminOrder
