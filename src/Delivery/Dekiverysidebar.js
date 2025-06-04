@@ -16,7 +16,6 @@ const DeliverySidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const links = [
     { to: '/delivery', label: 'Dashboard', icon: <FaChartLine />, end: true },
     { to: '/delivery/Order', label: 'Active Orders', icon: <FaCartShopping /> },
-    // { to: '/seller/Article', label: 'Article Management', icon: <GrArticle /> },
     { to: '/delivery/archeived', label: 'Archeived Deliveries', icon: <FaUsers /> },
       { to: '/delivery/message', label: 'Message', icon: <GrTransaction /> },
   ];
@@ -57,7 +56,7 @@ const DeliverySidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
       <div className="text-md mt-6 mb-2 text-gray-600">Settings</div>
       <NavLink
-        to="/seller/role"
+        to="/delivery/setting"
         className={({ isActive }) =>
           `flex items-center no-underline gap-3 p-2 rounded-md hover:bg-green-800 transition ${
             isActive ? 'bg-green text-white font-bold' : 'text-gray-700'

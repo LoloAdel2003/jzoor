@@ -16,11 +16,8 @@ const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const links = [
     { to: '/seller', label: 'Dashboard', icon: <FaChartLine />, end: true },
     { to: '/seller/Order', label: 'Order Management', icon: <FaCartShopping /> },
-    // { to: '/seller/Article', label: 'Article Management', icon: <GrArticle /> },
-    { to: '/seller/users', label: 'My Customers', icon: <FaUsers /> },
-    // { to: '/seller/coupons', label: 'Coupons Code', icon: <FaTags /> },
-    // { to: '/seller/category', label: 'Categories', icon: <BiSolidCategoryAlt /> },
-    { to: '/seller/transaction', label: 'Transactions', icon: <GrTransaction /> },
+    { to: '/seller/customer', label: 'My Customers', icon: <FaUsers /> },
+      { to: '/seller/transaction', label: 'Transactions', icon: <GrTransaction /> },
   ];
 
   const Product = [
@@ -78,7 +75,7 @@ const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
       <div className="text-md mt-6 mb-2 text-gray-600">Settings</div>
       <NavLink
-        to="/seller/role"
+        to="/seller/profile"
         className={({ isActive }) =>
           `flex items-center no-underline gap-3 p-2 rounded-md hover:bg-green-800 transition ${
             isActive ? 'bg-green text-white font-bold' : 'text-gray-700'

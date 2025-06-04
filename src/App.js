@@ -50,6 +50,17 @@ import SellerDashboard from './Seller/SellerDashboard';
 import SellerDash from './Seller/SellerDash';
 import DeliveryDashboard from './Delivery/DeliveryDashboard';
 import DeliveryDash from './Delivery/DeliveryDash';
+import DeliveryActiveOrder from './Delivery/DeliveryActiveOrder';
+import Archeived from './Delivery/Archeived';
+import DMessage from './Delivery/DMessage';
+import DProfile from './Delivery/DProfile';
+import SOrder from './Seller/SOrder';
+import SCustomer from './Seller/SCustomer';
+import STransaction from './Seller/STransaction';
+import SAdd from './Seller/SAdd';
+import SProductList from './Seller/SProductList';
+import SReview from './Seller/SReview';
+import SProfile from './Seller/SProfile';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -133,15 +144,13 @@ const App = () => {
         {/* seller route  */}
         <Route path="/seller" element={<SellerDashboard />}>
           <Route index element={<SellerDash />} />
-         <Route path="Order" element={<AdminOrder />} />
-         <Route path="Article" element={<AdminArticle />} />
-         <Route path="coupons" element={<AdminCoupons />} />
-         <Route path="category" element={<AdminCategory />} />
-         <Route path="transaction" element={<AdminTransaction />} />
-         <Route path="addProduct" element={<AdminAdd />} />
-         <Route path="productList" element={<AdminListProduct />} />
-         <Route path="productReview" element={<AdminReview />} />
-         <Route path="role" element={<AdminRole />} />
+         <Route path="Order" element={<SOrder />} />
+         <Route path="customer" element={<SCustomer />} />
+         <Route path="transaction" element={<STransaction />} />
+         <Route path="addProduct" element={<SAdd />} />
+         <Route path="productList" element={<SProductList />} />
+         <Route path="productReview" element={<SReview />} />
+         <Route path="profile" element={<SProfile />} />
 
 
 
@@ -150,17 +159,11 @@ const App = () => {
         {/* delivery route  */}
         <Route path="/delivery" element={<DeliveryDashboard />}>
           <Route index element={<DeliveryDash />} />
-         <Route path="Order" element={<AdminOrder />} />
-         <Route path="Article" element={<AdminArticle />} />
-         <Route path="coupons" element={<AdminCoupons />} />
-         <Route path="category" element={<AdminCategory />} />
-         <Route path="transaction" element={<AdminTransaction />} />
-         <Route path="addProduct" element={<AdminAdd />} />
-         <Route path="productList" element={<AdminListProduct />} />
-         <Route path="productReview" element={<AdminReview />} />
-         <Route path="role" element={<AdminRole />} />
-
-
+         <Route path="Order" element={<DeliveryActiveOrder />} />
+         <Route path="archeived" element={<Archeived />} />
+         <Route path="message" element={<DMessage />} />
+         <Route path="setting" element={<DProfile />} />
+         
 
         </Route>
          {/* end delivery route  */}
