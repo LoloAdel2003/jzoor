@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaChartLine, FaUsers, FaTags } from 'react-icons/fa';
 import { FaCartShopping } from "react-icons/fa6";
@@ -10,17 +10,36 @@ import { RiAdminFill, RiMenuFoldLine } from "react-icons/ri";
 import { CiLogin } from "react-icons/ci";
 import { AiOutlineShop } from "react-icons/ai";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
-
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+} from 'reactstrap';
+import { FaUserFriends, FaStore, FaTruck } from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
 const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
+  const [open, setOpen] = useState('1');
+  const toggle = (id) => {
+    if (open === id) {
+      setOpen();
+    } else {
+      setOpen(id);
+    }
+  };
+
   const links = [
     { to: '/admin', label: 'Dashboard', icon: <FaChartLine />, end: true },
     { to: '/admin/Order', label: 'Order Management', icon: <FaCartShopping /> },
     { to: '/admin/Article', label: 'Article Management', icon: <GrArticle /> },
-    { to: '/admin/users', label: 'Users', icon: <FaUsers /> },
-    { to: '/admin/coupons', label: 'Coupons Code', icon: <FaTags /> },
-    { to: '/admin/category', label: 'Categories', icon: <BiSolidCategoryAlt /> },
-    { to: '/admin/transaction', label: 'Transactions', icon: <GrTransaction /> },
-  ];
+    // { to: '/admin/users', label: 'Users', icon: <FaUsers /> },
+    ];
+    const link2=[
+      { to: '/admin/coupons', label: 'Coupons Code', icon: <FaTags /> },
+      { to: '/admin/category', label: 'Categories', icon: <BiSolidCategoryAlt /> },
+      { to: '/admin/transaction', label: 'Transactions', icon: <GrTransaction /> },
+   
+    ]
 
   const Product = [
     { to: '/admin/addProduct', label: 'Add Product', icon: <GrAddCircle /> },
@@ -30,7 +49,7 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   return (
     <aside
-      className={`bg-white text-black min-h-screen p-4 shadow-md fixed h-screen overflow-y-auto custom-scroll-hide top-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out
+      className={`bg-white text-black min-h-screen p-4 shadow-md fixed h-screen md:h-auto overflow-y-auto custom-scroll-hide top-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0`}
     >
       {/* الشعار وزر الإغلاق للشاشات الصغيرة */}
@@ -57,6 +76,77 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </NavLink>
         ))}
       </nav>
+     
+
+    
+
+      <nav className="space-y-3 pt-2">
+        {link2.map(({ to, label, icon, end }) => (
+          <NavLink
+            to={to}
+            key={to}
+            end={end}
+            className={({ isActive }) =>
+              `flex items-center no-underline gap-3 p-2 rounded-md hover:bg-green-800 transition ${
+                isActive ? 'bg-green text-white font-bold' : 'text-gray-700'
+              }`
+            }
+          >
+            {icon} {label}
+          </NavLink>
+        ))}
+      </nav>
+
+      <div className="space-y-3">
+  {/* زر المستخدمين مع أيقونة وسهم */}
+  <div
+    onClick={() => toggle('1')}
+    className={`flex items-center justify-between p-2 rounded-md cursor-pointer transition
+      ${open === '1' ? 'bg-green text-white font-bold' : 'text-gray-700 hover:bg-green-800'}`}
+  >
+    <div className="flex items-center gap-3">
+      <FaUsers />
+      <span>Users</span>
+    </div>
+    {/* السهم المتغير */}
+    <svg
+      className={`w-4 h-4 transform transition-transform duration-300 ${open === '1' ? 'rotate-180' : 'rotate-0'}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+
+  {/* الروابط الفرعية */}
+  <Accordion open={open} toggle={toggle} className="border-none shadow-none">
+    <AccordionItem className="border-none">
+    <AccordionBody accordionId="1" className="ps-6 pt-2 space-y-2 border-none">
+  {[
+    { to: 'users/customers', label: 'Customers', icon: <FaUserFriends /> },
+    { to: 'users/sellers', label: 'Sellers', icon: <FaStore /> },
+    { to: 'users/delivery', label: 'Delivery', icon: <FaTruck /> },
+  ].map(({ to, label, icon }) => (
+    <NavLink
+      key={to}
+      to={to}
+      className={({ isActive }) =>
+        `flex items-center gap-2 px-2 py-2 hover:bg-gray-200 rounded-md text-sm transition no-underline w-full hover:underline ${
+          isActive ? 'text-green-700 font-semibold' : 'text-gray-700 hover:text-green-700'
+        }`
+      }
+    >
+      {icon}
+      {label}
+    </NavLink>
+  ))}
+</AccordionBody>
+
+    </AccordionItem>
+  </Accordion>
+</div>
 
       <div className="text-md mt-6 mb-2 text-gray-600">Product</div>
       <nav className="space-y-3">

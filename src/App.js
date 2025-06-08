@@ -61,6 +61,10 @@ import SAdd from './Seller/SAdd';
 import SProductList from './Seller/SProductList';
 import SReview from './Seller/SReview';
 import SProfile from './Seller/SProfile';
+import MyVouchersPage from './page/MyVouchersPage';
+import Customer from './Admin/Customer';
+import Seller from './Admin/Seller';
+import Delivery from './Admin/Delivery';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -118,7 +122,7 @@ const App = () => {
               <Route index element={<MyAccount />} />
               <Route path="orders" element={<Orders />} />
               <Route path="notifications" element={<Notifications />} />
-              {/* <Route path="my-vouchers" element={<MyVouchers />} /> */}
+              <Route path="my-vouchers" element={<MyVouchersPage />} />
             </Route>
 
             <Route path="login-seller" element={<LoginSeller />} />
@@ -136,6 +140,10 @@ const App = () => {
          <Route path="productList" element={<AdminListProduct />} />
          <Route path="productReview" element={<AdminReview />} />
          <Route path="role" element={<AdminRole />} />
+         <Route path="users/customers" element= {<Customer />} />
+         <Route path="users/sellers" element= {<Seller />} />
+         <Route path="users/delivery" element= {<Delivery />} />
+
 
 
 

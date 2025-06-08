@@ -1,9 +1,10 @@
 import React from 'react'
+import DiscoverCategories from './components/DiscoverCategories'
 
 const AdminCategory = () => {
   return (
     <div>
-      category
+      <DiscoverCategories />
     </div>
   )
 }

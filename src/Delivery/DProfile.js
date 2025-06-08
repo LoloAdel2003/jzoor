@@ -2,8 +2,9 @@ import React from 'react'
 
 const DProfile = () => {
   return (
-    <div>
-      profile
+    <div className="p-4">
+                  
+
     </div>
   )
 }

@@ -8,4 +8,14 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;     /* Firefox */
   }
-  
+
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* تأكد أن HTML و Body و #root يأخذون 100% من الارتفاع المتاح */
+    width: 100%;
+    overflow-x: hidden; /* يمنع شريط التمرير الأفقي للصفحة بأكملها */
+    overflow-y: auto;   /* يظهر شريط التمرير العمودي فقط عند الضرورة */
+    box-sizing: border-box; /* لضمان أن Padding و Border لا يزيدان من الحجم الكلي */
+    font-family: 'Arial', sans-serif; /* يمكنك تعديل هذا حسب الخط المفضل لديك */
+  }

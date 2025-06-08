@@ -1,9 +1,10 @@
 import React from 'react'
+import DiscoverProductManagement from './components/DiscoverProductManagement'
 
 const AdminListProduct = () => {
   return (
     <div>
-      list
+      <DiscoverProductManagement />
     </div>
   )
 }
