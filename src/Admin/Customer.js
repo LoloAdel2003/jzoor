@@ -1,100 +1,290 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReportChart from './components/ReportChart';
 
-export function UsersActivityCard() {
-  // Dummy data for users per minute chart (representing relative heights)
-  const usersPerMinuteData = [
-    0.6, 0.7, 0.8, 0.6, 0.5, 0.7, 0.9, 1.0, 0.8, 0.7, 0.6, 0.5, 0.6, 0.7, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3,
-    0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.4, 0.5
-  ];
+// Main Customer Dashboard Component
+const CustomerDashboard = () => {
+  // Dummy data for customer dashboard cards
+  const [customerStats, setCustomerStats] = useState({
+    totalCustomers: { value: '11,040', change: '14.4%', isPositive: true },
+    newCustomers: { value: '2,370', change: '20%', isPositive: true },
+    visitors: { value: '250k', change: '20%', isPositive: true },
+  });
 
-  // Dummy data for sales by country
-  const salesByCountry = [
-    { country: 'Palestine', code: 'PL', users: '5K', percentage: '25.8%', type: 'increase', flag: '🇵🇸' },
-    { country: 'Jordan', code: 'Jordan', users: '2.4K', percentage: '15.8%', type: 'decrease', flag: '🇯🇴' },
-    { country: 'Egypt', code: 'Egypt', users: '2.6K', percentage: '35.8%', type: 'increase', flag: '🇪🇬' },
-  ];
+  // Dummy data for customer table
+  const [customers, setCustomers] = useState([
+    { id: '#CUST001', name: 'John Doe', phone: '+1234567890', orderCount: 35, totalSpend: '3,450.00', status: 'Active' },
+    { id: '#CUST002', name: 'John Doe', phone: '+1234567890', orderCount: 35, totalSpend: '3,450.00', status: 'Active' },
+    { id: '#CUST003', name: 'John Doe', phone: '+1234567890', orderCount: 35, totalSpend: '3,450.00', status: 'Active' },
+    { id: '#CUST004', name: 'John Doe', phone: '+1234567890', orderCount: 35, totalSpend: '3,450.00', status: 'Active' },
+    { id: '#CUST005', name: 'Jane Smith', phone: '+1234567890', orderCount: 5, totalSpend: '250.00', status: 'VIP' },
+    { id: '#CUST006', name: 'Emily Davis', phone: '+1234567890', orderCount: 30, totalSpend: '4,600.00', status: 'VIP' },
+    { id: '#CUST007', name: 'Jane Smith', phone: '+1234567890', orderCount: 5, totalSpend: '250.00', status: 'VIP' },
+    { id: '#CUST008', name: 'John Doe', phone: '+1234567890', orderCount: 35, totalSpend: '3,450.00', status: 'Active' },
+    { id: '#CUST009', name: 'Jane Smith', phone: '+1234567890', orderCount: 30, totalSpend: '4,600.00', status: 'VIP' },
+    { id: '#CUST010', name: 'Jane Smith', phone: '+1234567890', orderCount: 5, totalSpend: '250.00', status: 'Inactive' },
+  ]);
+
+  const [chartPeriod, setChartPeriod] = useState('Last 7 days');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 7; // Based on the image's visible rows
+
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentCustomers = customers.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(customers.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handlePrevious = () => {
+    setCurrentPage(prev => Math.max(1, prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage(prev => Math.min(totalPages, prev + 1));
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+      }
+    } else {
+      pageNumbers.push(1);
+      if (currentPage > 3) {
+        pageNumbers.push('...');
+      }
+      if (currentPage > 2 && currentPage < totalPages - 1) {
+        pageNumbers.push(currentPage - 1);
+      }
+      if (currentPage !== 1 && currentPage !== totalPages) {
+        pageNumbers.push(currentPage);
+      }
+      if (currentPage < totalPages - 2) {
+        pageNumbers.push(currentPage + 1);
+      }
+      if (currentPage < totalPages - 1) {
+        pageNumbers.push('...');
+      }
+      pageNumbers.push(totalPages);
+    }
+    return pageNumbers.filter((value, index, self) => self.indexOf(value) === index);
+  };
 
   return (
-    <div style={{ backgroundColor: '#FFFFFF', borderRadius: '0.5rem', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }} className="p-4 sm:p-6 flex flex-col w-full md:w-96">
-      {/* Card Header */}
-      <div className="flex justify-between items-center mb-4">
-        <h3 style={{ color: '#6366F1' }} className="text-base sm:text-lg font-semibold">Users in last 30 minutes</h3>
-        <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-          </svg>
-        </button>
+    <div className="min-h-screen p-4 font-inter" style={{ backgroundColor: '#F3F4F6' }}>
+      <header className="mb-6">
+        <h1 className="text-3xl font-bold" style={{ color: '#1F2937' }}>Customer Overview</h1>
+      </header>
+<div className="flex flex-col max-w-full lg:flex-row gap-4 pb-2" >
+      {/* Top Customer Stats Cards */}
+      <div className="w-full md:w-[400px] grid grid-cols-1  gap-4 mb-6">
+        <DashboardCard
+          title="Total Customers"
+          value={customerStats.totalCustomers.value}
+          change={customerStats.totalCustomers.change}
+          isPositive={customerStats.totalCustomers.isPositive}
+        />
+        <DashboardCard
+          title="New Customers"
+          value={customerStats.newCustomers.value}
+          change={customerStats.newCustomers.change}
+          isPositive={customerStats.newCustomers.isPositive}
+        />
+        <DashboardCard
+          title="Visitors"
+          value={customerStats.visitors.value}
+          change={customerStats.visitors.change}
+          isPositive={customerStats.visitors.isPositive}
+        />
       </div>
 
-      {/* Users Count */}
-      <p style={{ color: '#111827' }} className="text-3xl sm:text-4xl font-bold mb-4">10K</p>
-
-      {/* Users per minute Chart */}
-      <div className="mb-4">
-        <p style={{ color: '#374151' }} className="text-sm font-medium mb-2">Users per minute</p>
-        <div className="flex items-end h-20 space-x-0.5">
-          {usersPerMinuteData.map((height, index) => (
-            <div
-              key={index}
-              style={{ height: `${height * 100}%`, backgroundColor: '#4CAF50' }} // Green color for bars
-              className="w-1 rounded-sm"
-            ></div>
-          ))}
-        </div>
+      {/* Customer Overview Chart Section */}
+      <div className="flex-1">
+      <ReportChart />
       </div>
+   
+    </div>
 
-      {/* Sales by Country Section */}
-      <div className="mb-6">
-        <div className="flex justify-between items-center mb-3">
-          <p style={{ color: '#374151' }} className="text-sm font-medium">Sales by Country</p>
-          <p style={{ color: '#374151' }} className="text-sm font-medium">Sales</p>
-        </div>
-
-        {salesByCountry.map((data, index) => (
-          <div key={index} className="flex items-center mb-4 relative z-0">
-            {/* Map background (simulated with a div for simplicity) */}
-            {/* In a real app, this would be a map component (e.g., react-leaflet, react-google-maps) */}
-            <div className="absolute inset-0 z-0 opacity-5" style={{
-              backgroundImage: 'url("https://via.placeholder.com/300x150/f0f4f8?text=Map+Background")', // Placeholder for map
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              borderRadius: '0.25rem',
-            }}></div>
-
-            <div className="flex items-center w-1/3 z-10">
-              <span className="text-2xl mr-2">{data.flag}</span>
-              <span style={{ color: '#374151' }} className="text-sm font-medium">{data.users}</span>
-              <span style={{ color: '#6B7280' }} className="text-xs ml-1">{data.code}</span>
-            </div>
-            <div className="w-2/3 flex items-center z-10">
-              {/* Progress bar */}
-              <div style={{ backgroundColor: '#A78BFA' }} className="h-2 rounded-full w-2/3 mr-2">
-                {/* Dynamic width for the progress bar based on data could be added here */}
-                {/* Example: style={{ width: `${(parseFloat(data.users) / 5) * 100}%` }} */}
-              </div>
-              <span style={{ color: data.type === 'increase' ? '#059669' : '#EF4444' }} className="text-xs flex items-center font-medium">
-                {data.type === 'increase' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-3 h-3 mr-0.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-3 h-3 mr-0.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-                  </svg>
-                )}
-                {data.percentage}
-              </span>
-            </div>
+      {/* Customer Table Section */}
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
+          <h2 className="text-lg font-semibold" style={{ color: '#1F2937' }}>Customer List</h2>
+          <div className="relative w-full md:w-auto">
+            <input
+              type="text"
+              placeholder="Search customers..."
+              className="pl-10 pr-4 py-2 w-full border rounded-md focus:outline-none focus:ring-2"
+              style={{ borderColor: '#D1D5DB', outlineColor: '#3B82F6', '--tw-ring-color': '#3B82F6' }}
+              // No search state management implemented for this table for brevity, but can be added
+            />
+            <svg
+              className="absolute left-3 top-1/2 transform -translate-y-1/2"
+              style={{ color: '#9CA3AF' }}
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* View Insight Button */}
-      <button style={{ backgroundColor: '#FFFFFF', color: '#6366F1', borderColor: '#6366F1' }} className="w-full py-2 rounded-md border text-sm font-medium hover:bg-indigo-50">
-        View Insight
-      </button>
+        <div className="w-full overflow-x-auto lg:overflow-x-visible">
+        <div className="max-w-[300px]  lg:min-w-full ">
+          <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
+            <thead style={{ backgroundColor: '#F9FAFB' }}>
+              <tr>
+                {['Customer ID', 'Name', 'Phone', 'Order Count', 'Total Spend', 'Status', 'Actions'].map(header => (
+                  <th
+                    key={header}
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                    style={{ color: '#6B7280' }}
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y" style={{ backgroundColor: '#FFFFFF', borderColor: '#E5E7EB' }}>
+              {currentCustomers.length > 0 ? (
+                currentCustomers.map((customer, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium" style={{ color: '#111827' }}>{customer.id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#6B7280' }}>{customer.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#6B7280' }}>{customer.phone}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#6B7280' }}>{customer.orderCount}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium" style={{ color: '#111827' }}>${customer.totalSpend}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full`}
+                      style={{
+                        backgroundColor:
+                          customer.status === 'Active' ? '#D1FAE5' : // bg-green-100
+                          customer.status === 'VIP' ? '#DBEAFE' : // bg-blue-100 (using for VIP as per image for visual distinction)
+                          customer.status === 'Inactive' ? '#FEE2E2' : '', // bg-red-100
+                        color:
+                          customer.status === 'Active' ? '#065F46' : // text-green-800
+                          customer.status === 'VIP' ? '#1E40AF' : // text-blue-800
+                          customer.status === 'Inactive' ? '#991B1B' : '' // text-red-800
+                      }}
+                      >
+                        {customer.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <div className="flex items-center space-x-2">
+                        {/* Edit Icon */}
+                        <button className="text-gray-500 hover:text-gray-700" title="Edit">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.38-2.827-2.828z" />
+                          </svg>
+                        </button>
+                        {/* Delete Icon */}
+                        <button className="text-gray-500 hover:text-red-600" title="Delete">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm6 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1z" clipRule="evenodd" />
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="px-6 py-4 text-center" style={{ color: '#6B7280' }}>No customers found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        {/* Pagination */}
+        <div className="flex flex-col md:flex-row justify-between items-center mt-6">
+          <span className="text-sm text-gray-700 mb-4 md:mb-0" style={{ color: '#4B5563' }}>
+            Showing <span className="font-semibold">{indexOfFirstItem + 1}</span> to <span className="font-semibold">{Math.min(indexOfLastItem, customers.length)}</span> of <span className="font-semibold">{customers.length}</span> entries
+          </span>
+          <nav className="flex items-center space-x-2">
+            <button
+              onClick={handlePrevious}
+              disabled={currentPage === 1}
+              className="relative inline-flex items-center px-4 py-2 text-sm font-medium border rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ color: '#4B5563', backgroundColor: '#FFFFFF', borderColor: '#D1D5DB' }}
+            >
+              ← Previous
+            </button>
+            <div className="flex space-x-1">
+              {renderPageNumbers().map((page, index) => (
+                <button
+                  key={index}
+                  onClick={() => typeof page === 'number' && paginate(page)}
+                  className={`px-4 py-2 text-sm font-medium rounded-md
+                    ${typeof page !== 'number' ? 'cursor-default border-transparent bg-transparent hover:bg-transparent' : ''}
+                  `}
+                  style={{
+                    backgroundColor: currentPage === page ? '#2563EB' : '#FFFFFF',
+                    color: currentPage === page ? '#FFFFFF' : '#4B5563',
+                    borderColor: currentPage === page ? '#2563EB' : '#D1D5DB',
+                    boxShadow: currentPage === page ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none'
+                  }}
+                  disabled={typeof page !== 'number'}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+              className="relative inline-flex items-center px-4 py-2 text-sm font-medium border rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ color: '#4B5563', backgroundColor: '#FFFFFF', borderColor: '#D1D5DB' }}
+            >
+              Next →
+            </button>
+          </nav>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default UsersActivityCard;
+// Reusing Dashboard Card Component from previous version
+const DashboardCard = ({ title, value, change, isPositive }) => (
+  <div className="p-6 rounded-lg shadow-md flex flex-col justify-between" style={{ backgroundColor: '#FFFFFF' }}>
+    <div className="flex justify-between items-start mb-4">
+      <h3 className="text-sm font-medium" style={{ color: '#6B7280' }}>{title}</h3>
+      <svg
+        className="cursor-pointer"
+        style={{ color: '#9CA3AF' }}
+        width="20"
+        height="20"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+        ></path>
+      </svg>
+    </div>
+    <div className="flex items-end justify-between">
+      <span className="text-3xl font-semibold" style={{ color: '#111827' }}>{value}</span>
+      <span className={`ml-2 text-sm font-medium`} style={{ color: isPositive ? '#10B981' : '#EF4444' }}>
+        {isPositive ? '▲' : '▼'} {change}
+      </span>
+    </div>
+    <p className="text-xs mt-2" style={{ color: '#6B7280' }}>Last 7 days</p>
+  </div>
+);
+
+export default CustomerDashboard;

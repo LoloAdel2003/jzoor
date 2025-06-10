@@ -35,7 +35,6 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     // { to: '/admin/users', label: 'Users', icon: <FaUsers /> },
     ];
     const link2=[
-      { to: '/admin/coupons', label: 'Coupons Code', icon: <FaTags /> },
       { to: '/admin/category', label: 'Categories', icon: <BiSolidCategoryAlt /> },
       { to: '/admin/transaction', label: 'Transactions', icon: <GrTransaction /> },
    
