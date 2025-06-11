@@ -33,7 +33,7 @@ const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       {/* الشعار وزر الإغلاق للشاشات الصغيرة */}
       <div className="flex justify-between items-center mb-4 ">
-        <img src="/imges/logo.png" alt="logo" className="w-[70px]" />
+        <img src="/imges/logo.webp" alt="logo" className="w-[70px]" />
         <RiMenuFoldLine className="text-xl cursor-pointer" onClick={() => setSidebarOpen(false)} />
       </div>
 
@@ -87,7 +87,7 @@ const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
       {/* بيانات المستخدم */}
       <div className="pt-8 flex items-center justify-between">
-        <img src="/imges/seller.png" alt="user" className="w-[40px]" />
+        <img src="/imges/seller.webp" alt="user" className="w-[40px]" />
         <div className="text-sm">
           <span className="block">Ahmad Kanaan</span>
         </div>

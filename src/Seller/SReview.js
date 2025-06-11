@@ -132,11 +132,11 @@ export function ProductReview() {
 
   // بيانات المنتجات الأعلى تقييمًا
   const topRatedProducts = [
-    { image: '/imges/66858fac-be77-4de0-a1d0-2e2806295950.png', name: 'Lavender', id: '#FXZ-4567', rating: 5.0, reviews: 218 },
-    { image: '/imges/ma2.png', name: 'Chamomile', id: '#FXZ-4567', rating: 4.9, reviews: 318 },
-    { image: '/imges/ma1.png', name: 'Olive Tree', id: '#FXZ-4567', rating: 4.8, reviews: 298 },
-    { image: '/imges/Marigold.jpeg', name: 'Marigold', id: '#FXZ-4567', rating: 4.9, reviews: 309 },
-    { image: '/imges/Anise.jpg', name: 'Azalea', id: '#FXZ-4567', rating: 4.7, reviews: 108 },
+    { image: '/imges/66858fac-be77-4de0-a1d0-2e2806295950.webp', name: 'Lavender', id: '#FXZ-4567', rating: 5.0, reviews: 218 },
+    { image: '/imges/ma2.webp', name: 'Chamomile', id: '#FXZ-4567', rating: 4.9, reviews: 318 },
+    { image: '/imges/ma1.webp', name: 'Olive Tree', id: '#FXZ-4567', rating: 4.8, reviews: 298 },
+    { image: '/imges/Marigold.webp', name: 'Marigold', id: '#FXZ-4567', rating: 4.9, reviews: 309 },
+    { image: '/imges/Anise.webp', name: 'Azalea', id: '#FXZ-4567', rating: 4.7, reviews: 108 },
   ];
 
   // بيانات المراجعات التفصيلية

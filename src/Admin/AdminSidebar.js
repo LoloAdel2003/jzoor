@@ -53,7 +53,7 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       {/* الشعار وزر الإغلاق للشاشات الصغيرة */}
       <div className="flex justify-between items-center mb-4 ">
-        <img src="/imges/logo.webp" alt="logo" className="w-[70px]" />
+        <img src="imges/logo.webp" alt="logo" className="w-[70px]" />
         <RiMenuFoldLine className="text-xl cursor-pointer" onClick={() => setSidebarOpen(false)} />
       </div>
 

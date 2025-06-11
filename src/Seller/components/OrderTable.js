@@ -96,7 +96,7 @@ export function OrderTable() {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{order.orderId}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
-                    {/* <img src="imges/Rectangle 41.png" alt="Product" className="w-8 h-8 rounded-full mr-2" /> */}
+                    {/* <img src="imges/Rectangle 41.webp" alt="Product" className="w-8 h-8 rounded-full mr-2" /> */}
                     <span className="text-sm text-gray-900">{order.product}</span>
                   </div>
                 </td>
