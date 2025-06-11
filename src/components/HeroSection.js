@@ -22,7 +22,7 @@ export default function HeroSection() {
         <div className="reveal-top w-full order-1 md:w-1/2 sm:pt-5 md:pt-0 flex flex-col items-center md:items-start sm:text-center md:text-left">
         <h1 className="text-[30px] md:text-[36px] lg:text-[44px] font-bold leading-tight mb-4 relative  ">
             <img
-              src="imges/twemoji_olive.png"
+              src="imges/twemoji_olive.webp"
               alt="Olive"
               className="hidden lg:block absolute w-[60px] right-[40px] top-[-10px]"
             />
@@ -63,7 +63,7 @@ export default function HeroSection() {
       
 
           <img
-            src="imges/pngtree-white-lily-of-the-valley-bouquet-in-decorative-ceramic-vase-serene-png-image_16177895.png"
+            src="imges/pngtree-white-lily-of-the-valley-bouquet-in-decorative-ceramic-vase-serene-png-image_16177895.webp"
             alt="Flower Vase"
             className="w-[250px]    md:w-[350px] lg:w-[400px] reveal-zoom"
           />

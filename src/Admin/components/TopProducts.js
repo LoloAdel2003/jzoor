@@ -2,10 +2,10 @@ import React from 'react';
 
 export function TopProducts() {
   const products = [
-    { name: 'Chamomile', item: 'FFXZ-4567', price: '$15.00', image: 'imges/Rectangle 41.png' },
-    { name: 'Olive Tree', item: 'FFXZ-4567', price: '$50.40', image: 'imges/Rectangle 43.png' },
-    { name: 'Lavender', item: 'FFXZ-4567', price: '$35.40', image: 'imges/66858fac-be77-4de0-a1d0-2e2806295950.png' },
-    { name: 'Marigold', item: 'FFXZ-4567', price: '$80.00', image: 'imges/Rectangle 43.png' },
+    { name: 'Chamomile', item: 'FFXZ-4567', price: '$15.00', image: 'imges/Rectangle 41.webp' },
+    { name: 'Olive Tree', item: 'FFXZ-4567', price: '$50.40', image: 'imges/Rectangle 43.webp' },
+    { name: 'Lavender', item: 'FFXZ-4567', price: '$35.40', image: 'imges/66858fac-be77-4de0-a1d0-2e2806295950.webp' },
+    { name: 'Marigold', item: 'FFXZ-4567', price: '$80.00', image: 'imges/Rectangle 43.webp' },
   ];
 
   return (

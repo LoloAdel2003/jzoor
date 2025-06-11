@@ -24,7 +24,7 @@ const Contact = () => {
   return (
     <div className="relative">
       <img
-        src="imges/c0136404-6fed-4452-9bfa-984132cc8c2c 1.png"
+        src="imges/c0136404-6fed-4452-9bfa-984132cc8c2c 1.webp"
         alt="Contact background"
         className="absolute inset-0 w-full h-full object-cover -z-10 opacity-80"
       />
@@ -32,7 +32,7 @@ const Contact = () => {
         <div className="content bg-white flex flex-col md:flex-row justify-between shadow-lg rounded-lg overflow-hidden">
           <div className="img md:order-2 p-6 w-full lg:w-1/2 relative flex flex-col items-center justify-center">
             <img
-              src="imges/Group 74.png"
+              src="imges/Group 74.webp"
               alt="Contact illustration"
               className="w-full max-w-[200px] md:max-w-sm lg:max-w-[320px] mb-6"
             />

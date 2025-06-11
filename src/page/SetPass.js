@@ -14,7 +14,7 @@ const SetPassword = () => {
         {/* Form Section */}
         <div className="p-8 pt-2 bg-gray-100/5 relative">
           {/* <img
-            src="/imges/Logo.png"
+            src="/imges/Logo.webp"
             className="block w-[120px] h-auto md:w-[100px] m-auto lg:mx-0"
             alt="Logo"
           /> */}
@@ -81,7 +81,7 @@ const SetPassword = () => {
         {/* Image Section */}
         <div className="hidden md:block">
           <img
-            src="/imges/ppuate.png"
+            src="/imges/ppuate.webp"
             alt="forgetPass"
             className="object-contain w-[350px] mt-[80px] ml-[80px]"
           />

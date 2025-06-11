@@ -2,10 +2,10 @@ import React from 'react';
 
 export function BestSellingProduct() {
   const products = [
-    { name: 'Mint', totalOrder: 104, status: 'Stock', price: '$999.00', image: 'imges/Rectangle 41.png' },
-    { name: 'Taste Of Palestine', totalOrder: 56, status: 'Stock out', price: '$999.00', image: 'imges/roberta-sorge-uOBApnN_K7w-unsplash.png' },
-    { name: 'Hand-Painted Tatreez Mug', totalOrder: 266, status: 'Stock', price: '$999.00', image: 'imges/f769ad49-1fc1-4c9c-b61e-6f8308e2897d.png' },
-    { name: 'Loquat', totalOrder: 506, status: 'Stock', price: '$999.00', image: 'imges/loquats-7228865_1280 (1).png' },
+    { name: 'Mint', totalOrder: 104, status: 'Stock', price: '$999.00', image: 'imges/Rectangle 41.webp' },
+    { name: 'Taste Of Palestine', totalOrder: 56, status: 'Stock out', price: '$999.00', image: 'imges/roberta-sorge-uOBApnN_K7w-unsplash.webp' },
+    { name: 'Hand-Painted Tatreez Mug', totalOrder: 266, status: 'Stock', price: '$999.00', image: 'imges/f769ad49-1fc1-4c9c-b61e-6f8308e2897d.webp' },
+    { name: 'Loquat', totalOrder: 506, status: 'Stock', price: '$999.00', image: 'imges/loquats-7228865_1280 (1).webp' },
   ];
 
   return (

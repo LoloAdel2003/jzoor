@@ -16,7 +16,7 @@ const Home = () => {
       <ProductSection />
       
   <section className="mogilat relative lg:h-[250px]">
-    <img src="imges/viktor-mogilat-AKxREMWLZE0-unsplash (1).png" alt="" className="h-full w-full object-cover" />
+    <img src="imges/viktor-mogilat-AKxREMWLZE0-unsplash (1).webp" alt="" className="h-full w-full object-cover" />
     
     <div className="absolute inset-0 flex items-center justify-center z-30">
       <p className="text-center text-white font-bold text-[20px] md:text-[25px] lg:text-[35px] px-4 md:w-[530px]">
@@ -29,7 +29,7 @@ const Home = () => {
      <section className=" relative lg:h-[220px] bg-[#A8C686]/50">
       
       <div className="  flex items-center justify-evenly z-30">
-        <img src="imges/83e9dbc5-fe07-486a-91c3-8a0f8c0ff05e-removebg-preview (1).png" alt="" className="w-[200px] lg:w-[300px]" />
+        <img src="imges/83e9dbc5-fe07-486a-91c3-8a0f8c0ff05e-removebg-preview (1).webp" alt="" className="w-[200px] lg:w-[300px]" />
 
         <p className="w-[370px] text-center font-bold text-[20px] md:text-[25px] lg:text-[35px] px-4 ">
           "Every folds holds a story"

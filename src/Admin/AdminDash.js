@@ -9,7 +9,7 @@ import { AddNewProduct } from './components/AddNewProduct'
 
 const AdminDash = () => {
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 bg-[#f3f4f6]">
     {/* Overview cards */}
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <OverviewCard title="Total Sales" value="$30k" percentage="+10.4%" name="Sales" prev="$235" />

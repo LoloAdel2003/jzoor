@@ -15,8 +15,12 @@ const ProductList = () => {
     isFavorite,
     setSelectedProduct,
   } = useContext(ProductContext);
-   useEffect(() => {
-      if (products.length > 0) {
+  useEffect(() => {
+    if (products.length > 0) {
+      // Check if ScrollReveal has already been initialized for these elements
+      // This is a simple flag, a more robust solution might involve checking if elements already have SR classes
+      // or if the effect should only run once overall for the first render of products
+      if (!window.scrollRevealInitialized) { // Example: using a global flag
         ScrollReveal().reveal(".reveal-top-Product", {
           origin: "top",
           distance: "50px",
@@ -28,8 +32,10 @@ const ProductList = () => {
           scale: 0.9,
           interval: 100,
         });
+        window.scrollRevealInitialized = true; // Set flag
       }
-    }, [products]);
+    }
+  }, [products.length > 0]); // Changed dependency to prevent unnecessary re-runs
 
   const [showToast, setShowToast] = useState(false);
 

@@ -113,7 +113,7 @@ const SellerLogin = () => {
         {/* Image Section */}
         <div className="hidden md:block">
           <img
-            src="/imges/894ac5fa272f5c9370388975254a0a38 1.png"
+            src="/imges/894ac5fa272f5c9370388975254a0a38 1.webp"
             alt="Flowers"
             className="w-full h-full object-cover"
           />

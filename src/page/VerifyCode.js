@@ -104,7 +104,7 @@ const VerifyCode = () => {
         {/* Image Section */}
         <div className="hidden md:block text-right">
           <img
-            src="/imges/pana.png"
+            src="/imges/pana.webp"
             alt="verifycode"
             className="object-contain w-[350px] mt-[100px] ml-[80px]"
           />

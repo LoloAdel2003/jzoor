@@ -50,12 +50,13 @@ const AdminHeader = ({ setSidebarOpen }) => {
               name="search"
               type="search"
               placeholder="Search for product"
-              className="border p-2 rounded-xl w-full focus:outline-none border focus:border-green"
+              className=" p-2 rounded-xl w-full focus:outline-none border focus:border-green"
             />
           </div>
 
           <MdOutlineNotifications className="text-gray-600 text-[24px] md:text-2xl cursor-pointer" />
-          <FaUserCircle className="text-gray-600 text-[24px] md:text-2xl cursor-pointer" />
+          {/* <FaUserCircle className="text-gray-600 text-[24px] md:text-2xl cursor-pointer" /> */}
+          <img src="/imges/17 Picture.webp" alt="profile" className="w-[24px] h-[24px] rounded-full" />
         </div>
       </header>
 

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut, Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+// تسجيل مكونات Chart.js اللازمة
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
 export function ProductReview() {
   const [activeReviewsFilter, setActiveReviewsFilter] = useState('All Reviews');
   const [activeTimeframe, setActiveTimeframe] = useState('This week');
 
+  // بيانات مراجعات المنتجات
   const reviewsOverview = {
     ratings: [
       { stars: 5, count: 90 },
@@ -20,14 +22,16 @@ export function ProductReview() {
     negativeReviews: 16.45,
   };
 
+  // حساب إجمالي المراجعات
   const totalReviews = reviewsOverview.ratings.reduce((sum, r) => sum + r.count, 0);
 
+  // بيانات وخيارات مخطط الدونت (Doughnut Chart)
   const doughnutData = {
     labels: ['Positive Reviews', 'Negative Reviews'],
     datasets: [
       {
         data: [reviewsOverview.positiveReviews, reviewsOverview.negativeReviews],
-        backgroundColor: ['#4CAF50', '#F44336'],
+        backgroundColor: ['#4CAF50', '#F44336'], // ألوان إيجابية وسلبية
         borderColor: ['#4CAF50', '#F44336'],
         borderWidth: 1,
       },
@@ -39,7 +43,7 @@ export function ProductReview() {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false,
+        display: false, // إخفاء وسيلة الإيضاح
       },
       tooltip: {
         callbacks: {
@@ -58,24 +62,94 @@ export function ProductReview() {
     }
   };
 
+  // بيانات وخيارات مخطط الشريط (Bar Chart) لتقييمات النجوم
+  const barData = {
+    // تعديل الـ labels لتضمين نجمة واحدة فقط بجانب الرقم
+    labels: reviewsOverview.ratings.map(r => `${r.stars} ★`), // ★ نجمة واحدة
+    datasets: [
+      {
+        label: 'Number of Reviews',
+        data: reviewsOverview.ratings.map(r => r.count),
+        backgroundColor: '#4CAF50', // لون الأعمدة
+        borderColor: '#4CAF50',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const barOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: 'y', // لجعل المخطط أفقيًا
+    plugins: {
+      legend: {
+        display: false, // إخفاء وسيلة الإيضاح
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return `${context.dataset.label}: ${context.parsed.x}`;
+          },
+          // تخصيص عنوان الـ tooltip ليعرض نجمة واحدة
+          title: function(context) {
+            const stars = parseInt(context[0].label.split(' ')[0]);
+            return `${stars} Star ★`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Number of Reviews',
+          color: '#374151'
+        },
+        ticks: {
+            color: '#4B5563'
+        },
+        grid: {
+            color: '#E5E7EB'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Stars',
+          color: '#374151'
+        },
+        ticks: {
+            color: '#4B5563'
+        },
+        grid: {
+            color: 'transparent' // إخفاء خطوط الشبكة الرأسية
+        }
+      }
+    }
+  };
+
+  // بيانات المنتجات الأعلى تقييمًا
   const topRatedProducts = [
-    { image: 'https://via.placeholder.com/50', name: 'Lavender', id: '#FXZ-4567', rating: 5.0, reviews: 218 },
-    { image: 'https://via.placeholder.com/50', name: 'Chamomile', id: '#FXZ-4567', rating: 4.9, reviews: 318 },
-    { image: 'https://via.placeholder.com/50', name: 'Olive Tree', id: '#FXZ-4567', rating: 4.8, reviews: 298 },
-    { image: 'https://via.placeholder.com/50', name: 'Marigold', id: '#FXZ-4567', rating: 4.9, reviews: 309 },
-    { image: 'https://via.placeholder.com/50', name: 'Azalea', id: '#FXZ-4567', rating: 4.7, reviews: 108 },
+    { image: '/imges/66858fac-be77-4de0-a1d0-2e2806295950.webp', name: 'Lavender', id: '#FXZ-4567', rating: 5.0, reviews: 218 },
+    { image: '/imges/ma2.webp', name: 'Chamomile', id: '#FXZ-4567', rating: 4.9, reviews: 318 },
+    { image: '/imges/ma1.webp', name: 'Olive Tree', id: '#FXZ-4567', rating: 4.8, reviews: 298 },
+    { image: '/imges/Marigold.webp', name: 'Marigold', id: '#FXZ-4567', rating: 4.9, reviews: 309 },
+    { image: '/imges/Anise.webp', name: 'Azalea', id: '#FXZ-4567', rating: 4.7, reviews: 108 },
   ];
 
+  // بيانات المراجعات التفصيلية
   const reviewsData = [
     { no: 1, productId: '#ORD0001', reviewer: 'RavenA', comment: '"Very Nice"', rate: 5, date: '09 Oct 2025', status: 'Approved' },
-    { no: 1, productId: '#ORD0001', reviewer: 'Mariantx', comment: '"Love it"', rate: 4, date: '09 Oct 2025', status: 'Approved' },
-    { no: 1, productId: '#ORD0001', reviewer: 'Ahmad22', comment: '"Too Bad"', rate: 2, date: '09 Oct 2025', status: 'Hidden' },
-    { no: 1, productId: '#ORD0001', reviewer: 'ali_abiZID', comment: '"Not My Type"', rate: 1, date: '09 Oct 2025', status: 'Hidden' },
-    { no: 1, productId: '#ORD0002', reviewer: 'SaraM', comment: '"Good Product"', rate: 4, date: '08 Oct 2025', status: 'Approved' },
-    { no: 1, productId: '#ORD0003', reviewer: 'JohnD', comment: '"Excellent!"', rate: 5, date: '07 Oct 2025', status: 'Approved' },
-    { no: 1, productId: '#ORD0004', reviewer: 'EmilyC', comment: '"Disappointed"', rate: 2, date: '06 Oct 2025', status: 'Hidden' },
+    { no: 2, productId: '#ORD0001', reviewer: 'Mariantx', comment: '"Love it"', rate: 4, date: '09 Oct 2025', status: 'Approved' },
+    { no: 3, productId: '#ORD0001', reviewer: 'Ahmad22', comment: '"Too Bad"', rate: 2, date: '09 Oct 2025', status: 'Hidden' },
+    { no: 4, productId: '#ORD0001', reviewer: 'ali_abiZID', comment: '"Not My Type"', rate: 1, date: '09 Oct 2025', status: 'Hidden' },
+    { no: 5, productId: '#ORD0002', reviewer: 'SaraM', comment: '"Good Product"', rate: 4, date: '08 Oct 2025', status: 'Approved' },
+    { no: 6, productId: '#ORD0003', reviewer: 'JohnD', comment: '"Excellent!"', rate: 5, date: '07 Oct 2025', status: 'Approved' },
+    { no: 7, productId: '#ORD0004', reviewer: 'EmilyC', comment: '"Disappointed"', rate: 2, date: '06 Oct 2025', status: 'Hidden' },
   ];
 
+  // تصفية المراجعات بناءً على الفلتر النشط
   const filteredReviews = reviewsData.filter(review => {
     if (activeReviewsFilter === 'All Reviews') return true;
     if (activeReviewsFilter === 'Top' && review.rate >= 4) return true;
@@ -84,41 +158,32 @@ export function ProductReview() {
     return false;
   });
 
+  // تحديد فئات CSS بناءً على حالة المراجعة
   const getStatusClasses = (status) => {
     if (status === 'Approved') return 'background-color: #D1FAE5; color: #065F46;';
     if (status === 'Hidden') return 'background-color: #FEE2E2; color: #991B1B;';
     return '';
   };
 
+  // وظيفة لرسم النجوم باستخدام SVG مضمن (تستخدم لمراجعات المنتجات وجدول المراجعات)
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      if (i < rating) {
-        stars.push(
-          <svg key={i} className="w-4 h-4" style={{ color: '#FCD34D' }} viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.38 2.458a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.683-1.539 1.118l-3.38-2.458a1 1 0 00-1.176 0l-3.38 2.458c-.784.565-1.839-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.583 9.385c-.783-.57-.381-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.957z" />
-          </svg>
-        );
-      } else {
-        stars.push(
-          <svg key={i} className="w-4 h-4" style={{ color: '#D1D5DB' }} viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.38 2.458a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.683-1.539 1.118l-3.38-2.458a1 1 0 00-1.176 0l-3.38 2.458c-.784.565-1.839-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.583 9.385c-.783-.57-.381-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.957z" />
-          </svg>
-        );
-      }
+      stars.push(
+        <svg key={i} className="w-4 h-4" style={{ color: i < rating ? '#FCD34D' : '#D1D5DB' }} viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.38 2.458a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.683-1.539 1.118l-3.38-2.458a1 1 0 00-1.176 0l-3.38 2.458c-.784.565-1.839-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.583 9.385c-.783-.57-.381-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.957z" />
+        </svg>
+      );
     }
     return <div className="flex">{stars}</div>;
   };
 
   return (
-    // العنصر الخارجي: p-4 سيسمح بهامش داخلي صغير على جميع الشاشات.
-    // max-w-full و overflow-x-hidden هنا هي لزيادة التأكد من أن هذا العنصر لا يسبب تجاوزًا.
     <div style={{ backgroundColor: '#F3F4F6' }} className="p-4 font-sans max-w-full overflow-x-hidden">
-      {/* max-w-7xl mx-auto سيضمن أن المحتوى يظل في المنتصف بحد أقصى للعرض، ويتكيف مع الشاشات الصغيرة */}
       <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
-        {/* Top Section: Reviews Overview Cards */}
+        {/* قسم علوي: بطاقات نظرة عامة على المراجعات */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {/* Total Reviews Card */}
+          {/* بطاقة إجمالي المراجعات */}
           <div style={{ backgroundColor: '#FFFFFF' }} className="p-4 sm:p-6 rounded-lg shadow-sm flex flex-col justify-between">
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Total Reviews</h2>
@@ -137,7 +202,7 @@ export function ProductReview() {
             </p>
           </div>
 
-          {/* Average Rating Card */}
+          {/* بطاقة متوسط التقييم */}
           <div style={{ backgroundColor: '#FFFFFF' }} className="p-4 sm:p-6 rounded-lg shadow-sm flex flex-col justify-between">
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Average Rating</h2>
@@ -154,7 +219,7 @@ export function ProductReview() {
             <p style={{ color: '#6B7280' }} className="text-xs sm:text-sm">Last 6 Months</p>
           </div>
 
-          {/* Positive Reviews Card */}
+          {/* بطاقة المراجعات الإيجابية */}
           <div style={{ backgroundColor: '#FFFFFF' }} className="p-4 sm:p-6 rounded-lg shadow-sm flex flex-col justify-between">
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Positive Reviews</h2>
@@ -174,7 +239,7 @@ export function ProductReview() {
           </div>
         </div>
 
-        {/* Reviews Overview Chart and Breakdown */}
+        {/* قسم نظرة عامة على المراجعات: مخطط ورسوم بيانية */}
         <div style={{ backgroundColor: '#FFFFFF' }} className="p-4 sm:p-6 rounded-lg shadow-sm">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
             <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold mb-3 sm:mb-0">Reviews Overview</h2>
@@ -197,35 +262,21 @@ export function ProductReview() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between">
-            {/* Rating breakdown bars */}
-            <div className="w-full md:w-1/2 space-y-3 mb-6 md:mb-0">
-              {reviewsOverview.ratings.map((rating) => (
-                <div key={rating.stars} className="flex items-center">
-                  <span style={{ color: '#374151' }} className="text-sm font-medium w-8 flex-shrink-0">{rating.stars}</span>
-                  <svg className="w-4 h-4 mx-1 flex-shrink-0" style={{ color: '#FCD34D' }} viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.38 2.458a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.683-1.539 1.118l-3.38-2.458a1 1 0 00-1.176 0l-3.38 2.458c-.784.565-1.839-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.583 9.385c-.783-.57-.381-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.957z" />
-                  </svg>
-                  <div style={{ backgroundColor: '#E5E7EB' }} className="w-full rounded-full h-2.5 mx-2">
-                    <div
-                      style={{ backgroundColor: '#4CAF50', width: `${(rating.count / Math.max(...reviewsOverview.ratings.map(r => r.count))) * 100}%` }}
-                      className="h-2.5 rounded-full"
-                    ></div>
-                  </div>
-                  <span style={{ color: '#4B5563' }} className="text-sm">{rating.count}</span>
-                </div>
-              ))}
+            {/* مخطط الشريط لتقسيم التقييمات */}
+            <div className="w-full md:w-1/2 space-y-3 mb-6 md:mb-0 h-64 md:h-auto">
+              <Bar data={barData} options={barOptions} />
             </div>
 
-            {/* Doughnut Chart */}
+            {/* مخطط الدونت */}
             <div className="w-full md:w-1/3 flex flex-col items-center justify-center relative h-40">
               <Doughnut data={doughnutData} options={doughnutOptions} />
               <div className="absolute text-center">
-                <p style={{ color: '#111827' }} className="text-xl font-bold">{reviewsOverview.positiveReviews}%</p>
+                <p style={{ color: '#111827' }} className="text-sm font-bold">{reviewsOverview.positiveReviews}%</p>
                 <p style={{ color: '#6B7280' }} className="text-sm">Positive</p>
               </div>
             </div>
 
-            {/* Positive/Negative Breakdown */}
+            {/* تقسيم المراجعات الإيجابية/السلبية */}
             <div className="w-full md:w-1/4 space-y-3 mt-6 md:mt-0 md:ml-4">
               <div className="flex items-center">
                 <div style={{ backgroundColor: '#4CAF50' }} className="w-3 h-3 rounded-full mr-2"></div>
@@ -241,7 +292,7 @@ export function ProductReview() {
           </div>
         </div>
 
-        {/* Top Rated Products Section */}
+        {/* قسم المنتجات الأعلى تقييمًا */}
         <div style={{ backgroundColor: '#FFFFFF' }} className="p-4 sm:p-6 rounded-lg shadow-sm">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
             <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold mb-3 sm:mb-0">Top Rated Products</h2>
@@ -278,7 +329,7 @@ export function ProductReview() {
           </div>
         </div>
 
-        {/* Reviews Table Section */}
+        {/* قسم جدول المراجعات */}
         <div style={{ backgroundColor: '#FFFFFF' }} className="p-4 sm:p-6 rounded-lg shadow-sm">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
             <div className="relative w-full sm:w-1/2 mb-4 sm:mb-0">
@@ -315,7 +366,7 @@ export function ProductReview() {
             </div>
           </div>
 
-          {/* Review Filters */}
+          {/* فلاتر المراجعات */}
           <div className="flex flex-wrap gap-2 mb-4">
             <button
               style={{ backgroundColor: activeReviewsFilter === 'All Reviews' ? '#047857' : '#F3F4F6', color: activeReviewsFilter === 'All Reviews' ? '#FFFFFF' : '#374151', borderRadius: '9999px' }}
@@ -347,64 +398,67 @@ export function ProductReview() {
             </button>
           </div>
 
-          {/* Table - Critical part for horizontal scroll: Make sure the table container has overflow-x-auto */}
-          <div className="overflow-x-auto border" style={{ borderColor: '#E5E7EB', borderRadius: '0.5rem', marginBottom: '1rem' }}>
-            <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
-              <thead style={{ backgroundColor: '#F0FDF4' }}>
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>No.</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Product Id</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Reviewer</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Comment</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Rate</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Date</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Status</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Action</th>
-                </tr>
-              </thead>
-              <tbody style={{ backgroundColor: '#FFFFFF', divideColor: '#E5E7EB' }}>
-                {filteredReviews.map((review, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#374151' }}>{review.no}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#374151' }}>{review.productId}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium" style={{ color: '#111827' }}>{review.reviewer}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#374151' }}>{review.comment}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {renderStars(review.rate)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#6B7280' }}>{review.date}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full`} style={{ ...Object.fromEntries(getStatusClasses(review.status).split('; ').filter(s => s).map(s => s.split(': ').map(part => part.trim()))) }}>
-                        {review.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <div className="flex items-center space-x-3">
-                        <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                          </svg>
-                        </button>
-                        <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                          </svg>
-                        </button>
-                        <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.927a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165M16.5 3.75V7.5a.75.75 0 0 1-.75.75h-3.75a.75.75 0 0 1-.75-.75V3.75m-3 0V7.5a.75.75 0 0 0 .75.75h3.75a.75.75 0 0 0 .75-.75V3.75M6.75 3.75H4.875c-.621 0-1.125.504-1.125 1.125v12.75c0 .621.504 1.125 1.125 1.125h14.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H16.5" />
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
+          {/* الجدول - جزء مهم للتمرير الأفقي: تأكد من أن حاوية الجدول تحتوي على overflow-x-auto */}
+          <div className="w-full overflow-x-auto lg:overflow-x-visible">
+            <div className="max-w-[300px] lg:min-w-full ">
+              <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
+                <thead style={{ backgroundColor: '#F0FDF4' }}>
+                  <tr>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>No.</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Product Id</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Reviewer</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Comment</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Rate</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Date</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Status</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: '#065F46' }}>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody style={{ backgroundColor: '#FFFFFF', divideColor: '#E5E7EB' }}>
+                  {filteredReviews.map((review, index) => (
+                    <tr key={index}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#374151' }}>{review.no}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#374151' }}>{review.productId}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium" style={{ color: '#111827' }}>{review.reviewer}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#374151' }}>{review.comment}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {renderStars(review.rate)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#6B7280' }}>{review.date}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full`} style={{ ...Object.fromEntries(getStatusClasses(review.status).split('; ').filter(s => s).map(s => s.split(': ').map(part => part.trim()))) }}>
+                          {review.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex items-center space-x-3">
+                          <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                          </button>
+                          <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                            </svg>
+                          </button>
+                          <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.927a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165M16.5 3.75V7.5a.75.75 0 0 1-.75.75h-3.75a.75.75 0 0 1-.75-.75V3.75m-3 0V7.5a.75.75 0 0 0 .75.75h3.75a.75.75 0 0 0 .75-.75V3.75M6.75 3.75H4.875c-.621 0-1.125.504-1.125 1.125v12.75c0 .621.504 1.125 1.125 1.125h14.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H16.5" />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+            </div>
           </div>
 
-          {/* Pagination for Reviews Table */}
+          {/* ترقيم صفحات جدول المراجعات */}
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
             <button style={{ color: '#374151', backgroundColor: 'transparent', border: '1px solid #D1D5DB', borderRadius: '0.5rem' }} className="flex items-center px-4 py-2 hover:bg-gray-100">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

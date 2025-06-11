@@ -28,12 +28,12 @@ const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   return (
     <aside
-      className={`bg-white text-black min-h-screen p-4 shadow-md fixed h-screen overflow-y-auto custom-scroll-hide top-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out
+      className={`bg-white text-black sm:min-h-screen md:h-auto p-4 shadow-md fixed h-screen overflow-y-auto custom-scroll-hide top-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0`}
     >
       {/* الشعار وزر الإغلاق للشاشات الصغيرة */}
       <div className="flex justify-between items-center mb-4 ">
-        <img src="imges/logo.png" alt="logo" className="w-[70px]" />
+        <img src="/imges/logo.png" alt="logo" className="w-[70px]" />
         <RiMenuFoldLine className="text-xl cursor-pointer" onClick={() => setSidebarOpen(false)} />
       </div>
 
@@ -87,7 +87,7 @@ const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
       {/* بيانات المستخدم */}
       <div className="pt-8 flex items-center justify-between">
-        <img src="imges/17 Picture.png" alt="user" className="w-[40px]" />
+        <img src="/imges/seller.png" alt="user" className="w-[40px]" />
         <div className="text-sm">
           <span className="block">Ahmad Kanaan</span>
         </div>

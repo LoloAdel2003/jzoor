@@ -55,7 +55,8 @@ const SellerHeader = ({ setSidebarOpen }) => {
           </div>
 
           <MdOutlineNotifications className="text-gray-600 text-[24px] md:text-2xl cursor-pointer" />
-          <FaUserCircle className="text-gray-600 text-[24px] md:text-2xl cursor-pointer" />
+          {/* <FaUserCircle className="text-gray-600 text-[24px] md:text-2xl cursor-pointer" /> */}
+          <img src="/imges/seller.png" alt="profile" className="h-[24px] w-[24px] rounded-full" />
         </div>
       </header>
 

@@ -11,7 +11,7 @@ export function OrderHistoryPage() {
       orderNo: '5578941201579654',
       total: '15',
       items: [
-        { image: '/imges/0c11d118-d0f7-4028-b0d3-c0db53d7f8a2.png', name: 'Tutreez Mug', price: '35' }
+        { image: '/imges/0c11d118-d0f7-4028-b0d3-c0db53d7f8a2.webp', name: 'Tutreez Mug', price: '35' }
       ]
     },
     {
@@ -21,7 +21,7 @@ export function OrderHistoryPage() {
       orderNo: '5578941201579654',
       total: '15',
       items: [
-        { image: '/imges/Enhance your home decor with our unique handmade… (1).png', name: 'Macramé Leaf Clips', price: '35' }
+        { image: '/imges/Enhance your home decor with our unique handmade… (1).webp', name: 'Macramé Leaf Clips', price: '35' }
       ]
     },
     {
@@ -31,7 +31,7 @@ export function OrderHistoryPage() {
       orderNo: '5578941201579654',
       total: '15',
       items: [
-        { image: '/imges/Dandelion.jpeg', name: 'Self-Watering Globe Stakes', price: '35' }
+        { image: '/imges/Dandelion.webp', name: 'Self-Watering Globe Stakes', price: '35' }
       ]
     },
     // Add more orders as needed for different statuses
@@ -42,7 +42,7 @@ export function OrderHistoryPage() {
       orderNo: '5578941201579655',
       total: '25',
       items: [
-        { image: '/imges/flor-saurina-xWijL2q3xAM-unsplash.png', name: 'Ceramic Pot', price: '25' }
+        { image: '/imges/flor-saurina-xWijL2q3xAM-unsplash.webp', name: 'Ceramic Pot', price: '25' }
       ]
     },
     {
@@ -52,7 +52,7 @@ export function OrderHistoryPage() {
       orderNo: '5578941201579656',
       total: '45',
       items: [
-        { image: '/imges/Monstera Macrame Wristlet, Leaf Macrame Wristlet… (1).png', name: 'Orchid Plant', price: '45' }
+        { image: '/imges/Monstera Macrame Wristlet, Leaf Macrame Wristlet… (1).webp', name: 'Orchid Plant', price: '45' }
       ]
     },
   ];

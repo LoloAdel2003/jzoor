@@ -14,7 +14,7 @@ const sellers = [
     id: 1,
     name: "Ahmad Musaa",
     location: "Gaza",
-    img: "imges/Ellipse 21.png",
+    img: "imges/Ellipse 21.webp",
     rating: 5,
     sales: 500,
     satisfaction: 96,
@@ -24,7 +24,7 @@ const sellers = [
     id: 2,
     name: "Huda Rayan",
     location: "Jerusalem",
-    img: "imges/y.jpg",
+    img: "imges/y.webp",
     rating: 5,
     sales: 520,
     satisfaction: 90,
@@ -34,7 +34,7 @@ const sellers = [
     id: 3,
     name: "Khaled Hamdan",
     location: "Safad",
-    img: "imges/Ellipse 22 (1).png",
+    img: "imges/Ellipse 22 (1).webp",
     rating: 4,
     sales: 700,
     satisfaction: 92,
@@ -44,7 +44,7 @@ const sellers = [
     id: 4,
     name: "Layla Salim",
     location: "Nablus",
-    img: "imges/x.jpg",
+    img: "imges/x.webp",
     rating: 5,
     sales: 600,
     satisfaction: 94,
@@ -185,14 +185,14 @@ function SellerSection() {
             </p>
           </div>
           <div className="flex md:gap-2 lg:gap-5"> 
-          <img src="imges/famicons_arrow-undo (3).png" alt="" />
+          <img src="imges/famicons_arrow-undo (3).webp" alt="" />
           <Link
             to="/RegisterSeller"
             className="bg-[#5a3e2b]  hover:bg-[#5a3e2b]/80 no-underline text-white md:px-6 lg:px-12 py-3 rounded-full text-md font-bold shadow-lg transition duration-300"
           >
             JOIN NOW
           </Link>
-          <img src="imges/famicons_arrow-undo (6).png" alt="" />
+          <img src="imges/famicons_arrow-undo (6).webp" alt="" />
           </div>
         </div>
       </div>

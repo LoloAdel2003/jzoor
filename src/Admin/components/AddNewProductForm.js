@@ -93,7 +93,7 @@ export function AddNewProductForm() {
                     onChange={(e) => setProductPrice(e.target.value)}
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2">
-                    <img src="https://flagcdn.com/w20/ps.png" alt="Palestine Flag" className="h-4 w-6 rounded-sm" />
+                    <img src="https://flagcdn.com/w20/ps.webp" alt="Palestine Flag" className="h-4 w-6 rounded-sm" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 ml-1 text-gray-400">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>

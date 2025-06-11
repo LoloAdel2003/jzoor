@@ -2,15 +2,15 @@ import React from 'react';
 
 export function AddNewProduct() {
   const categories = [
-    { name: 'Gifts', image: 'imges/f769ad49-1fc1-4c9c-b61e-6f8308e2897d (1).png' },
-    { name: 'Plants', image: 'imges/Tree Spotlight_ Carob tree - Canopy _ Canopy.png' },
-    { name: 'Flowers', image: 'imges/Rectangle 44.png' },
+    { name: 'Gifts', image: 'imges/f769ad49-1fc1-4c9c-b61e-6f8308e2897d (1).webp' },
+    { name: 'Plants', image: 'imges/Tree Spotlight_ Carob tree - Canopy _ Canopy.webp' },
+    { name: 'Flowers', image: 'imges/Rectangle 44.webp' },
   ];
 
   const products = [
-    { name: 'Jasmine & Linen Set', price: '$28.00', image: 'imges/loquats-7228865_1280.png' },
-    { name: 'Loquat', price: '$10.00', image: 'imges/14678939-8be0-4601-8f6f-a69da5367e57.png' },
-    { name: 'Tulips', price: '$15.00', image: 'imges/sanju-pandita-xcVkgD7bcLA-unsplash.png' },
+    { name: 'Jasmine & Linen Set', price: '$28.00', image: 'imges/loquats-7228865_1280.webp' },
+    { name: 'Loquat', price: '$10.00', image: 'imges/14678939-8be0-4601-8f6f-a69da5367e57.webp' },
+    { name: 'Tulips', price: '$15.00', image: 'imges/sanju-pandita-xcVkgD7bcLA-unsplash.webp' },
   ];
 
   return (

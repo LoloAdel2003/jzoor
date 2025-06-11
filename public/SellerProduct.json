@@ -26,7 +26,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Chamomile is a fragrant herb used mainly for herbal teas known for its calming effects.",
-      "img": "/imges/ma2.png",
+      "img": "/imges/ma2.webp",
       "category": "plants"
     },
     {
@@ -47,7 +47,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Olive tree is a traditional Mediterranean tree valued for its olives and olive oil.",
-      "img": "/imges/ma1.png",
+      "img": "/imges/ma1.webp",
       "category": "all"
     },
     {
@@ -69,7 +69,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Jasmine is a fragrant flower known for its sweet scent, often used in perfumes and teas.",
-      "img": "/imges/ma4.png",
+      "img": "/imges/ma4.webp",
       "category": "all"
     },
     {
@@ -80,7 +80,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Anemone is a delicate flower with vibrant colors, symbolizing protection and anticipation.",
-      "img": "/imges/ma5.png",
+      "img": "/imges/ma5.webp",
       "category": "all"
     },
     {
@@ -91,7 +91,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Fig tree is known for its sweet fruit and is widely cultivated in warm climates.",
-      "img": "/imges/ma6.png",
+      "img": "/imges/ma6.webp",
       "category": "all"
     },
     {
@@ -102,7 +102,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Poppy is a bright flower symbolizing remembrance and consolation, often used ornamentally.",
-      "img": "/imges/ma7.png",
+      "img": "/imges/ma7.webp",
       "category": "all"
     },
     {
@@ -113,7 +113,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Aloe Vera is a succulent plant used for its soothing gel with skin healing properties.",
-      "img": "/imges/ma8.png",
+      "img": "/imges/ma8.webp",
       "category": "all"
     },
     {

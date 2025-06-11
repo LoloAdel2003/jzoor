@@ -15,22 +15,22 @@ const ToolsSection = () => {
     {
       title: 'Pots',
       to:'/Pots',
-      img: '/imges/Keep ALIVE_ 10 Best LOW Light Indoor Plants (Easy….png', // استبدل باسم صورة حقيقي
+      img: '/imges/Keep ALIVE_ 10 Best LOW Light Indoor Plants (Easy….webp', // استبدل باسم صورة حقيقي
     },
     {
       title: 'Care',
       to:'/Care',
-      img: '/imges/Person Holding Green Succulent Plant · Free Stock….png',
+      img: '/imges/Person Holding Green Succulent Plant · Free Stock….webp',
     },
     {
       to:'/Accessories',
       title: 'Accessories',
-      img: '/imges/Monstera Macrame Wristlet, Leaf Macrame Wristlet….png',
+      img: '/imges/Monstera Macrame Wristlet, Leaf Macrame Wristlet….webp',
     },
     {
       to:'/Storage',
         title: 'Storage & Maintenance',
-        img: '/imges/Storage.jpg',
+        img: '/imges/Storage.webp',
       },
      
   ].map((card, index) => (
@@ -49,7 +49,7 @@ const ToolsSection = () => {
         <div className="flex justify-center mb-[60px]">
         <Link
                 to={card.to}
-                className="no-underline px-3 py-2 bg-[#8B6F47]/70 border-2 border-[#5a422b] hover:bg-[#5a422b] hover:border-[#4a341f] px-6 py-2 rounded-full hidden group-hover:block translate-y-10  group-hover:translate-y-0 transition-all duration-500 text-white text-center"
+                className="no-underline px-3 py-2 bg-[#8B6F47]/70 border-2 border-[#5a422b] hover:bg-[#5a422b] hover:border-[#4a341f]  rounded-full hidden group-hover:block translate-y-10  group-hover:translate-y-0 transition-all duration-500 text-white text-center"
               >
                 See All
               </Link>

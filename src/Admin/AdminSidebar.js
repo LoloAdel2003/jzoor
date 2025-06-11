@@ -53,7 +53,7 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       {/* الشعار وزر الإغلاق للشاشات الصغيرة */}
       <div className="flex justify-between items-center mb-4 ">
-        <img src="imges/logo.png" alt="logo" className="w-[70px]" />
+        <img src="/imges/logo.webp" alt="logo" className="w-[70px]" />
         <RiMenuFoldLine className="text-xl cursor-pointer" onClick={() => setSidebarOpen(false)} />
       </div>
 
@@ -96,14 +96,14 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
         ))}
       </nav>
 
-      <div className="space-y-3">
+      <div className="space-y-3 mt-2">
   {/* زر المستخدمين مع أيقونة وسهم */}
   <div
     onClick={() => toggle('1')}
     className={`flex items-center justify-between p-2 rounded-md cursor-pointer transition
       ${open === '1' ? 'bg-green text-white font-bold' : 'text-gray-700 hover:bg-green-800'}`}
   >
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 ">
       <FaUsers />
       <span>Users</span>
     </div>
@@ -177,15 +177,15 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </NavLink>
 
       {/* بيانات المستخدم */}
-      <div className="pt-8 flex items-center justify-between">
-        <img src="imges/17 Picture.png" alt="user" className="w-[40px]" />
+      <div className="pt-8 flex cursor-pointer items-center justify-between">
+        <img src="/imges/17 Picture.webp" alt="user" className="w-[40px]" />
         <div className="text-sm">
           <span className="block">Ahmad Kanaan</span>
         </div>
         <CiLogin className="text-xl" />
       </div>
 
-      <div className="pt-4 flex items-center justify-between">
+      <div className="pt-4 flex cursor-pointer items-center justify-between">
         <AiOutlineShop className="text-3xl" />
         <div className="text-sm">
           <span className="block">Your Shop</span>

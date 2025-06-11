@@ -103,7 +103,7 @@ export default function Navbar() {
         <header className="flex justify-between items-center gap-6 flex-wrap relative ">
           <Link to="/">
             <img
-              src="imges/Logo.png"
+              src="imges/Logo.webp"
               alt="Logo"
               className="w-[80px] h-auto md:w-[120px]"
             />
@@ -181,7 +181,7 @@ export default function Navbar() {
               to="/profile"
               className="bg-[#4B5929] font-bold hover:underline h-[24px] w-[24px] hidden rounded-full text-[20px] hidden md:inline-block text-black no-underline"
             > 
-            <img src="imges/Profile.png" alt="profile" />
+            <img src="imges/Profile.webp" alt="profile" />
             </Link>
           </div>
 

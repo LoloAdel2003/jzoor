@@ -23,7 +23,7 @@ export function UserProfilePage() {
   const [showReEnterPassword, setShowReEnterPassword] = useState(false);
 
   return (
-    <div className="  min-h-screen font-sans">
+    <div className="bg-[#f3f4f6]  min-h-screen font-sans">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {/* Left Column: Profile Card and Change Password */}
         <div className="lg:col-span-1 space-y-6">
@@ -42,7 +42,7 @@ export function UserProfilePage() {
               </button>
             </div>
             <img
-              src="/imges/17 Picture.png" // Placeholder image for profile picture
+              src="/imges/17 Picture.webp" // Placeholder image for profile picture
               alt="Ahmad Kanaan"
               className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
             />
@@ -153,7 +153,7 @@ export function UserProfilePage() {
             {/* Profile Picture Upload */}
             <div className="flex items-center mb-6">
               <img
-                src="/imges/17 Picture.png" // Placeholder for profile picture update
+                src="/imges/17 Picture.webp" // Placeholder for profile picture update
                 alt="Profile"
                 className="w-16 h-16 rounded-full object-cover mr-4"
               />
@@ -210,7 +210,7 @@ export function UserProfilePage() {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2">
-                    <img src="https://flagcdn.com/w20/ps.png" alt="Palestine Flag" className="h-4 w-6 rounded-sm" />
+                    <img src="https://flagcdn.com/w20/ps.webp" alt="Palestine Flag" className="h-4 w-6 rounded-sm" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 ml-1 text-gray-400">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>

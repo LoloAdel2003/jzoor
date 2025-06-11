@@ -17,7 +17,7 @@ const AboutSection = () => {
           {/* الصورة */}
           <div className="reveal-left hidden md:block flex-shrink-0 w-full md:w-1/2">
             <img
-              src="imges/Group 84 (1).png"
+              src="imges/Group 84 (1).webp"
               alt="Olive Tree"
               className="rounded-xl object-cover   "
             />
@@ -59,11 +59,11 @@ const AboutSection = () => {
   {/* شبكة تظهر 3 أعمدة على الشاشات الصغيرة و5 أعمدة على المتوسطة وما فوق */}
   <div className="grid  grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 justify-items-center">
     {[
-      { src: "imges/twemoji_olive (2).png", label: "Connection" },
-      { src: "imges/carbon_sustainability.png", label: "Sustainability" },
-      { src: "imges/Screenshot 2025-05-04 205611.png", label: "Heritage" },
-      { src: "imges/Group.png", label: "Quality" },
-      { src: "imges/Vector.png", label: "Care & Nurture" },
+      { src: "imges/twemoji_olive (2).webp", label: "Connection" },
+      { src: "imges/carbon_sustainability.webp", label: "Sustainability" },
+      { src: "imges/Screenshot 2025-05-04 205611.webp", label: "Heritage" },
+      { src: "imges/Group.webp", label: "Quality" },
+      { src: "imges/Vector.webp", label: "Care & Nurture" },
     ].map((item, index) => (
       <div key={index} className="reveal-top-hero flex flex-col items-center">
         <div className="w-20 h-20 bg-white rounded-full border-2 border-[#4B5929] flex items-center justify-center shadow-md transition-transform hover:scale-110">

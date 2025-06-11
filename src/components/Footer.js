@@ -8,10 +8,10 @@ const Footer = () => {
     <footer className="bg-white pt-5 pb-2 container pt-[10px] pb-[30px]">
 
 
-      {/*   <img src="imges/Logo.png" className="block w-[80px] h-auto md:w-[100px]  md:ml-0 " /> */}
+      {/*   <img src="imges/Logo.webp" className="block w-[80px] h-auto md:w-[100px]  md:ml-0 " /> */}
       <div className="  flex flex-col lg:flex-row justify-between items-center">
           <div className="flex items-center mb-6 md:mb-0 ">
-          <img src="imges/Logo.png" className="block w-[80px] h-auto mr-6" />
+          <img src="imges/Logo.webp" alt="logo" className="block w-[80px] h-auto mr-6" />
 
               <nav class="hidden lg:flex space-x-5 lg:space-x-8 text-[#4B5929]">
                   <Link  to="/productList" className="hover:text-gray-800 no-underline text-black">Product</Link>
