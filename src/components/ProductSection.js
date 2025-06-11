@@ -18,7 +18,7 @@ const ProductSection = () => {
     setSelectedProduct,
   } = useContext(ProductContext);
 
-  const productset = products.slice(0, 8); // 👈 هذا لازم يكون في الأعلى
+  const productset = products.slice(0, 4); // 👈 هذا لازم يكون في الأعلى
 
   const [showToast, setShowToast] = useState(false);
 

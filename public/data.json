@@ -1,41 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Carob Tree",
-    "prev_price": 15,
-    "new_price": 10,
-    "description": "Carob tree is a hardy evergreen shrub or tree known for its edible pods and sweet carob powder.",
-    "img": "/imges/Carob Tree.webp",
-    "category": "plants"
-  },
-  {
-    "id": 2,
-    "name": "Spinach",
-    "prev_price": 15,
-    "new_price": 10,
-    "description": "Spinach is a nutritious leafy green vegetable rich in iron, vitamins, and antioxidants.",
-    "img": "/imges/Spinach.webp",
-    "category": "plants"
-  },
-  {
-    "id": 3,
-    "name": "Chamomile",
-    "prev_price": 15,
-    "new_price": 10,
-    "description": "Chamomile is a fragrant herb used mainly for herbal teas known for its calming effects.",
-    "img": "/imges/ma2.webp",
-    "category": "plants"
-  },
-  {
-    "id": 4,
-    "name": "Purslane",
-    "prev_price": 15,
-    "new_price": 10,
-    "description": "Purslane is a succulent plant often used in salads, rich in omega-3 fatty acids.",
-    "img": "/imges/Purslane.webp",
-    "category": "plants"
-  },
-  {
     "id": 5,
     "name": "Olive Tree",
     "prev_price": 15,
@@ -71,6 +35,43 @@
     "img": "/imges/ma5.webp",
     "category": "all"
   },
+  {
+    "id": 1,
+    "name": "Carob Tree",
+    "prev_price": 15,
+    "new_price": 10,
+    "description": "Carob tree is a hardy evergreen shrub or tree known for its edible pods and sweet carob powder.",
+    "img": "/imges/Carob Tree.webp",
+    "category": "plants"
+  },
+  {
+    "id": 2,
+    "name": "Spinach",
+    "prev_price": 15,
+    "new_price": 10,
+    "description": "Spinach is a nutritious leafy green vegetable rich in iron, vitamins, and antioxidants.",
+    "img": "/imges/Spinach.webp",
+    "category": "plants"
+  },
+  {
+    "id": 3,
+    "name": "Chamomile",
+    "prev_price": 15,
+    "new_price": 10,
+    "description": "Chamomile is a fragrant herb used mainly for herbal teas known for its calming effects.",
+    "img": "/imges/ma2.webp",
+    "category": "plants"
+  },
+  {
+    "id": 4,
+    "name": "Purslane",
+    "prev_price": 15,
+    "new_price": 10,
+    "description": "Purslane is a succulent plant often used in salads, rich in omega-3 fatty acids.",
+    "img": "/imges/Purslane.webp",
+    "category": "plants"
+  },
+  
   {
     "id": 9,
     "name": "Fig Tree",
