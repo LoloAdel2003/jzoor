@@ -65,11 +65,15 @@ import MyVouchersPage from './page/MyVouchersPage';
 import Customer from './Admin/Customer';
 import Seller from './Admin/Seller';
 import Delivery from './Admin/Delivery';
+import Terms from './page/Terma';
+import Privacy from './page/Privacy';
+import Cookies from './page/Cookies';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
   <>
     <Navbar />
+    <ScrollToTopButton />
 
     <Outlet />
     <Footer />
@@ -80,30 +84,27 @@ const App = () => {
    
   return (
     <ProductProvider>
-      <ScrollToTopButton />
+     
 
 
       <BrowserRouter>
         <Routes>
+
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/cart" element={<Cart />} />
+              <Route path="/cart" element={<Cart />} />
             <Route path="/favarate" element={<Favarate />} />
             <Route path="/Pots" element={<Pots />} />
 
             <Route path="/productList" element={<ProductList />} />
             <Route path="/giftList" element={<GiftList />} />
-            <Route path="/SellerLogin" element={<SellerLogin />} />
+            {/* <Route path="/SellerLogin" element={<SellerLogin />} /> */}
             {/* <Route path="/SellerDash" element={<SellerDash />} /> */}
             <Route path="/product/:id" element={<ProductDetails />} />
             
                         <Route path="/SellerProduct/:id" element={<SellerProductDetails />} />
 
-            <Route path="/ForgetPass" element={<ForgetPass />} />
-            <Route path="/VerifyCode?" element={<VerifyCode />} />
-            <Route path="/gift/:id" element={<GiftDetails />} />
+             <Route path="/gift/:id" element={<GiftDetails />} />
             <Route path="/pots/:id" element={<GiftDetails />} />
             <Route path="/storage/:id" element={<GiftDetails />} />
             <Route path="/care/:id" element={<GiftDetails />} />
@@ -112,9 +113,12 @@ const App = () => {
 <Route path="/Accessories" element={<Accessories />} />
 <Route path="/care" element={<Care />} />
 <Route path="/Storage" element={<Storage />} />
+<Route path="/terms" element={<Terms />} />
+<Route path="/privecy" element={<Privacy />} />
+<Route path="/cookies" element={<Cookies />} />
 
 
-            <Route path="/SetPass" element={<SetPass />} />
+
             <Route path="/favorites" element={<FavoriteSection />} />
             <Route path="/JournalDetails/:id" element={<JournalDetails />} />
             <Route path="/SellerProduct" element={<SellerProduct />} />
@@ -125,9 +129,18 @@ const App = () => {
               <Route path="my-vouchers" element={<MyVouchersPage />} />
             </Route>
 
-            <Route path="login-seller" element={<LoginSeller />} />
+           </Route>
+           <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+         
+           <Route path="/ForgetPass" element={<ForgetPass />} />
+            <Route path="/VerifyCode?" element={<VerifyCode />} />
+          
+           <Route path="/SetPass" element={<SetPass />} />
+
+           <Route path="login-seller" element={<LoginSeller />} />
             <Route path="register-seller" element={<RegisterSeller />} />
-          </Route>
+          
           {/* admin route  */}
           <Route path="/admin" element={<Dashboard />}>
           <Route index element={<AdminDash />} />

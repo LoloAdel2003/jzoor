@@ -10,11 +10,11 @@ const Login = () => {
         navigate("/");
       };
   return (
-    <main className="pt-[100px] px-[20px] w-full flex justify-center">
+    <main className="pt-[40px] px-[20px] h-auto w-full flex justify-center">
       <div
         className="bg-white shadow-lg rounded-lg w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 overflow-hidden"
         style={{
-          height: "calc(100vh - 120px)",
+          height: "calc(100vh - 80px)",
           boxShadow: "0 0 10px rgba(0,0,0,.3)",
         }}
       >
@@ -100,15 +100,8 @@ const Login = () => {
           </div>
             {/* ✅ رابط تسجيل دخول البائع */}
             <div className="text-center mt-3">
-            <p className="text-sm text-gray-700">
-              Are you a seller?{" "}
-              <Link
-                to="/SellerLogin"
-                className="text-[#4B5929] font-semibold hover:underline"
-              >
-                Log in here
-              </Link>
-            </p>
+           
+           
             <p className="mt-[2px] text-center text-sm text-gray-600">
             Don’t have an account?{" "}
             <Link

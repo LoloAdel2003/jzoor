@@ -18,7 +18,7 @@ const Footer = () => {
                   <Link  to="/Login" className="hover:text-gray-800 no-underline text-black">Log In</Link>
                   <Link  to="/Payment" className="hover:text-gray-800 no-underline text-black">Payment</Link>
                   <Link to="/#About" className="hover:text-gray-800 no-underline text-black">About Us</Link>
-                  <Link  to="/#Sellers" className="hover:text-gray-800 no-underline text-black">Sellers</Link>
+                  <Link  to="/sellerProduct" className="hover:text-gray-800 no-underline text-black">Sellers</Link>
               </nav>
           </div>
           <div className="mb-6 md:mb-0 ">
@@ -33,9 +33,9 @@ const Footer = () => {
       <div className=" mt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>© 2025 BB. All rights reserved.</p>
           <nav className="flex space-x-8 text-[#4B5929]">
-              <Link to="#" className=" text-black no-underline hover:text-gray-700">Terms</Link>
-              <Link to="#" className=" text-black no-underline hover:text-gray-700">Privacy</Link>
-              <Link to="#" className=" text-black no-underline hover:text-gray-700">Cookies</Link>
+              <Link to="/terms" className=" text-black no-underline hover:text-gray-700">Terms</Link>
+              <Link to="/privecy" className=" text-black no-underline hover:text-gray-700">Privacy</Link>
+              <Link to="cookies" className=" text-black no-underline hover:text-gray-700">Cookies</Link>
           </nav>
       </div>
   </footer>

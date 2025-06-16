@@ -6,7 +6,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Carob tree is a hardy evergreen shrub or tree known for its edible pods and sweet carob powder.",
-      "img": "/imges/Carob Tree.jpeg",
+      "img": "/imges/Carob Tree.webp",
       "category": "plants"
     },
     {
@@ -16,7 +16,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Spinach is a nutritious leafy green vegetable rich in iron, vitamins, and antioxidants.",
-      "img": "/imges/Spinach.jpg",
+      "img": "/imges/Spinach.webp",
       "category": "plants"
     },
     {
@@ -36,7 +36,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Purslane is a succulent plant often used in salads, rich in omega-3 fatty acids.",
-      "img": "/imges/Purslane.jpeg",
+      "img": "/imges/Purslane.webp",
       "category": "plants"
     },
     {
@@ -58,7 +58,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Mulberry tree produces sweet edible berries and is popular for shade and fruit.",
-      "img": "/imges/Mulberry Tree.jpg",
+      "img": "/imges/Mulberry Tree.webp",
       "category": "all"
     },
     {
@@ -124,7 +124,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Mallow is a flowering plant known for its medicinal and culinary uses.",
-      "img": "/imges/Mallow.jpg",
+      "img": "/imges/Mallow.webp",
       "category": "all"
     },
     {
@@ -135,7 +135,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Dandelion is a resilient plant with bright yellow flowers, used in herbal remedies.",
-      "img": "/imges/Dandelion.jpeg",
+      "img": "/imges/Dandelion.webp",
       "category": "all"
     },
     {
@@ -146,7 +146,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Mint is a fragrant herb used for culinary and medicinal purposes, known for its fresh aroma.",
-      "img": "/imges/Mint.jpeg",
+      "img": "/imges/Mint.webp",
       "category": "plants"
     },
     {
@@ -157,7 +157,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Basil is a flavorful herb commonly used in cooking, especially in Mediterranean cuisine.",
-      "img": "/imges/Basil.jpeg",
+      "img": "/imges/Basil.webp",
       "category": "plants"
     },
     {
@@ -168,7 +168,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Parsley is a versatile herb often used as garnish and for its fresh taste in dishes.",
-      "img": "/imges/Parsley.jpeg",
+      "img": "/imges/Parsley.webp",
       "category": "plants"
     },
     {
@@ -179,7 +179,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Sage is a fragrant herb used in cooking and traditional medicine.",
-      "img": "/imges/Sage.jpeg",
+      "img": "/imges/Sage.webp",
       "category": "plants"
     },
     {
@@ -190,7 +190,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Thyme is a culinary herb known for its earthy flavor and medicinal properties.",
-      "img": "/imges/Thyme.jpeg",
+      "img": "/imges/Thyme.webp",
       "category": "plants"
     },
     {
@@ -201,7 +201,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Lavender is a fragrant flowering plant used in aromatherapy and perfumes.",
-      "img": "/imges/Lavender.jpeg",
+      "img": "/imges/Lavender.webp",
       "category": "plants"
     },
     {
@@ -212,7 +212,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Marjoram is an aromatic herb used to flavor soups, stews, and sauces.",
-      "img": "/imges/Marjoram.jpeg",
+      "img": "/imges/Marjoram.webp",
       "category": "plants"
     },
     {
@@ -223,7 +223,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Oregano is a popular culinary herb with a robust flavor, commonly used in Mediterranean dishes.",
-      "img": "/imges/Oregano.jpeg",
+      "img": "/imges/Oregano.webp",
       "category": "plants"
     },
     {
@@ -234,7 +234,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Tarragon is an aromatic herb with a slight licorice flavor used in cooking.",
-      "img": "/imges/Tarragon.jpeg",
+      "img": "/imges/Tarragon.webp",
       "category": "plants"
     },
     {
@@ -245,7 +245,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Dill is an herb used for flavoring pickles and various dishes.",
-      "img": "/imges/Dill.jpeg",
+      "img": "/imges/Dill.webp",
       "category": "plants"
     },
     {
@@ -256,7 +256,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Fennel is a flavorful herb with a sweet, anise-like taste.",
-      "img": "/imges/Fennel.jpeg",
+      "img": "/imges/Fennel.webp",
       "category": "plants"
     },
     {
@@ -267,7 +267,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Zaater is a Middle Eastern herb blend often used as a seasoning or condiment.",
-      "img": "/imges/Zaater.jpeg",
+      "img": "/imges/Zaater.webp",
       "category": "plants"
     },
     {
@@ -278,7 +278,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Rosemary is a fragrant evergreen herb used in cooking and for medicinal purposes.",
-      "img": "/imges/Rosemary.jpeg",
+      "img": "/imges/Rosemary.webp",
       "category": "plants"
     },
     {
@@ -289,7 +289,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Snapdragon is a colorful flowering plant often used in gardens for decoration.",
-      "img": "/imges/Snapdragon.jpeg",
+      "img": "/imges/Snapdragon.webp",
       "category": "all"
     },
     {
@@ -300,7 +300,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Tulip is a popular spring-blooming flower with bright, cup-shaped petals.",
-      "img": "/imges/Tulip.jpeg",
+      "img": "/imges/Tulip.webp",
       "category": "all"
     },
     {
@@ -311,7 +311,7 @@
       "prev_price": 15,
       "new_price": 10,
       "description": "Anise is a herb known for its licorice-like flavor, used in cooking and herbal remedies.",
-      "img": "/imges/Anise.jpg",
+      "img": "/imges/Anise.webp",
       "category": "all"
     }
   ]

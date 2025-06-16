@@ -17,11 +17,11 @@ const Register = () => {
   };
 
   return (
-    <main className="pt-[100px] px-[20px] w-full flex justify-center">
+    <main className="pt-[40px] pb-[40px] px-[20px] w-full flex justify-center">
       <div
         className="bg-white shadow-lg rounded-lg w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 overflow-hidden"
         style={{
-          height: "calc(100vh + 40px)",
+          height: "calc(100vh + 80px)",
           boxShadow: "0 0 10px rgba(0,0,0,.3)",
         }}
       >

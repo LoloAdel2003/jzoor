@@ -54,7 +54,7 @@ export function MyVouchersPage() {
       <div className=" mx-auto">
         <h1 className="text-2xl font-bold text-black mb-8">My Vouchers</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-12 shadow-md">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-2 md:p-12 ">
           {vouchers.map((voucher) => (
             <div
               key={voucher.id}
