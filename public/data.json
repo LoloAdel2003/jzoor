@@ -41,7 +41,7 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Carob tree is a hardy evergreen shrub or tree known for its edible pods and sweet carob powder.",
-    "img": "/imges/Carob Tree.webp",
+    "img": "/imges/Tree Spotlight_ Carob tree - Canopy _ Canopy.png",
     "category": "plants"
   },
   {
@@ -68,7 +68,7 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Purslane is a succulent plant often used in salads, rich in omega-3 fatty acids.",
-    "img": "/imges/Purslane.webp",
+    "img": "/imges/77333746-1110-4fff-87c0-8107b3e76820.png",
     "category": "plants"
   },
   
@@ -114,7 +114,7 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Dandelion is a resilient plant with bright yellow flowers, used in herbal remedies.",
-    "img": "/imges/Dandelion.webp",
+    "img": "/imges/f3c25fc6-aa97-44a4-bb79-f419ab7e8da6.png",
     "category": "all"
   },
   {
@@ -123,43 +123,43 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Mint is a fragrant herb used for culinary and medicinal purposes, known for its fresh aroma.",
-    "img": "/imges/Mint.webp",
+    "img": "/imges/Rectangle 40 (1).png",
     "category": "plants"
   },
   {
     "id": 15,
-    "name": "Basil",
+    "name": "Tulip",
     "prev_price": 15,
     "new_price": 10,
     "description": "Basil is a flavorful herb commonly used in cooking, especially in Mediterranean cuisine.",
-    "img": "/imges/Basil.webp",
+    "img": "/imges/14678939-8be0-4601-8f6f-a69da5367e57.webp",
     "category": "plants"
   },
   {
     "id": 16,
-    "name": "Parsley",
+    "name": "Asphodel",
     "prev_price": 15,
     "new_price": 10,
     "description": "Parsley is a versatile herb often used as garnish and for its fresh taste in dishes.",
-    "img": "/imges/Parsley.webp",
+    "img": "/imges/Asphodel.webp",
     "category": "plants"
   },
   {
     "id": 17,
-    "name": "Sage",
+    "name": "Snapdragon",
     "prev_price": 15,
     "new_price": 10,
     "description": "Sage is a fragrant herb used in cooking and traditional medicine.",
-    "img": "/imges/Sage.webp",
+    "img": "/imges/Snapdragons are a whimsical and colorful choice….png",
     "category": "plants"
   },
   {
     "id": 18,
-    "name": "Thyme",
+    "name": "Fennel",
     "prev_price": 15,
     "new_price": 10,
     "description": "Thyme is a culinary herb known for its earthy flavor and medicinal properties.",
-    "img": "/imges/Thyme.webp",
+    "img": "/imges/80ef182b-a3c2-4d76-95fb-20ec270ddede.png",
     "category": "plants"
   },
   {
@@ -168,52 +168,44 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Lavender is a fragrant flowering plant used in aromatherapy and perfumes.",
-    "img": "/imges/Lavender.webp",
+    "img": "/imges/66858fac-be77-4de0-a1d0-2e2806295950.webp",
     "category": "plants"
   },
-  {
-    "id": 20,
-    "name": "Marjoram",
-    "prev_price": 15,
-    "new_price": 10,
-    "description": "Marjoram is an aromatic herb used to flavor soups, stews, and sauces.",
-    "img": "/imges/Marjoram.webp",
-    "category": "plants"
-  },
+
   {
     "id": 21,
-    "name": "Oregano",
+    "name": "Loquat",
     "prev_price": 15,
     "new_price": 10,
     "description": "Oregano is a popular culinary herb with a robust flavor, commonly used in Mediterranean dishes.",
-    "img": "/imges/Oregano.webp",
+    "img": "/imges/loquats-7228865_1280.webp",
     "category": "plants"
   },
   {
     "id": 22,
-    "name": "Tarragon",
+    "name": "Chrysanthemum",
     "prev_price": 15,
     "new_price": 10,
     "description": "Tarragon is an aromatic herb with a slight licorice flavor used in cooking.",
-    "img": "/imges/Tarragon.webp",
+    "img": "/imges/chrysanthemums.png",
     "category": "plants"
   },
   {
     "id": 23,
-    "name": "Dill",
+    "name": "Hibiscus",
     "prev_price": 15,
     "new_price": 10,
     "description": "Dill is an herb used for flavoring pickles and various dishes.",
-    "img": "/imges/Dill.webp",
+    "img": "/imges/Hibiscus.webp",
     "category": "plants"
   },
   {
     "id": 24,
-    "name": "Fennel",
+    "name": "Cyclamen",
     "prev_price": 15,
     "new_price": 10,
     "description": "Fennel is a flavorful herb with a sweet, anise-like taste.",
-    "img": "/imges/Fennel.webp",
+    "img": "/imges/Rectangle 40 (8).png",
     "category": "plants"
   },
   {
@@ -222,7 +214,7 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Zaater is a Middle Eastern herb blend often used as a seasoning or condiment.",
-    "img": "/imges/Zaater.webp",
+    "img": "/imges/7ebe9701-9d09-46bf-875e-7bf3e26817fc.webp",
     "category": "plants"
   },
   {
@@ -231,7 +223,7 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Rosemary is a fragrant evergreen herb used in cooking and for medicinal purposes.",
-    "img": "/imges/Rosemary.webp",
+    "img": "/imges/ma7.webp",
     "category": "plants"
   },
   {
@@ -240,7 +232,7 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Snapdragon is a colorful flowering plant often used in gardens for decoration.",
-    "img": "/imges/Snapdragon.webp",
+    "img": "/imges/Damask Rose.webp",
     "category": "all"
   },
   {
@@ -249,7 +241,7 @@
     "prev_price": 15,
     "new_price": 10,
     "description": "Tulip is a popular spring-blooming flower with bright, cup-shaped petals.",
-    "img": "/imges/Tulip.webp",
+    "img": "/imges/Mulberry Tree.webp",
     "category": "all"
   },
   {
