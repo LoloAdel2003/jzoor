@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -41,6 +41,7 @@ const initialVoices = [
 function VoicesSection() {
   const [voicesList, setVoicesList] = useState(initialVoices);
   const [showForm, setShowForm] = useState(false);
+  const [show,setShow]=useState(false);
   const [newReview, setNewReview] = useState({
     name: "",
     rating: 5,
@@ -55,6 +56,10 @@ function VoicesSection() {
       id: voicesList.length + 1,
       ...newReview,
     };
+    setShow(true);
+    setTimeout(() => {
+      setShow(false);
+    }, 1000);
     setVoicesList([...voicesList, newVoice]);
     setShowForm(false);
     setNewReview({
@@ -63,10 +68,13 @@ function VoicesSection() {
       review: "",
       img: "imges/a555d57c-b093-4ca1-9c58-1d5a743ba78f.webp",
     });
+
   };
 
   return (
     <section className="voices pt-[60px] pb-[60px] container">
+      {show &&  <p className="fixed  text-white px-4 py-2 bg-green rounded-md top-[80px] left-1/2 transform -translate-x-1/2  z-50 "> Thanks To Add Your Voice</p>
+}
       <Title
         name="Voices Rooted in Trust"
         description=" these voices bloom like jasmin"
