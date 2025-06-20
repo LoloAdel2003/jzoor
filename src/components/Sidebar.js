@@ -9,7 +9,7 @@ const links = [
   { label: 'My Account', path: '/profile', icon: <FaUserCircle />, title: 'Account' },
   { label: 'Orders', path: '/profile/orders', icon: <FaBoxOpen />, title: 'Orders' },
   { label: 'Notifications', path: '/profile/notifications', icon: <IoMdNotificationsOutline />, title: 'Notification' },
-  { label: 'My Vouchers', path: '/profile/my-vouchers', icon: <RiCoupon2Line />, title: 'Vouchers' },
+  // { label: 'My Vouchers', path: '/profile/my-vouchers', icon: <RiCoupon2Line />, title: 'Vouchers' },
   { label: 'Log Out', path: '/', icon: <FiLogOut />, title: 'logout' },
 ];
 

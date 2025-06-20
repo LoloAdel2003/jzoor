@@ -4,20 +4,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import "../App.css";
 
+// أيقونات
+import { FaBars, FaXmark, FaMagnifyingGlass, FaHeart, FaCartShopping } from "react-icons/fa6";
+import { FaSignInAlt, FaUserCircle } from "react-icons/fa";
+
 export default function Navbar() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("#Home");
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [isFavoritesClicked, setIsFavoritesClicked] = useState(false);
-  const [isCartClicked, setIsCartClicked] = useState(false);
+  const [activeIcon, setActiveIcon] = useState(""); // ✅ تتبع العنصر النشط
 
   const mobileSearchRef = useRef();
   const menuBtnRef = useRef();
   const mobileNavRef = useRef();
 
-  const { products,setSelectedProduct } = useContext(ProductContext);
+  const { products, setSelectedProduct } = useContext(ProductContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,8 +47,6 @@ export default function Navbar() {
   }, [mobileSearchOpen, mobileNavOpen]);
 
   useEffect(() => {
-    const navLinks = document.querySelectorAll("nav a");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -53,6 +54,7 @@ export default function Navbar() {
           const link = document.querySelector(`nav a[href="/#${id}"], nav a[href="#${id}"]`);
           if (entry.isIntersecting && link) {
             setActiveLink(`#${id}`);
+            setActiveIcon(""); // عند التنقل في الصفحة يتم إلغاء تفعيل الأيقونات
           }
         });
       },
@@ -82,7 +84,7 @@ export default function Navbar() {
   const handleSuggestionClick = (product) => {
     setSearchInput("");
     setSuggestions([]);
-    setSelectedProduct(product)
+    setSelectedProduct(product);
     navigate(`/product/${product.id}`);
   };
 
@@ -93,14 +95,13 @@ export default function Navbar() {
     "Gifts",
     "Tools",
     "Journals",
-    
     "contact",
   ];
 
   return (
     <section className="w-full bg-white fixed z-50 shadow-md">
       <div className="container">
-        <header className="flex justify-between items-center gap-6 flex-wrap relative ">
+        <header className="flex justify-between items-center gap-6 flex-wrap relative">
           <Link to="/">
             <img
               src="imges/Logo.webp"
@@ -109,82 +110,103 @@ export default function Navbar() {
             />
           </Link>
 
+          {/* الروابط العلوية */}
           <nav className="items-center justify-center gap-[30px] lg:gap-[40px] font-normal md:text-[16px] lg:text-[18px] hidden lg:flex">
             {sections.map((section) => (
               <HashLink
                 key={section}
                 smooth
                 to={`/#${section}`}
-                className={`text-black no-underline ${
-                  activeLink === `#${section}` ? "active" : ""
+                className={`no-underline transition ${
+                  activeLink === `#${section}` && activeIcon === ""
+                    ? "active font-bold underline"
+                    : "text-black"
                 }`}
-                onClick={() => setActiveLink(`#${section}`)}
+                onClick={() => {
+                  setActiveLink(`#${section}`);
+                  setActiveIcon(""); // إلغاء الأيقونات كـ active
+                }}
               >
                 {section === "contact" ? "Contact Us" : section}
               </HashLink>
             ))}
           </nav>
 
-          <div className="flex items-center gap-4 xl:gap-5 text-xl ">
+          {/* أيقونات */}
+          <div className="flex items-center gap-4 xl:gap-5 text-xl">
+            {/* زر القائمة الجانبية */}
             <button
               className="block lg:hidden text-xl order-last"
               id="menuBtn"
               ref={menuBtnRef}
               onClick={() => setMobileNavOpen((prev) => !prev)}
             >
-              <i
-                className={`fa-solid ${
-                  mobileNavOpen ? "fa-xmark" : "fa-bars"
-                } hover:cursor-pointer`}
-              ></i>
+              {mobileNavOpen ? <FaXmark /> : <FaBars />}
             </button>
 
+            {/* زر البحث */}
             <button
               className="block text-xl"
               id="mobileSearchBtn"
               onClick={() => setMobileSearchOpen((prev) => !prev)}
             >
-              <i className="fa-solid fa-magnifying-glass hover:cursor-pointer"></i>
+              <FaMagnifyingGlass />
             </button>
 
+            {/* المفضلة */}
             <Link
               to="/favorites"
-              className="transition text-black no-underline"
-              onClick={() => setIsFavoritesClicked((prev) => !prev)}
+              className="no-underline"
+              onClick={() => setActiveIcon("favorites")}
             >
-              <i
-                className={`hover:text-[#4B5929] fa-regular fa-heart text-xl lg:text-[20px] ${
-                  isFavoritesClicked ? "text-green-500" : "text-black"
+              <FaHeart
+                className={`transition cursor-pointer hover:text-green ${
+                  activeIcon === "favorites" ? "text-green-hover" : "text-black"
                 }`}
-              ></i>
+              />
             </Link>
 
+            {/* السلة */}
             <Link
               to="/cart"
-              className="hover:text-[#4B5929] transition text-black no-underline"
-              onClick={() => setIsCartClicked((prev) => !prev)}
+              className="no-underline"
+              onClick={() => setActiveIcon("cart")}
             >
-              <i
-                className={`fa-solid fa-cart-shopping text-xl lg:text-[20px] ${
-                  isCartClicked ? "text-green-500" : "text-black"
+              <FaCartShopping
+                className={`transition cursor-pointer hover:text-green ${
+                  activeIcon === "cart" ? "text-green-hover" : "text-black"
                 }`}
-              ></i>
+              />
             </Link>
 
+            {/* تسجيل الدخول */}
             <Link
               to="/login"
-              className="hover:text-[#4B5929] hidden font-bold hover:underline text-[20px]   text-black no-underline"
+              className="no-underline hidden md:inline-block"
+              onClick={() => setActiveIcon("login")}
             >
-              <i className="fas fa-sign-in-alt"></i>
+              <FaSignInAlt
+                className={`transition cursor-pointer hover:text-green ${
+                  activeIcon === "login" ? "text-green-hover " : "text-black"
+                }`}
+              />
             </Link>
+
+            {/* البروفايل */}
             <Link
               to="/profile"
-              className="bg-[#4B5929] font-bold hover:underline h-[24px] w-[24px] hidden rounded-full text-[20px] hidden md:inline-block text-black no-underline"
-            > 
-            <img src="imges/Profile.webp" alt="profile" />
+              className="hidden"
+              onClick={() => setActiveIcon("profile")}
+            >
+              <FaUserCircle
+                className={`transition cursor-pointer hover:text-green ${
+                  activeIcon === "profile" ? "text-green-hover " : "text-black"
+                }`}
+              />
             </Link>
           </div>
 
+          {/* مربع البحث للموبايل */}
           {mobileSearchOpen && (
             <div
               id="mobileSearchContainer"
@@ -199,7 +221,7 @@ export default function Navbar() {
                   onChange={handleSearchChange}
                   className="flex-1 h-full text-[16px] focus:outline-none placeholder:text-[#777] pr-10"
                 />
-                <i className="fa-solid fa-magnifying-glass text-[#4B5929] text-lg ml-2"></i>
+                <FaMagnifyingGlass className="text-[#4B5929] text-lg ml-2" />
                 {suggestions.length > 0 && (
                   <ul className="h-[400px] overflow-y-auto absolute top-full left-0 w-full bg-white border border-gray-200 rounded mt-1 z-10">
                     {suggestions.map((product) => (
@@ -217,6 +239,7 @@ export default function Navbar() {
             </div>
           )}
 
+          {/* القائمة الجانبية للموبايل */}
           {mobileNavOpen && (
             <div
               id="mobileNav"
@@ -232,6 +255,7 @@ export default function Navbar() {
                   onClick={() => {
                     setMobileNavOpen(false);
                     setActiveLink(`#${section}`);
+                    setActiveIcon("");
                   }}
                 >
                   {section === "contact" ? "Contact Us" : section}
@@ -240,14 +264,16 @@ export default function Navbar() {
               <Link
                 to="/login"
                 className="block py-2 text-black no-underline"
+                onClick={() => setActiveIcon("login")}
               >
-                <i className="fas fa-sign-in-alt"></i> Login
+                <FaSignInAlt /> Login
               </Link>
               <Link
-                to="/Profile"
+                to="/profile"
                 className="block py-2 text-black no-underline"
+                onClick={() => setActiveIcon("profile")}
               >
-                <i className="fas fa-sign-in-alt"></i> Profile
+                <FaUserCircle /> Profile
               </Link>
             </div>
           )}
