@@ -115,7 +115,7 @@ export default function Navbar() {
         <header className="flex justify-between items-center gap-6 flex-wrap relative">
           <Link to="/">
             <img
-              src="imges/Logo.webp"
+              src="/imges/Logo.webp"
               alt="Logo"
               className="w-[80px] h-auto md:w-[120px]"
             />

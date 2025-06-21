@@ -68,6 +68,7 @@ import Delivery from './Admin/Delivery';
 import Terms from './page/Terma';
 import Privacy from './page/Privacy';
 import Cookies from './page/Cookies';
+import Chat from './page/Chat';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -126,7 +127,7 @@ const App = () => {
               <Route index element={<MyAccount />} />
               <Route path="orders" element={<Orders />} />
               <Route path="notifications" element={<Notifications />} />
-              <Route path="my-vouchers" element={<MyVouchersPage />} />
+              <Route path="chat" element={<Chat />} />
             </Route>
 
            </Route>

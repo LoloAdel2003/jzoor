@@ -11,7 +11,7 @@ const MyAccount = () => {
         {/* <p className="text-sm text-gray-500">You can update your information here</p> */}
         <div className="flex items-center  space-x-4 mt-4">
           <img
-            src="imges/Profile.webp"
+            src="/imges/Profile.webp"
             alt="Profile"
             className="w-20 h-20 rounded-full object-cover"
           />

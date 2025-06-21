@@ -41,7 +41,7 @@ const initialVoices = [
 function VoicesSection() {
   const [voicesList, setVoicesList] = useState(initialVoices);
   const [showForm, setShowForm] = useState(false);
-  const [show,setShow]=useState(false);
+  const [show, setShow] = useState(false);
   const [newReview, setNewReview] = useState({
     name: "",
     rating: 5,
@@ -68,27 +68,35 @@ function VoicesSection() {
       review: "",
       img: "imges/a555d57c-b093-4ca1-9c58-1d5a743ba78f.webp",
     });
-
   };
 
   return (
     <section className="voices pt-[60px] pb-[60px] container">
-      {show &&  <p className="fixed  text-white px-4 py-2 bg-green rounded-md top-[80px] left-1/2 transform -translate-x-1/2  z-50 "> Thanks To Add Your Voice</p>
-}
-      <Title
-        name="Voices "
-        description=" these voices bloom like jasmin"
-      />
+      {show && (
+        <p className="fixed text-white px-4 py-2 bg-green rounded-md top-[80px] left-1/2 transform -translate-x-1/2 z-50">
+          {" "}
+          Thanks To Add Your Voice
+        </p>
+      )}
+      <Title name="Voices " description=" these voices bloom like jasmin" />
 
       <div className="content sm:py-2 md:py-5">
         <Swiper
-         key={voicesList.length} 
+          key={voicesList.length}
           modules={[Pagination]}
           pagination={{ clickable: true }}
-          spaceBetween={0}
+          // spaceBetween={0} // Removed this to avoid conflict with breakpoints
           breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
+            // For screens smaller than 768px, show 1 slide with some space
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 20, // Add some space between slides
+            },
+            // For screens 768px and up, show 2 slides
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30, // Adjust space for larger screens if needed
+            },
           }}
           className="relative custom-swiper"
         >
@@ -105,13 +113,17 @@ function VoicesSection() {
                 <div className="content flex flex-col justify-center">
                   <h3 className="text-sm lg:text-md font-bold text-[#4B5929] flex items-center">
                     {voice.name}
-                    <span className="hidden md:inline-block ml-2 text-blue-500 text-sm">✓</span>
+                    <span className="hidden md:inline-block ml-2 text-blue-500 text-sm">
+                      ✓
+                    </span>
                   </h3>
                   <div className="flex items-center mt-1">
                     {[...Array(5)].map((_, i) => (
                       <span
                         key={i}
-                        className={`text-xl ${i < voice.rating ? "text-yellow-400" : "text-white"}`}
+                        className={`text-xl ${
+                          i < voice.rating ? "text-yellow-400" : "text-white"
+                        }`}
                       >
                         ★
                       </span>
@@ -183,11 +195,9 @@ function VoicesSection() {
           onClick={() => setShowForm(true)}
           className="relative bg-[#4B5929] hover:bg-[#A8C686] text-white font-medium text-lg px-3 h-[50px] rounded-[10px] transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer"
         >
-            Write a review &gt;
+          Write a review &gt;
         </button>
       </div>
-
-     
     </section>
   );
 }
