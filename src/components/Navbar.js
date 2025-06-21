@@ -1,11 +1,17 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { HashLink } from "react-router-hash-link";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate }  from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import "../App.css";
 
 // أيقونات
-import { FaBars, FaXmark, FaMagnifyingGlass, FaHeart, FaCartShopping } from "react-icons/fa6";
+import {
+  FaBars,
+  FaXmark,
+  FaMagnifyingGlass,
+  FaHeart,
+  FaCartShopping,
+} from "react-icons/fa6";
 import { FaSignInAlt, FaUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
@@ -14,7 +20,7 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState("#Home");
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [activeIcon, setActiveIcon] = useState(""); // ✅ تتبع العنصر النشط
+  const [activeIcon, setActiveIcon] = useState("");
 
   const mobileSearchRef = useRef();
   const menuBtnRef = useRef();
@@ -25,6 +31,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
+      // Close mobile search if open and click is outside
       if (
         mobileSearchOpen &&
         !mobileSearchRef.current?.contains(e.target) &&
@@ -33,6 +40,8 @@ export default function Navbar() {
         setMobileSearchOpen(false);
       }
 
+      // Close mobile nav if open and click is outside of the nav and the menu button
+      // IMPORTANT: Add a check to ensure the menu button itself doesn't trigger a close when it's meant to open/close
       if (
         mobileNavOpen &&
         !mobileNavRef.current?.contains(e.target) &&
@@ -51,10 +60,12 @@ export default function Navbar() {
       (entries) => {
         entries.forEach((entry) => {
           const id = entry.target.getAttribute("id");
-          const link = document.querySelector(`nav a[href="/#${id}"], nav a[href="#${id}"]`);
+          const link = document.querySelector(
+            `nav a[href="/#${id}"], nav a[href="#${id}"]`
+          );
           if (entry.isIntersecting && link) {
             setActiveLink(`#${id}`);
-            setActiveIcon(""); // عند التنقل في الصفحة يتم إلغاء تفعيل الأيقونات
+            setActiveIcon("");
           }
         });
       },
@@ -124,7 +135,7 @@ export default function Navbar() {
                 }`}
                 onClick={() => {
                   setActiveLink(`#${section}`);
-                  setActiveIcon(""); // إلغاء الأيقونات كـ active
+                  setActiveIcon("");
                 }}
               >
                 {section === "contact" ? "Contact Us" : section}
@@ -139,7 +150,11 @@ export default function Navbar() {
               className="block lg:hidden text-xl order-last"
               id="menuBtn"
               ref={menuBtnRef}
-              onClick={() => setMobileNavOpen((prev) => !prev)}
+              onClick={(e) => {
+                // Stop propagation to prevent document click listener from immediately closing it
+                e.stopPropagation();
+                setMobileNavOpen((prev) => !prev);
+              }}
             >
               {mobileNavOpen ? <FaXmark /> : <FaBars />}
             </button>
@@ -161,7 +176,9 @@ export default function Navbar() {
             >
               <FaHeart
                 className={`transition cursor-pointer hover:text-green ${
-                  activeIcon === "favorites" ? "text-green-hover" : "text-black"
+                  activeIcon === "favorites"
+                    ? "text-green-hover"
+                    : "text-black"
                 }`}
               />
             </Link>
@@ -200,7 +217,9 @@ export default function Navbar() {
             >
               <FaUserCircle
                 className={`transition cursor-pointer hover:text-green ${
-                  activeIcon === "profile" ? "text-green-hover " : "text-black"
+                  activeIcon === "profile"
+                    ? "text-green-hover "
+                    : "text-black"
                 }`}
               />
             </Link>
@@ -240,43 +259,49 @@ export default function Navbar() {
           )}
 
           {/* القائمة الجانبية للموبايل */}
-          {mobileNavOpen && (
-            <div
-              id="mobileNav"
-              ref={mobileNavRef}
-              className="flex-col items-center w-full bg-white shadow-md rounded-lg text-[18px] font-medium lg:hidden flex-wrap text-center"
+          <div
+            id="mobileNav"
+            ref={mobileNavRef}
+            className={`lg:hidden ${
+              mobileNavOpen ? "flex" : "hidden"
+            } flex-col items-center w-full bg-white shadow-md rounded-lg text-[18px] font-medium flex-wrap text-center z-[100]`}
+          >
+            {sections.map((section) => (
+              <HashLink
+                key={section}
+                smooth
+                to={`/#${section}`}
+                className="block border-b border-gray-200 py-2 text-black no-underline"
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  setActiveLink(`#${section}`);
+                  setActiveIcon("");
+                }}
+              >
+                {section === "contact" ? "Contact Us" : section}
+              </HashLink>
+            ))}
+            <Link
+              to="/login"
+              className="block py-2 text-black no-underline"
+              onClick={() => {
+                setActiveIcon("login");
+                setMobileNavOpen(false); // Close mobile nav when clicking login
+              }}
             >
-              {sections.map((section) => (
-                <HashLink
-                  key={section}
-                  smooth
-                  to={`/#${section}`}
-                  className="block border-b border-gray-200 py-2 text-black no-underline"
-                  onClick={() => {
-                    setMobileNavOpen(false);
-                    setActiveLink(`#${section}`);
-                    setActiveIcon("");
-                  }}
-                >
-                  {section === "contact" ? "Contact Us" : section}
-                </HashLink>
-              ))}
-              <Link
-                to="/login"
-                className="block py-2 text-black no-underline"
-                onClick={() => setActiveIcon("login")}
-              >
-                <FaSignInAlt /> Login
-              </Link>
-              <Link
-                to="/profile"
-                className="block py-2 text-black no-underline"
-                onClick={() => setActiveIcon("profile")}
-              >
-                <FaUserCircle /> Profile
-              </Link>
-            </div>
-          )}
+              <FaSignInAlt /> Login
+            </Link>
+            <Link
+              to="/profile"
+              className="block py-2 text-black no-underline"
+              onClick={() => {
+                setActiveIcon("profile");
+                setMobileNavOpen(false); // Close mobile nav when clicking profile
+              }}
+            >
+              <FaUserCircle /> Profile
+            </Link>
+          </div>
         </header>
       </div>
     </section>

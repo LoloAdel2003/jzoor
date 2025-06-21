@@ -13,7 +13,7 @@ const OliveJournal = () => {
       id="Journals"
     >
       <Title
-        name="The Olive Journal"
+        name="Olive Journal"
         description="A journal of tradition, nature, and the hands"
       />
 

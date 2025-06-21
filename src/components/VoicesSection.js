@@ -76,7 +76,7 @@ function VoicesSection() {
       {show &&  <p className="fixed  text-white px-4 py-2 bg-green rounded-md top-[80px] left-1/2 transform -translate-x-1/2  z-50 "> Thanks To Add Your Voice</p>
 }
       <Title
-        name="Voices Rooted in Trust"
+        name="Voices "
         description=" these voices bloom like jasmin"
       />
 
