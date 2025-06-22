@@ -4,12 +4,14 @@ import { IoMdNotificationsOutline } from 'react-icons/io';
 import { RiCoupon2Line } from 'react-icons/ri';
 import { FiLogOut } from 'react-icons/fi';
 import { IoClose } from 'react-icons/io5';
+import { LuMessageCircleMore } from "react-icons/lu";
+
 
 const links = [
   { label: 'My Account', path: '/profile', icon: <FaUserCircle />, title: 'Account' },
   { label: 'Orders', path: '/profile/orders', icon: <FaBoxOpen />, title: 'Orders' },
   { label: 'Notifications', path: '/profile/notifications', icon: <IoMdNotificationsOutline />, title: 'Notification' },
-  { label: 'Chat', path: '/profile/chat', icon: <RiCoupon2Line />, title: 'Chat' },
+  { label: 'Chat', path: '/profile/chat', icon: <LuMessageCircleMore />, title: 'Chat' },
   { label: 'Log Out', path: '/', icon: <FiLogOut />, title: 'logout' },
 ];
 
