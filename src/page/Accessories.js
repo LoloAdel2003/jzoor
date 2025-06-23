@@ -1,39 +1,43 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // <-- استورد useNavigate
 import Title from "../components/Title";
 import ScrollReveal from "scrollreveal";
+import SearchComponent from "../components/SearchComponent"; // <-- استورد مكون البحث هنا
 
 const ProductList = () => {
-  
   const {
-    Accessories,
+    Accessories, // بيانات الإكسسوارات
     handleAddToCart,
     handleAddToFavorite,
     handleRemoveFromFavorite,
     isFavorite,
-    setSelectedGift  } = useContext(ProductContext);
-   useEffect(() => {
-      if (Accessories.length > 0) {
-        ScrollReveal().reveal(".reveal-top-Product", {
-          origin: "top",
-          distance: "50px",
-          duration: 1000,
-          delay: 200,
-          easing: "ease",
-          reset: false,
-          opacity: 0,
-          scale: 0.9,
-          interval: 100,
-        });
-      }
-    }, [Accessories]);
+    setSelectedGift, // تستخدم لتعيين المنتج المختار (ربما يجب أن تكون setSelectedAccessory أو setSelectedProduct)
+  } = useContext(ProductContext);
+  const navigate = useNavigate(); // <-- استخدم useNavigate هنا
+
+  useEffect(() => {
+    if (Accessories.length > 0) {
+      ScrollReveal().reveal(".reveal-top-Product", {
+        origin: "top",
+        distance: "50px",
+        duration: 1000,
+        delay: 200,
+        easing: "ease",
+        reset: false,
+        opacity: 0,
+        scale: 0.9,
+        interval: 100,
+      });
+    }
+  }, [Accessories]);
 
   const [showToast, setShowToast] = useState(false);
 
+  // دالة للتعامل مع النقر على بطاقة المنتج (للتفاصيل)
   const handleProductClick = (product) => {
-    setSelectedGift(product);
+    setSelectedGift(product); // هنا يتم استخدام setSelectedGift لتعيين الإكسسوار
   };
 
   const handleAddToCartWithToast = (product) => {
@@ -42,6 +46,12 @@ const ProductList = () => {
     setTimeout(() => {
       setShowToast(false);
     }, 1000);
+  };
+
+  // دالة التعامل مع النقر على نتيجة البحث من SearchComponent
+  const handleAccessorySearchResultClick = (accessory) => {
+    setSelectedGift(accessory); // قم بتعيين الإكسسوار المحدد في السياق
+    navigate(`/Accessories/${accessory.id}`); // انتقل إلى صفحة تفاصيل الإكسسوار
   };
 
   return (
@@ -53,6 +63,15 @@ const ProductList = () => {
       )}
 
       <Title name="Accessories Tools" description="Top picks from Palestinian gardens we love" />
+
+      {/* إضافة مكون البحث هنا تحت العنوان مباشرة */}
+      <div className="my-2 px-4 md:px-0 max-w-lg mx-auto">
+        <SearchComponent
+          data={Accessories} // <-- مرر مصفوفة الإكسسوارات هنا للبحث فيها
+          onResultClick={handleAccessorySearchResultClick} // <-- مرر دالة التعامل مع النتيجة
+        />
+      </div>
+
       <div className="content">
         <div className="cards py-5 ">
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">

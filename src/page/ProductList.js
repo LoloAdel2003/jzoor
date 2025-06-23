@@ -1,26 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // استورد useNavigate
 import Title from "../components/Title";
+import SearchComponent from "../components/SearchComponent";
+
 import ScrollReveal from "scrollreveal";
+// import SearchComponent from "../components/SearchComponent"; // استورد مكون البحث هنا
 
 const ProductList = () => {
-  
   const {
-    products,
+    products, // هذه هي البيانات التي ستبحث فيها
     handleAddToCart,
     handleAddToFavorite,
     handleRemoveFromFavorite,
     isFavorite,
     setSelectedProduct,
   } = useContext(ProductContext);
+  const navigate = useNavigate(); // لتوجيه المستخدم بعد البحث
+
   useEffect(() => {
     if (products.length > 0) {
-      // Check if ScrollReveal has already been initialized for these elements
-      // This is a simple flag, a more robust solution might involve checking if elements already have SR classes
-      // or if the effect should only run once overall for the first render of products
-      if (!window.scrollRevealInitialized) { // Example: using a global flag
+      if (!window.scrollRevealInitialized) {
         ScrollReveal().reveal(".reveal-top-Product", {
           origin: "top",
           distance: "50px",
@@ -32,10 +33,10 @@ const ProductList = () => {
           scale: 0.9,
           interval: 100,
         });
-        window.scrollRevealInitialized = true; // Set flag
+        window.scrollRevealInitialized = true;
       }
     }
-  }, [products.length > 0]); // Changed dependency to prevent unnecessary re-runs
+  }, [products.length > 0]);
 
   const [showToast, setShowToast] = useState(false);
 
@@ -51,6 +52,12 @@ const ProductList = () => {
     }, 1000);
   };
 
+  // هذه هي الدالة التي ستُمرر إلى SearchComponent لتحديد ما يحدث عند النقر على نتيجة
+  const handleSearchResultClick = (product) => {
+    setSelectedProduct(product); // قم بتعيين المنتج المحدد في السياق
+    navigate(`/product/${product.id}`); // انتقل إلى صفحة تفاصيل المنتج
+  };
+
   return (
     <section className="pb-[60px] pt-[100px] container" id="Products">
       {showToast && (
@@ -60,6 +67,15 @@ const ProductList = () => {
       )}
 
       <Title name="Products" description="Top picks from Palestinian gardens we love" />
+
+      {/* إضافة مكون البحث هنا */}
+      <div className="my-2 px-4 md:px-0 max-w-lg mx-auto">
+        <SearchComponent
+          data={products} // <-- مرر مصفوفة المنتجات هنا
+          onResultClick={handleSearchResultClick} // <-- مرر دالة التعامل مع النتيجة هنا
+        />
+      </div>
+
       <div className="content">
         <div className="cards py-5 ">
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 justify-items-center">

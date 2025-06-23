@@ -2,33 +2,37 @@ import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 import Title from "../components/Title";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // استورد useNavigate
 import ScrollReveal from "scrollreveal";
+import SearchComponent from "../components/SearchComponent"; // <-- استورد مكون البحث هنا
 
 const GiftList = () => {
   const {
     gifts,
-    setSelectedGift,
+    setSelectedGift, // تستخدم لتعيين الهدية المختارة في السياق
     handleAddToCart,
     isFavorite,
     handleAddToFavorite,
     handleRemoveFromFavorite,
   } = useContext(ProductContext);
- useEffect(() => {
-      if (gifts.length > 0) {
-        ScrollReveal().reveal(".reveal-top-Gift", {
-          origin: "top",
-          distance: "50px",
-          duration: 1000,
-          delay: 200,
-          easing: "ease",
-          reset: false,
-          opacity: 0,
-          scale: 0.9,
-          interval: 100,
-        });
-      }
-    }, [gifts]);
+  const navigate = useNavigate(); // <-- استخدم useNavigate هنا
+
+  useEffect(() => {
+    if (gifts.length > 0) {
+      ScrollReveal().reveal(".reveal-top-Gift", {
+        origin: "top",
+        distance: "50px",
+        duration: 1000,
+        delay: 200,
+        easing: "ease",
+        reset: false,
+        opacity: 0,
+        scale: 0.9,
+        interval: 100,
+      });
+    }
+  }, [gifts]); // Changed dependency to prevent unnecessary re-runs for ScrollReveal
+
   const [showToast, setShowToast] = useState(false);
 
   const handleProductClick = (product) => {
@@ -41,6 +45,12 @@ const GiftList = () => {
     setTimeout(() => {
       setShowToast(false);
     }, 1000);
+  };
+
+  // دالة التعامل مع النقر على نتيجة البحث من SearchComponent
+  const handleGiftSearchResultClick = (gift) => {
+    setSelectedGift(gift); // قم بتعيين الهدية المختارة في السياق
+    navigate(`/gift/${gift.id}`); // انتقل إلى صفحة تفاصيل الهدية
   };
 
   const giftsToShow = gifts;
@@ -60,6 +70,14 @@ const GiftList = () => {
         name="Gift Of Palestine"
         description="Thoughtful keepsakes rooted in the land"
       />
+
+      {/* إضافة مكون البحث هنا تحت العنوان مباشرة */}
+      <div className="my-2 px-4 md:px-0 max-w-lg mx-auto">
+        <SearchComponent
+          data={giftsToShow} // <-- مرر مصفوفة الهدايا هنا للبحث فيها
+          onResultClick={handleGiftSearchResultClick} // <-- مرر دالة التعامل مع النتيجة
+        />
+      </div>
 
       <div className="cards bg-[#FAF7F2] py-5 px-20 sm:px-10 lg:px-20">
         <div className="max-w-7xl mx-auto">

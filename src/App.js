@@ -70,6 +70,7 @@ import Privacy from './page/Privacy';
 import Cookies from './page/Cookies';
 import Chat from './page/Chat';
 import TrackOrder from './page/TrackOrder';
+import OrderDetails from './page/OrderDetails';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -96,6 +97,9 @@ const App = () => {
             <Route index element={<Home />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/trackOrder" element={<TrackOrder />} />
+             
+                            <Route path="/orderDetails" element={<OrderDetails />} />
+
             <Route path="/favarate" element={<Favarate />} />
             <Route path="/Pots" element={<Pots />} />
 
