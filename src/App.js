@@ -71,6 +71,7 @@ import Cookies from './page/Cookies';
 import Chat from './page/Chat';
 import TrackOrder from './page/TrackOrder';
 import OrderDetails from './page/OrderDetails';
+import AddNewArticle from './Admin/AddNewArticle';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -153,6 +154,8 @@ const App = () => {
           <Route index element={<AdminDash />} />
          <Route path="Order" element={<AdminOrder />} />
          <Route path="Article" element={<AdminArticle />} />
+         <Route path="Article/addNewArticle" element={<AddNewArticle />} />
+      
          <Route path="coupons" element={<AdminCoupons />} />
          <Route path="category" element={<AdminCategory />} />
          <Route path="transaction" element={<AdminTransaction />} />

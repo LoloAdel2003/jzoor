@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
 export function ArticlesOverview() {
   const [activeReviewsFilter, setActiveReviewsFilter] = useState('All Articles');
@@ -163,12 +164,12 @@ export function ArticlesOverview() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
-            <button style={{ backgroundColor: '#047857', color: '#FFFFFF' }} className="px-5 py-2 rounded-md flex items-center justify-center text-sm font-medium hover:bg-green-700">
+            <Link to="addNewArticle"  style={{ backgroundColor: '#047857', color: '#FFFFFF' }} className="px-5 no-underline py-2 rounded-md flex items-center justify-center text-sm font-medium hover:bg-green-700">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-5 h-5 mr-2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
               New Article
-            </button>
+            </Link>
           </div>
           <div className="flex flex-wrap gap-2 mb-4 px-4 sm:px-6">
             <button
