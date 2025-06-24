@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaSave, FaPlus, FaEdit, FaTrash, FaChevronDown, FaCalendarAlt, FaImage, FaUpload } from 'react-icons/fa'; // Importing necessary icons from react-icons/fa
 
 export function AddNewProductForm() {
   const [productName, setProductName] = useState('Poppy');
@@ -18,16 +19,12 @@ export function AddNewProductForm() {
         {/* <h1 className="text-xl font-semibold text-gray-800">Add New Product</h1> */}
         <div className="flex space-x-3">
           <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mr-2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3V12m-8.25 6.75H12" />
-            </svg>
+            <FaSave className="w-5 h-5 mr-2" /> {/* Replaced SVG with FaSave */}
             Save to draft
           </button>
           <button className="px-4 py-2 bg-green text-white rounded-lg font-medium hover:bg-green-hover transition-colors flex items-center">
             Publish Product
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 ml-2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
+            <FaPlus className="w-5 h-5 ml-2" /> {/* Replaced SVG with FaPlus */}
           </button>
         </div>
       </div>
@@ -59,18 +56,7 @@ export function AddNewProductForm() {
                   value={productDescription}
                   onChange={(e) => setProductDescription(e.target.value)}
                 ></textarea>
-                <div className="absolute bottom-2 right-2 flex space-x-2 text-gray-400">
-                  <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                    </svg>
-                  </button>
-                  <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.927a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165M16.5 3.75V7.5a.75.75 0 0 1-.75.75h-3.75a.75.75 0 0 1-.75-.75V3.75m-3 0V7.5a.75.75 0 0 0 .75.75h3.75a.75.75 0 0 0 .75-.75V3.75M6.75 3.75H4.875c-.621 0-1.125.504-1.125 1.125v12.75c0 .621.504 1.125 1.125 1.125h14.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H16.5" />
-                    </svg>
-                  </button>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -94,9 +80,7 @@ export function AddNewProductForm() {
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2">
                     <img src="https://flagcdn.com/w20/ps.webp" alt="Palestine Flag" className="h-4 w-6 rounded-sm" />
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 ml-1 text-gray-400">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
+                    <FaChevronDown className="w-4 h-4 ml-1 text-gray-400" /> {/* Replaced SVG with FaChevronDown */}
                   </div>
                 </div>
               </div>
@@ -165,9 +149,7 @@ export function AddNewProductForm() {
                     value="Start" // Static for now, can be state
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-gray-400">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12V12Zm.375 0h.008v.008h-.008V12Zm.375 0h.008v.008h-.008V12Z" />
-                    </svg>
+                    <FaCalendarAlt className="w-5 h-5 text-gray-400" /> {/* Replaced SVG with FaCalendarAlt */}
                   </div>
                 </div>
               </div>
@@ -182,9 +164,7 @@ export function AddNewProductForm() {
                     value="End" // Static for now, can be state
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-gray-400">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12V12Zm.375 0h.008v.008h-.008V12Zm.375 0h.008v.008h-.008V12Z" />
-                    </svg>
+                    <FaCalendarAlt className="w-5 h-5 text-gray-400" /> {/* Replaced SVG with FaCalendarAlt */}
                   </div>
                 </div>
               </div>
@@ -229,7 +209,7 @@ export function AddNewProductForm() {
                     checked={isUnlimited}
                     onChange={() => setIsUnlimited(!isUnlimited)}
                   />
-                  <div className={`block w-10 h-6 rounded-full ${isUnlimited ? 'bg-green' : 'bg-gray-300'}`}></div>
+                  <div className={`block w-10 h-6 rounded-full ${isUnlimited ? 'bg-green-500' : 'bg-gray-300'}`}></div> {/* Changed 'bg-green' to 'bg-green-500' for consistency */}
                   <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${isUnlimited ? 'translate-x-full' : ''}`}></div>
                 </div>
                 <div className="ml-3 text-gray-700 text-sm">Unlimited</div>
@@ -245,7 +225,7 @@ export function AddNewProductForm() {
                     checked={highlightFeatured}
                     onChange={() => setHighlightFeatured(!highlightFeatured)}
                   />
-                  <div className={`block w-10 h-6 rounded-full ${highlightFeatured ? 'bg-green' : 'bg-gray-300'}`}></div>
+                  <div className={`block w-10 h-6 rounded-full ${highlightFeatured ? 'bg-green-500' : 'bg-gray-300'}`}></div> {/* Changed 'bg-green' to 'bg-green-500' for consistency */}
                   <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${highlightFeatured ? 'translate-x-full' : ''}`}></div>
                 </div>
                 <div className="ml-3 text-gray-700 text-sm">Highlight this product in a featured section.</div>
@@ -261,7 +241,11 @@ export function AddNewProductForm() {
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Upload Product Image</h2>
             <p className="text-sm text-gray-700 mb-3">Product Image</p>
             <div className="border border-gray-300 rounded-lg overflow-hidden mb-4">
-                          </div>
+                {/* Placeholder for image display or preview */}
+                <div className="w-full h-32 flex items-center justify-center bg-gray-50 text-gray-400">
+                    No image uploaded
+                </div>
+            </div>
             <div className="flex space-x-3 mb-4">
               <button className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 text-sm hover:bg-gray-50">
                 Browse
@@ -271,9 +255,7 @@ export function AddNewProductForm() {
               </button>
             </div>
             <div className="flex flex-col items-center justify-center border border-dashed border-gray-300 rounded-lg p-6 text-gray-500 cursor-pointer hover:border-green-500 hover:text-green-600 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 mb-2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6.75a1.5 1.5 0 0 0-1.5-1.5H3.75a1.5 1.5 0 0 0-1.5 1.5v11.25A1.5 1.5 0 0 0 3.75 18Z" />
-              </svg>
+              <FaImage className="w-8 h-8 mb-2" /> {/* Replaced SVG with FaImage */}
               <span>Add Image</span>
             </div>
           </div>
@@ -317,9 +299,7 @@ export function AddNewProductForm() {
                 <button className="w-8 h-8 rounded-full border border-gray-300 bg-gray-600 hover:scale-105 transition-transform"></button>
                 <button className="w-8 h-8 rounded-full border border-gray-300 bg-black hover:scale-105 transition-transform"></button>
                 <button className="w-8 h-8 rounded-full border-2 border-green-500 text-green-500 flex items-center justify-center hover:bg-green-50 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-4 h-4">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                  <FaPlus className="w-4 h-4" /> {/* Replaced SVG with FaPlus */}
                 </button>
               </div>
             </div>
@@ -329,10 +309,8 @@ export function AddNewProductForm() {
                 <button className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 text-sm hover:bg-gray-100">S</button>
                 <button className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 text-sm hover:bg-gray-100">M</button>
                 <button className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 text-sm hover:bg-gray-100">XL</button>
-                <button className="px-4 py-2 border-2 border-green text-green rounded-md text-sm flex items-center justify-center hover:bg-green-hover transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-4 h-4">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                <button className="px-4 py-2 border-2 border-green-500 text-green-500 rounded-md text-sm flex items-center justify-center hover:bg-green-hover transition-colors"> {/* Changed 'border-green' to 'border-green-500' and 'text-green' to 'text-green-500' for consistency */}
+                  <FaPlus className="w-4 h-4" /> {/* Replaced SVG with FaPlus */}
                 </button>
               </div>
             </div>

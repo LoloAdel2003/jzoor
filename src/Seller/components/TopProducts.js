@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export function TopProducts() {
   const products = [
@@ -12,7 +13,7 @@ export function TopProducts() {
     <div className="border border-gray-200 rounded-2xl p-4 shadow-md bg-white  font-sans">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold text-gray-800">Top Products</h2>
-        <a href="#" className="text-blue-600 text-sm">All product</a>
+        <Link to="/seller/productList"  className="text-blue-600 text-sm">All product</Link>
       </div>
       <div className="relative mb-4">
         <input

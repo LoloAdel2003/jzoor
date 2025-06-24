@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
 
+// Import React Icons
+import { FaEllipsisV, FaArrowUp, FaStar, FaRegStar } from 'react-icons/fa';
+import { MdOutlineRemoveRedEye, MdEdit, MdDelete, MdSearch } from 'react-icons/md';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+
+
 // تسجيل مكونات Chart.js اللازمة
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
@@ -165,14 +171,16 @@ export function ProductReview() {
     return '';
   };
 
-  // وظيفة لرسم النجوم باستخدام SVG مضمن (تستخدم لمراجعات المنتجات وجدول المراجعات)
+  // وظيفة لرسم النجوم باستخدام React Icons
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
       stars.push(
-        <svg key={i} className="w-4 h-4" style={{ color: i < rating ? '#FCD34D' : '#D1D5DB' }} viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.38 2.458a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.683-1.539 1.118l-3.38-2.458a1 1 0 00-1.176 0l-3.38 2.458c-.784.565-1.839-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.583 9.385c-.783-.57-.381-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.957z" />
-        </svg>
+        i < rating ? (
+          <FaStar key={i} className="w-4 h-4" style={{ color: '#FCD34D' }} />
+        ) : (
+          <FaRegStar key={i} className="w-4 h-4" style={{ color: '#D1D5DB' }} />
+        )
       );
     }
     return <div className="flex">{stars}</div>;
@@ -188,16 +196,12 @@ export function ProductReview() {
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Total Reviews</h2>
               <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-                </svg>
+                <FaEllipsisV className="w-5 h-5" />
               </button>
             </div>
             <p style={{ color: '#111827' }} className="text-3xl sm:text-4xl font-bold mb-2">{totalReviews}</p>
             <p style={{ color: '#059669' }} className="text-xs sm:text-sm flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 mr-1">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-              </svg>
+              <FaArrowUp className="w-4 h-4 mr-1" />
               +14.5% <span style={{ color: '#6B7280' }} className="ml-1">Last 7 days</span>
             </p>
           </div>
@@ -207,9 +211,7 @@ export function ProductReview() {
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Average Rating</h2>
               <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-                </svg>
+                <FaEllipsisV className="w-5 h-5" />
               </button>
             </div>
             <div className="flex items-center mb-2">
@@ -224,16 +226,12 @@ export function ProductReview() {
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Positive Reviews</h2>
               <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-                </svg>
+                <FaEllipsisV className="w-5 h-5" />
               </button>
             </div>
             <p style={{ color: '#111827' }} className="text-3xl sm:text-4xl font-bold mb-2">415</p>
             <p style={{ color: '#059669' }} className="text-xs sm:text-sm flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 mr-1">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-              </svg>
+              <FaArrowUp className="w-4 h-4 mr-1" />
               +26% <span style={{ color: '#6B7280' }} className="ml-1">Last 7 days</span>
             </p>
           </div>
@@ -344,9 +342,7 @@ export function ProductReview() {
                 }}
                 className="w-full pl-10 pr-4 py-2 border rounded-md"
               />
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2" style={{ color: '#9CA3AF' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <MdSearch className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2" style={{ color: '#9CA3AF' }} />
             </div>
             <div className="flex space-x-2 text-sm">
               <button
@@ -433,20 +429,13 @@ export function ProductReview() {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div className="flex items-center space-x-3">
                           <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            </svg>
+                            <MdOutlineRemoveRedEye className="w-5 h-5" />
                           </button>
                           <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                            </svg>
+                            <MdEdit className="w-5 h-5" />
                           </button>
                           <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.927a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165M16.5 3.75V7.5a.75.75 0 0 1-.75.75h-3.75a.75.75 0 0 1-.75-.75V3.75m-3 0V7.5a.75.75 0 0 0 .75.75h3.75a.75.75 0 0 0 .75-.75V3.75M6.75 3.75H4.875c-.621 0-1.125.504-1.125 1.125v12.75c0 .621.504 1.125 1.125 1.125h14.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H16.5" />
-                            </svg>
+                            <MdDelete className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -461,9 +450,7 @@ export function ProductReview() {
           {/* ترقيم صفحات جدول المراجعات */}
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
             <button style={{ color: '#374151', backgroundColor: 'transparent', border: '1px solid #D1D5DB', borderRadius: '0.5rem' }} className="flex items-center px-4 py-2 hover:bg-gray-100">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
+              <IoIosArrowBack className="h-4 w-4 mr-1" />
               Previous
             </button>
             <div className="flex flex-wrap justify-center gap-2">
@@ -477,9 +464,7 @@ export function ProductReview() {
             </div>
             <button style={{ color: '#374151', backgroundColor: 'transparent', border: '1px solid #D1D5DB', borderRadius: '0.5rem' }} className="flex items-center px-4 py-2 hover:bg-gray-100">
               Next
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              <IoIosArrowForward className="h-4 w-4 ml-1" />
             </button>
           </div>
         </div>
