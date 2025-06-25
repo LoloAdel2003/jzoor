@@ -69,6 +69,14 @@ const GiftDetails = () => {
           {/* السعر */}
           <p className="text-2xl font-bold mt-2">${selectedGift.new_price}</p>
 
+          {/* عرض كمية المخزون */}
+          <p className="text-sm text-gray-600 mt-1">
+            Stock Level:{" "}
+            <span className={selectedGift.stock_level > 10 ? "text-green" : "text-red"}>
+              {selectedGift.stock_level}
+            </span>
+          </p>
+
           {/* الكمية والمفضلة */}
           <div className="mt-4 flex items-center gap-3 flex-wrap">
             <div className="flex items-center border border-[#af926a] rounded-full overflow-hidden">

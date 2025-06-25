@@ -57,7 +57,7 @@ const GiftList = () => {
 
   return (
     <section
-      className="gift relative pt-[100px] pb-[60px] bg-[#FAF7F2] overflow-hidden"
+      className="gift relative pt-[50px] md:pt-[100px] pb-[60px] bg-[#FAF7F2] overflow-hidden"
       id="Gifts"
     >
       {showToast && (

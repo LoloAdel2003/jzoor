@@ -59,8 +59,7 @@ const SellerProductDetails = () => {
           <p className="text-gray-600">
             A hardy evergreen with silver-green leaves, perfect for patios and indoor spaces.
           </p>
-          <h3 className="text-xl font-bold text-green">Seller: <span className="text-[#a67c52]">{selectedProduct.Seller}</span> </h3>
-
+          <h3 className="text-xl font-bold text-green">Seller: <span className="text-[#a67c52]">{selectedProduct.seller}</span> </h3>
 
           {/* التقييم */}
           <div className="flex items-center gap-2 text-yellow-500 mt-1">
@@ -75,6 +74,14 @@ const SellerProductDetails = () => {
 
           {/* السعر */}
           <p className="text-2xl font-bold mt-2">${selectedProduct.new_price}</p>
+
+          {/* عرض كمية المخزون */}
+          <p className="text-sm text-gray-600 mt-1">
+            Stock Level:{" "}
+            <span className={selectedProduct.stock_level > 10 ? "text-green" : "text-red"}>
+              {selectedProduct.stock_level}
+            </span>
+          </p>
 
           {/* الحجم */}
           <div className="mt-3">

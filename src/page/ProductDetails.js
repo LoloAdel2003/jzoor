@@ -73,6 +73,14 @@ const ProductDetails = () => {
           {/* السعر */}
           <p className="text-2xl font-bold mt-2">${selectedProduct.new_price}</p>
 
+          {/* عرض كمية المخزون */}
+          <p className="text-sm text-gray-600 mt-1">
+            Stock Level:{" "}
+            <span className={selectedProduct.stock_level > 10 ? "text-green" : "text-red"}>
+              {selectedProduct.stock_level}
+            </span>
+          </p>
+
           {/* الحجم */}
           <div className="mt-3">
             <p className="font-semibold mb-1">Pot Size</p>

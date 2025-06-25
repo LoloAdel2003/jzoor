@@ -59,7 +59,7 @@ const ProductList = () => {
   };
 
   return (
-    <section className="pb-[60px] pt-[100px] container" id="Products">
+    <section className="pb-[60px] pt-[50px] md:pt-[100px] container" id="Products">
       {showToast && (
         <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green text-white px-4 py-2 rounded shadow-lg z-50">
           ✅ Added to cart!

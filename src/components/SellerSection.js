@@ -164,7 +164,7 @@ function SellerSection() {
               your plants, your story, your shop!
             </p>
           <Link
-            to="/RegisterSeller"
+            to="/register"
             className="bg-[#5a3e2b] hover:bg-[#5a3e2b]/80 no-underline text-white px-8 py-2 rounded-full text-md font-semibold shadow-lg transition duration-300"
           >
             JOIN NOW
@@ -187,7 +187,7 @@ function SellerSection() {
           <div className="flex md:gap-2 lg:gap-5"> 
           <img src="imges/famicons_arrow-undo (3).webp" alt="" />
           <Link
-            to="/RegisterSeller"
+            to="/register"
             className="bg-[#5a3e2b]  hover:bg-[#5a3e2b]/80 no-underline text-white md:px-6 lg:px-12 py-3 rounded-full text-md font-bold shadow-lg transition duration-300"
           >
             JOIN NOW

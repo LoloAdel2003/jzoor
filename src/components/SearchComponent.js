@@ -34,7 +34,7 @@ const SearchComponent = ({ data, onResultClick }) => {
           value={searchTerm}
           onChange={handleInputChange}
           // الكلاسات الجديدة هنا: focus:border-green-500 و focus:ring-green-300
-          className="w-full px-4 sm:py-2 md:py-3 border border-gray-400 rounded-md pr-10
+          className="w-full px-4 py-2 md:py-3 border border-gray-400 rounded-md pr-10
                      focus:outline-none focus:border-green focus:ring-1 focus:ring-green
                      transition duration-200 ease-in-out"
         />
