@@ -224,9 +224,12 @@ const Cart = () => {
 
           {/* Sidebar */}
           <div className="bg-gray-100/40 p-6 rounded-lg shadow-md border-left">
-            <h2 className="text-lg font-bold mb-4 text-[#4B5929]">
+<h2 className="text-md md:text-3xl font-bold text-[#4B5929]">
+                Check Out
+              </h2>
+            <h4 className="text-lg font-bold mb-4 text-gray-600">
               Mariam Eqdaih
-            </h2>
+            </h4>
             <div className="flex justify-between items-center">
               <p className="text-sm text-gray-600 mb-4">
                 Palestine - Gaza
@@ -279,7 +282,7 @@ const Cart = () => {
             </div>
 
             {/* Discount Code */}
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <h6 className="font-semibold text-gray-700">
                 Have a Discount Code?
               </h6>
@@ -293,7 +296,7 @@ const Cart = () => {
                   Apply
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {/* Totals */}
             <div className="border-t pt-4 space-y-2 text-sm">

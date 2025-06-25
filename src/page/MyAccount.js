@@ -43,15 +43,31 @@ const MyAccount = () => {
         </div>
       </div>
 
-      {/* Address */}
-      <div className="bg-gray-50 rounded-lg shadow p-4 space-y-4">
-        <h2 className="text-lg font-medium text-[#4B5929]">Address</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <input className="border p-2 rounded" placeholder="Country" />
-          <input className="border p-2 rounded" placeholder="State" />
-          <input className="border p-2 rounded" placeholder="Zip Code" />
-        </div>
-      </div>
+     {/* Address */}
+<div className="bg-gray-50 rounded-lg shadow p-4 space-y-4">
+  <h2 className="text-lg font-medium text-[#4B5929]">Delivery Address</h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {/* Country - ثابت غير قابل للتعديل */}
+    <input
+      className="border p-2 rounded bg-gray-100 cursor-not-allowed"
+      value="Palestine"
+      readOnly
+    />
+
+    {/* State */}
+    <input className="border p-2 rounded" autoFocus placeholder="State" />
+
+    {/* s */}
+    <input className="border p-2 rounded" placeholder="street" />
+  </div>
+
+  {/* الجملة التحذيرية */}
+  <p className="text-sm text-red pt-1">
+    *Delivery is only available within Palestine, Payments accepted worldwide.
+  </p>
+</div>
+
 
       {/* Security */}
       <div className="bg-gray-50 rounded-lg shadow p-4 space-y-4">

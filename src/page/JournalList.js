@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
-import Title from "./Title";
+import Title from "../components/Title";
 
-const OliveJournal = () => {
+const JournalList = () => {
   const { journals } = useContext(ProductContext);
 
   return (
     <div className="bg-[#FAF7F2]">
-    <section
-      className="journal relative pt-[60px] pb-[60px] overflow-hidden container "
-      id="Journals"
+    <section className="pb-[60px] pt-[50px] md:pt-[100px] container" 
+ id="Journals"
     >
       <Title
         name="Olive Journal"
@@ -45,16 +44,11 @@ const OliveJournal = () => {
         </div>
       </div>
        <div className=" flex justify-center mt-8 relative">
-                <Link
-                  to="/journalList"
-                  className="no-underline relative bg-[#4B5929] text-center hover:bg-[#A8C686] text-white font-medium text-lg px-3 py-3 rounded-[10px] transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer"
-                >
-                  See More Journal
-                </Link>
+                
               </div>
     </section>
     </div>
   );
 };
 
-export default OliveJournal;
+export default JournalList;

@@ -72,6 +72,7 @@ import Chat from './page/Chat';
 import TrackOrder from './page/TrackOrder';
 import OrderDetails from './page/OrderDetails';
 import AddNewArticle from './Admin/AddNewArticle';
+import JournalList from './page/JournalList';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -125,7 +126,7 @@ const App = () => {
 <Route path="/privecy" element={<Privacy />} />
 <Route path="/cookies" element={<Cookies />} />
 
-
+<Route path="/journalList" element={<JournalList />} />
 
             <Route path="/favorites" element={<FavoriteSection />} />
             <Route path="/JournalDetails/:id" element={<JournalDetails />} />

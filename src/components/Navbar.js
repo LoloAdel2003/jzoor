@@ -26,7 +26,7 @@ export default function Navbar() {
   const menuBtnRef = useRef();
   const mobileNavRef = useRef();
 
-  const { products, setSelectedProduct } = useContext(ProductContext);
+  const { products, setSelectedProduct,cart } = useContext(ProductContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -184,17 +184,23 @@ export default function Navbar() {
             </Link>
 
             {/* السلة */}
-            <Link
-              to="/cart"
-              className="no-underline"
-              onClick={() => setActiveIcon("cart")}
-            >
-              <FaCartShopping
-                className={`transition cursor-pointer hover:text-green ${
-                  activeIcon === "cart" ? "text-green-hover" : "text-black"
-                }`}
-              />
-            </Link>
+           <Link
+  to="/cart"
+  className="relative no-underline"
+  onClick={() => setActiveIcon("cart")}
+>
+  <FaCartShopping
+    className={`transition cursor-pointer hover:text-green ${
+      activeIcon === "cart" ? "text-green-hover" : "text-black"
+    }`}
+  />
+  {cart.length > 0 && (
+    <span className="absolute -top-2 -right-2 bg-red text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+      {cart.length}
+    </span>
+  )}
+</Link>
+
 
             {/* تسجيل الدخول */}
             <Link

@@ -68,7 +68,7 @@ const Contact = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <i className="fas fa-envelope text-xl"></i>
-                  <span>Juzbor@gmail.com</span>
+                  <span>Juzoor@gmail.com</span>
                 </div>
               </div>
             </div>

@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link } from "react-router-dom"
+import { HashLink } from "react-router-hash-link";
+
 const Footer = () => {
   return (
     <>
@@ -17,7 +19,7 @@ const Footer = () => {
                   <Link  to="/productList" className="hover:text-gray-800 no-underline text-black">Product</Link>
                   <Link  to="/Login" className="hover:text-gray-800 no-underline text-black">Log In</Link>
                   <Link  to="/Payment" className="hover:text-gray-800 no-underline text-black">Payment</Link>
-                  <Link to="/#About" className="hover:text-gray-800 no-underline text-black">About Us</Link>
+                  <HashLink to="/#About" className="hover:text-gray-800 no-underline text-black">About Us</HashLink>
                   <Link  to="/sellerProduct" className="hover:text-gray-800 no-underline text-black">Sellers</Link>
               </nav>
           </div>
