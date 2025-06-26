@@ -21,8 +21,15 @@ const SellerDashboard = () => {
 
       {/* المحتوى الرئيسي */}
       <div className="flex-1">
+                <div className=" md:pl-64 fixed top-0 left-0 right-0 z-40 bg-white shadow">
+        
         <SellerHeader setSidebarOpen={setSidebarOpen} />
-        <Outlet />
+        </div>
+        
+                {/* Outlet مع padding top يعادل ارتفاع الهيدر */}
+                <div className="pt-16 md:pt-[74px] "> {/* pt-16 = 64px تقريبًا */}
+                  <Outlet />
+                </div>
       </div>
     </div>
   );

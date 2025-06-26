@@ -228,7 +228,7 @@ const SellerOrdersDashboard = () => {
       <header className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
         <h1 className="text-3xl font-bold mb-4 md:mb-0" style={{ color: '#1F2937' }}>Order List</h1>
         <div className="flex flex-col sm:flex-row gap-3">
-          <button className="flex items-center justify-center px-4 py-2 rounded-md shadow-sm text-sm font-medium text-white"
+          {/* <button className="flex items-center justify-center px-4 py-2 rounded-md shadow-sm text-sm font-medium text-white"
             style={{ backgroundColor: '#10B981' }}>
             <HiOutlinePlus className="h-5 w-5 mr-2" />
             Add Order
@@ -237,7 +237,7 @@ const SellerOrdersDashboard = () => {
             style={{ color: '#4B5563', backgroundColor: '#FFFFFF', borderColor: '#D1D5DB' }}>
             More Actions
             <HiOutlineChevronDown className="h-4 w-4 ml-2" />
-          </button>
+          </button> */}
         </div>
       </header>
 

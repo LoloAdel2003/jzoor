@@ -12,7 +12,7 @@ const OverviewCard = ({ title, value, name,percentage,prev }) => {
    </div>
 <div classname="text-gray-600 text-sm">Prevous 7 days <span className="text-blue-800">{prev}</span> </div>
 <div className="flex justify-end">     
-  <button className="text-sm text-gray-900 border hover:bg-slate-200 border-gray-900  mt-2 px-3 py-2 rounded-md">Details</button>
+  {/* <button className="text-sm text-gray-900 border hover:bg-slate-200 border-gray-900  mt-2 px-3 py-2 rounded-md">Details</button> */}
 </div>
   </div>
   )

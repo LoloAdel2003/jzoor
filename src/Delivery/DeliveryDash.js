@@ -162,12 +162,7 @@ const App = () => {
           </div>
         )}
       </div>
-      {!hideDetails && (
-        <button className="self-end px-4 py-2  text-sm font-medium rounded-lg hover:bg-gray-300 transition-colors"
-                style={{ color: '#374151', backgroundColor: '#F3F4F6' }}> {/* text-gray-700 bg-gray-100 */}
-          Details
-        </button>
-      )}
+    
     </div>
   );
 

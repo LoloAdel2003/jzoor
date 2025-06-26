@@ -82,7 +82,7 @@ export function ArticlesOverview() {
         <h1 className="text-xl font-semibold text-gray-800">Article Overview</h1>
 
         <div className="flex space-x-2 text-sm">
-          <button
+          {/* <button
             style={{ backgroundColor: activeTimeframe === 'This week' ? '#D1FAE5' : 'transparent', color: activeTimeframe === 'This week' ? '#065F46' : '#6B7280' }}
             className="px-3 py-1 rounded-md hover:bg-gray-50"
             onClick={() => setActiveTimeframe('This week')}
@@ -95,7 +95,7 @@ export function ArticlesOverview() {
             onClick={() => setActiveTimeframe('Last week')}
           >
             Last week
-          </button>
+          </button> */}
         </div>
       </div>
 

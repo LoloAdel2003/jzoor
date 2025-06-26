@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
-  HiOutlineDocumentArrowDown, // For Save to Draft
-  HiOutlinePlus,              // For Publish Product, Add Image, Add Pot Color/Size
-  HiOutlinePencil,            // For edit icon in description
-  HiOutlineTrash,             // For delete icon in description
-  HiOutlineChevronDown,       // For dropdown arrows
-  HiOutlineCalendar,          // For calendar icon in expiration
-  HiOutlinePhoto,             // For add image placeholder
-} from 'react-icons/hi2'; // Using hi2 for newer icons if available, or hi if prefered.
-                           // Note: If some icons are not found in hi2, try 'hi' or 'fa'/'bs' etc.
+  HiOutlineDocumentArrowDown,
+  HiOutlinePlus,
+  HiOutlinePencil,
+  HiOutlineTrash,
+  HiOutlineChevronDown,
+  HiOutlineCalendar,
+  HiOutlinePhoto,
+} from 'react-icons/hi2';
 
 export function AddNewProductForm() {
   const [productName, setProductName] = useState('Poppy');
@@ -20,20 +19,88 @@ export function AddNewProductForm() {
   const [stockStatus, setStockStatus] = useState('In Stock');
   const [isUnlimited, setIsUnlimited] = useState(true);
   const [highlightFeatured, setHighlightFeatured] = useState(true);
+  const [productImage, setProductImage] = useState(null); // State for the image file
+  const imageInputRef = useRef(null); // Ref for the hidden file input
+
+  // --- Handlers for button functionality ---
+
+  const handleSaveToDraft = () => {
+    alert('Product saved to draft! (Functionality to be implemented)');
+    console.log('Draft Data:', { productName, productDescription, productPrice, discountedPrice, taxIncluded, stockQuantity, stockStatus, isUnlimited, highlightFeatured, productImage });
+  };
+
+  const handlePublishProduct = () => {
+    alert('Product published! (Functionality to be implemented)');
+    console.log('Published Data:', { productName, productDescription, productPrice, discountedPrice, taxIncluded, stockQuantity, stockStatus, isUnlimited, highlightFeatured, productImage });
+  };
+
+  const handleEditDescription = () => {
+    alert('Edit description activated! (Functionality to be implemented)');
+    // In a real app, this might toggle a rich text editor or a modal
+  };
+
+  const handleDeleteDescription = () => {
+    if (window.confirm('Are you sure you want to delete the product description?')) {
+      setProductDescription('');
+      alert('Product description deleted!');
+    }
+  };
+
+  // --- Image Upload Handlers ---
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setProductImage(URL.createObjectURL(file)); // Set image preview URL
+      console.log('Selected image file:', file);
+    }
+  };
+
+  const handleBrowseImage = () => {
+    imageInputRef.current.click(); // Programmatically click the hidden file input
+  };
+
+  const handleReplaceImage = () => {
+    if (window.confirm('Are you sure you want to replace the current image?')) {
+      setProductImage(null); // Clear current image
+      imageInputRef.current.value = null; // Reset file input
+      imageInputRef.current.click(); // Open file dialog again
+    }
+  };
+
+  const handleAddImageDragDrop = () => {
+    imageInputRef.current.click(); // Same as browse, for simplicity in this example
+  };
+
+  // --- Color and Size Handlers (Placeholders) ---
+  const handleAddPotColor = () => {
+    alert('Add new pot color functionality! (To be implemented)');
+  };
+
+  const handleAddPotSize = () => {
+    alert('Add new pot size functionality! (To be implemented)');
+  };
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-sm font-sans mx-auto my-8">
       {/* Header and Action Buttons */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex space-x-3">
-          <button className="px-4 py-2 border border-input-border rounded-lg text-gray-standard-700 font-medium hover:bg-gray-standard-50 flex items-center">
-            {/* Replaced SVG with HiOutlineDocumentArrowDown */}
+          {/* Save to Draft Button */}
+          <button
+            onClick={handleSaveToDraft}
+            className="px-4 py-2 border border-[#D1D5DB] rounded-lg text-[#4B5563] font-medium hover:bg-[#E5E7EB] flex items-center transition-colors duration-200"
+            style={{ backgroundColor: '#F9FAFB' }} // Set specific background color
+          >
             <HiOutlineDocumentArrowDown className="w-5 h-5 mr-2" />
             Save to draft
           </button>
-          <button className="px-4 py-2 bg-green text-white rounded-lg font-medium hover:bg-brand-green-hover transition-colors flex items-center">
+          {/* Publish Product Button */}
+          <button
+            onClick={handlePublishProduct}
+            className="px-4 py-2 bg-[#22C55E] text-white rounded-lg font-medium hover:bg-[#16A34A] transition-colors duration-200 flex items-center"
+          >
             Publish Product
-            {/* Replaced SVG with HiOutlinePlus */}
             <HiOutlinePlus className="w-5 h-5 ml-2" />
           </button>
         </div>
@@ -44,35 +111,35 @@ export function AddNewProductForm() {
         {/* Left Column: Basic Details, Pricing, Inventory */}
         <div className="lg:col-span-2 space-y-6">
           {/* Basic Details */}
-          <div className="bg-form-bg p-6 border border-form-border rounded-lg">
-            <h2 className="text-lg font-semibold text-gray-standard-800 mb-4">Basic Details</h2>
+          <div className="bg-[#F9FAFB] p-6 border border-[#E5E7EB] rounded-lg">
+            <h2 className="text-lg font-semibold text-[#1F2937] mb-4">Basic Details</h2>
             <div className="mb-4">
-              <label htmlFor="productName" className="block text-sm font-medium text-text-form-label mb-1">Product Name</label>
+              <label htmlFor="productName" className="block text-sm font-medium text-[#374151] mb-1">Product Name</label>
               <input
                 type="text"
                 id="productName"
-                className="w-full border border-input-border rounded-md shadow-sm p-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                className="w-full border border-[#D1D5DB] rounded-md shadow-sm p-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
               />
             </div>
             <div>
-              <label htmlFor="productDescription" className="block text-sm font-medium text-text-form-label mb-1">Product Description</label>
+              <label htmlFor="productDescription" className="block text-sm font-medium text-[#374151] mb-1">Product Description</label>
               <div className="relative">
                 <textarea
                   id="productDescription"
                   rows="6"
-                  className="w-full border border-input-border rounded-md shadow-sm p-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green resize-none"
+                  className="w-full border border-[#D1D5DB] rounded-md shadow-sm p-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E] resize-none"
                   value={productDescription}
                   onChange={(e) => setProductDescription(e.target.value)}
                 ></textarea>
-                <div className="absolute bottom-2 right-2 flex space-x-2 text-gray-standard-400">
-                  <button>
-                    {/* Replaced SVG with HiOutlinePencil */}
+                <div className="absolute bottom-2 right-2 flex space-x-2 text-[#9CA3AF]">
+                  {/* Edit Button */}
+                  <button onClick={handleEditDescription} className="hover:text-[#22C55E] transition-colors duration-200">
                     <HiOutlinePencil className="w-5 h-5" />
                   </button>
-                  <button>
-                    {/* Replaced SVG with HiOutlineTrash */}
+                  {/* Delete Button */}
+                  <button onClick={handleDeleteDescription} className="hover:text-[#EF4444] transition-colors duration-200">
                     <HiOutlineTrash className="w-5 h-5" />
                   </button>
                 </div>
@@ -81,39 +148,38 @@ export function AddNewProductForm() {
           </div>
 
           {/* Pricing */}
-          <div className="bg-form-bg p-6 border border-form-border rounded-lg">
-            <h2 className="text-lg font-semibold text-gray-standard-800 mb-4">Pricing</h2>
+          <div className="bg-[#F9FAFB] p-6 border border-[#E5E7EB] rounded-lg">
+            <h2 className="text-lg font-semibold text-[#1F2937] mb-4">Pricing</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label htmlFor="productPrice" className="block text-sm font-medium text-text-form-label mb-1">Product Price</label>
+                <label htmlFor="productPrice" className="block text-sm font-medium text-[#374151] mb-1">Product Price</label>
                 <div className="relative mt-1 rounded-md shadow-sm">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span className="text-gray-standard-500 sm:text-sm">$</span>
+                    <span className="text-[#6B7280] sm:text-sm">$</span>
                   </div>
                   <input
                     type="text"
                     id="productPrice"
-                    className="block w-full rounded-md border-input-border pl-7 pr-16 py-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                    className="block w-full rounded-md border-[#D1D5DB] pl-7 pr-16 py-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
                     value={productPrice}
                     onChange={(e) => setProductPrice(e.target.value)}
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2">
                     <img src="https://flagcdn.com/w20/ps.webp" alt="Palestine Flag" className="h-4 w-6 rounded-sm" />
-                    {/* Replaced SVG with HiOutlineChevronDown */}
-                    <HiOutlineChevronDown className="w-4 h-4 ml-1 text-gray-standard-400" />
+                    <HiOutlineChevronDown className="w-4 h-4 ml-1 text-[#9CA3AF]" />
                   </div>
                 </div>
               </div>
               <div>
-                <label htmlFor="discountedPrice" className="block text-sm font-medium text-text-form-label mb-1">Discounted Price (Optional)</label>
+                <label htmlFor="discountedPrice" className="block text-sm font-medium text-[#374151] mb-1">Discounted Price (Optional)</label>
                 <div className="relative mt-1 rounded-md shadow-sm">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span className="text-gray-standard-500 sm:text-sm">$</span>
+                    <span className="text-[#6B7280] sm:text-sm">$</span>
                   </div>
                   <input
                     type="text"
                     id="discountedPrice"
-                    className="block w-full rounded-md border-input-border pl-7 pr-3 py-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                    className="block w-full rounded-md border-[#D1D5DB] pl-7 pr-3 py-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
                     value={discountedPrice}
                     onChange={(e) => setDiscountedPrice(e.target.value)}
                   />
@@ -123,54 +189,53 @@ export function AddNewProductForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
               <div>
-                <label className="block text-sm font-medium text-text-form-label mb-1">Tax Included</label>
+                <label className="block text-sm font-medium text-[#374151] mb-1">Tax Included</label>
                 <div className="flex space-x-4">
                   <div className="flex items-center">
                     <input
                       id="taxYes"
                       name="taxIncluded"
                       type="radio"
-                      className="h-4 w-4 text-brand-green border-input-border focus:ring-brand-green"
+                      className="h-4 w-4 text-[#22C55E] border-[#D1D5DB] focus:ring-[#22C55E]"
                       value="yes"
                       checked={taxIncluded === 'yes'}
                       onChange={(e) => setTaxIncluded(e.target.value)}
                     />
-                    <label htmlFor="taxYes" className="ml-2 block text-sm text-gray-standard-900">Yes</label>
+                    <label htmlFor="taxYes" className="ml-2 block text-sm text-[#1F2937]">Yes</label>
                   </div>
                   <div className="flex items-center">
                     <input
                       id="taxNo"
                       name="taxIncluded"
                       type="radio"
-                      className="h-4 w-4 text-brand-green border-input-border focus:ring-brand-green"
+                      className="h-4 w-4 text-[#22C55E] border-[#D1D5DB] focus:ring-[#22C55E]"
                       value="no"
                       checked={taxIncluded === 'no'}
                       onChange={(e) => setTaxIncluded(e.target.value)}
                     />
-                    <label htmlFor="taxNo" className="ml-2 block text-sm text-gray-standard-900">No</label>
+                    <label htmlFor="taxNo" className="ml-2 block text-sm text-[#1F2937]">No</label>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-text-form-label bg-gray-standard-100 p-2 rounded-md">
-                <span className="font-semibold text-brand-green-dark">$5</span>
+              <div className="flex items-center space-x-2 text-sm text-[#374151] bg-[#F3F4F6] p-2 rounded-md">
+                <span className="font-semibold text-[#16A34A]">$5</span>
                 <span>Sale = $10.00</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div>
-                <label htmlFor="startDate" className="block text-sm font-medium text-text-form-label mb-1">Expiration</label>
+                <label htmlFor="startDate" className="block text-sm font-medium text-[#374151] mb-1">Expiration</label>
                 <div className="relative mt-1 rounded-md shadow-sm">
                   <input
                     type="text"
                     id="startDate"
                     placeholder="Start"
-                    className="block w-full rounded-md border-input-border pl-3 pr-10 py-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                    className="block w-full rounded-md border-[#D1D5DB] pl-3 pr-10 py-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
                     value="Start" // Static for now, can be state
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    {/* Replaced SVG with HiOutlineCalendar */}
-                    <HiOutlineCalendar className="w-5 h-5 text-gray-standard-400" />
+                    <HiOutlineCalendar className="w-5 h-5 text-[#9CA3AF]" />
                   </div>
                 </div>
               </div>
@@ -181,12 +246,11 @@ export function AddNewProductForm() {
                     type="text"
                     id="endDate"
                     placeholder="End"
-                    className="block w-full rounded-md border-input-border pl-3 pr-10 py-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                    className="block w-full rounded-md border-[#D1D5DB] pl-3 pr-10 py-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
                     value="End" // Static for now, can be state
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    {/* Replaced SVG with HiOutlineCalendar */}
-                    <HiOutlineCalendar className="w-5 h-5 text-gray-standard-400" />
+                    <HiOutlineCalendar className="w-5 h-5 text-[#9CA3AF]" />
                   </div>
                 </div>
               </div>
@@ -194,25 +258,25 @@ export function AddNewProductForm() {
           </div>
 
           {/* Inventory */}
-          <div className="bg-form-bg p-6 border border-form-border rounded-lg">
-            <h2 className="text-lg font-semibold text-gray-standard-800 mb-4">Inventory</h2>
+          <div className="bg-[#F9FAFB] p-6 border border-[#E5E7EB] rounded-lg">
+            <h2 className="text-lg font-semibold text-[#1F2937] mb-4">Inventory</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label htmlFor="stockQuantity" className="block text-sm font-medium text-text-form-label mb-1">Stock Quantity</label>
+                <label htmlFor="stockQuantity" className="block text-sm font-medium text-[#374151] mb-1">Stock Quantity</label>
                 <input
                   type="text"
                   id="stockQuantity"
-                  className="w-full border border-input-border rounded-md shadow-sm p-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                  className="w-full border border-[#D1D5DB] rounded-md shadow-sm p-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
                   value={stockQuantity}
                   onChange={(e) => setStockQuantity(e.target.value)}
                   disabled={isUnlimited}
                 />
               </div>
               <div>
-                <label htmlFor="stockStatus" className="block text-sm font-medium text-text-form-label mb-1">Stock Status</label>
+                <label htmlFor="stockStatus" className="block text-sm font-medium text-[#374151] mb-1">Stock Status</label>
                 <select
                   id="stockStatus"
-                  className="w-full border border-input-border rounded-md shadow-sm p-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                  className="w-full border border-[#D1D5DB] rounded-md shadow-sm p-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
                   value={stockStatus}
                   onChange={(e) => setStockStatus(e.target.value)}
                 >
@@ -231,10 +295,10 @@ export function AddNewProductForm() {
                     checked={isUnlimited}
                     onChange={() => setIsUnlimited(!isUnlimited)}
                   />
-                  <div className={`block w-10 h-6 rounded-full ${isUnlimited ? 'bg-brand-green' : 'bg-gray-standard-300'}`}></div>
-                  <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${isUnlimited ? 'translate-x-full' : ''}`}></div>
+                  <div className={`block w-10 h-6 rounded-full ${isUnlimited ? 'bg-[#22C55E]' : 'bg-[#D1D5DB]'}`}></div>
+                  <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${isUnlimited ? 'translate-x-full' : ''}`}></div>
                 </div>
-                <div className="ml-3 text-gray-standard-700 text-sm">Unlimited</div>
+                <div className="ml-3 text-[#4B5563] text-sm">Unlimited</div>
               </label>
             </div>
             <div className="flex items-center">
@@ -247,10 +311,10 @@ export function AddNewProductForm() {
                     checked={highlightFeatured}
                     onChange={() => setHighlightFeatured(!highlightFeatured)}
                   />
-                  <div className={`block w-10 h-6 rounded-full ${highlightFeatured ? 'bg-brand-green' : 'bg-gray-standard-300'}`}></div>
-                  <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${highlightFeatured ? 'translate-x-full' : ''}`}></div>
+                  <div className={`block w-10 h-6 rounded-full ${highlightFeatured ? 'bg-[#22C55E]' : 'bg-[#D1D5DB]'}`}></div>
+                  <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${highlightFeatured ? 'translate-x-full' : ''}`}></div>
                 </div>
-                <div className="ml-3 text-gray-standard-700 text-sm">Highlight this product in a featured section.</div>
+                <div className="ml-3 text-[#4B5563] text-sm">Highlight this product in a featured section.</div>
               </label>
             </div>
           </div>
@@ -259,38 +323,64 @@ export function AddNewProductForm() {
         {/* Right Column: Upload Product Image, Categories */}
         <div className="lg:col-span-1 space-y-6">
           {/* Upload Product Image */}
-          <div className="bg-form-bg p-6 border border-form-border rounded-lg">
-            <h2 className="text-lg font-semibold text-gray-standard-800 mb-4">Upload Product Image</h2>
-            <p className="text-sm text-gray-standard-700 mb-3">Product Image</p>
-            <div className="border border-input-border rounded-lg overflow-hidden mb-4">
-              {/* Image preview placeholder - add an actual image or placeholder here */}
-              <div className="w-full h-32 bg-gray-standard-100 flex items-center justify-center text-gray-standard-500">
-                No image selected
-              </div>
+          <div className="bg-[#F9FAFB] p-6 border border-[#E5E7EB] rounded-lg">
+            <h2 className="text-lg font-semibold text-[#1F2937] mb-4">Upload Product Image</h2>
+            <p className="text-sm text-[#4B5563] mb-3">Product Image</p>
+            <div className="border border-[#D1D5DB] rounded-lg overflow-hidden mb-4">
+              {productImage ? (
+                <img src={productImage} alt="Product Preview" className="w-full h-32 object-cover" />
+              ) : (
+                <div className="w-full h-32 bg-[#F3F4F6] flex items-center justify-center text-[#6B7280]">
+                  No image selected
+                </div>
+              )}
             </div>
+            {/* Hidden file input */}
+            <input
+              type="file"
+              ref={imageInputRef}
+              onChange={handleImageChange}
+              className="hidden"
+              accept="image/*"
+            />
             <div className="flex space-x-3 mb-4">
-              <button className="flex-1 px-4 py-2 border border-input-border rounded-md text-gray-standard-700 text-sm hover:bg-gray-standard-50">
+              {/* Browse Button */}
+              <button
+                onClick={handleBrowseImage}
+                className="flex-1 px-4 py-2 border border-[#D1D5DB] rounded-md text-[#4B5563] text-sm hover:bg-[#E5E7EB] transition-colors duration-200"
+                style={{ backgroundColor: '#F9FAFB' }}
+              >
                 Browse
               </button>
-              <button className="flex-1 px-4 py-2 border border-input-border rounded-md text-red-600 text-sm hover:bg-gray-standard-50">
+              {/* Replace Button (only active if an image is selected) */}
+              <button
+                onClick={handleReplaceImage}
+                disabled={!productImage}
+                className={`flex-1 px-4 py-2 border border-[#D1D5DB] rounded-md text-[#EF4444] text-sm transition-colors duration-200 ${productImage ? 'hover:bg-[#F9FAFB] cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
+                style={{ backgroundColor: '#F9FAFB' }}
+              >
                 Replace
               </button>
             </div>
-            <div className="flex flex-col items-center justify-center border border-dashed border-input-border rounded-lg p-6 text-gray-standard-500 cursor-pointer hover:border-brand-green hover:text-brand-green transition-colors">
-              {/* Replaced SVG with HiOutlinePhoto */}
+            {/* Add Image Button (for drag and drop area) */}
+            <button
+              onClick={handleAddImageDragDrop}
+              className="w-full flex flex-col items-center justify-center border border-dashed border-[#D1D5DB] rounded-lg p-6 text-[#6B7280] cursor-pointer hover:border-[#22C55E] hover:text-[#22C55E] transition-colors duration-200"
+              style={{ backgroundColor: '#F9FAFB' }} // Set specific background color
+            >
               <HiOutlinePhoto className="w-8 h-8 mb-2" />
               <span>Add Image</span>
-            </div>
+            </button>
           </div>
 
           {/* Categories */}
-          <div className="bg-form-bg p-6 border border-form-border rounded-lg">
-            <h2 className="text-lg font-semibold text-gray-standard-800 mb-4">Categories</h2>
+          <div className="bg-[#F9FAFB] p-6 border border-[#E5E7EB] rounded-lg">
+            <h2 className="text-lg font-semibold text-[#1F2937] mb-4">Categories</h2>
             <div className="mb-4">
-              <label htmlFor="productCategories" className="block text-sm font-medium text-text-form-label mb-1">Product Categories</label>
+              <label htmlFor="productCategories" className="block text-sm font-medium text-[#374151] mb-1">Product Categories</label>
               <select
                 id="productCategories"
-                className="w-full border border-input-border rounded-md shadow-sm p-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                className="w-full border border-[#D1D5DB] rounded-md shadow-sm p-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
               >
                 <option>Select your product</option>
                 <option>Flowers</option>
@@ -302,10 +392,10 @@ export function AddNewProductForm() {
               </select>
             </div>
             <div className="mb-4">
-              <label htmlFor="productTag" className="block text-sm font-medium text-text-form-label mb-1">Product Tag</label>
+              <label htmlFor="productTag" className="block text-sm font-medium text-[#374151] mb-1">Product Tag</label>
               <select
                 id="productTag"
-                className="w-full border border-input-border rounded-md shadow-sm p-2 text-text-input text-sm focus:outline-none focus:ring-1 focus:ring-brand-green"
+                className="w-full border border-[#D1D5DB] rounded-md shadow-sm p-2 text-[#374151] text-sm focus:outline-none focus:ring-1 focus:ring-[#22C55E]"
               >
                 <option>Select your product</option>
                 <option>New Arrivals</option>
@@ -314,27 +404,37 @@ export function AddNewProductForm() {
               </select>
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-text-form-label mb-2">Select Pot color</label>
+              <label className="block text-sm font-medium text-[#374151] mb-2">Select Pot color</label>
               <div className="flex space-x-2">
-                <button className="w-8 h-8 rounded-full border border-input-border bg-gray-standard-100 hover:scale-105 transition-transform"></button>
-                <button className="w-8 h-8 rounded-full border border-input-border bg-yellow-300 hover:scale-105 transition-transform"></button>
-                <button className="w-8 h-8 rounded-full border border-input-border bg-red-300 hover:scale-105 transition-transform"></button>
-                <button className="w-8 h-8 rounded-full border border-input-border bg-gray-standard-600 hover:scale-105 transition-transform"></button>
-                <button className="w-8 h-8 rounded-full border border-input-border bg-black hover:scale-105 transition-transform"></button>
-                <button className="w-8 h-8 rounded-full border-2 border-brand-green text-brand-green flex items-center justify-center hover:bg-brand-green-50 transition-colors">
-                  {/* Replaced SVG with HiOutlinePlus */}
+                {/* Pot Color Buttons (color set via bg-HEX) */}
+                <button className="w-8 h-8 rounded-full border border-[#D1D5DB] bg-[#F3F4F6] hover:scale-105 transition-transform duration-200"></button>
+                <button className="w-8 h-8 rounded-full border border-[#D1D5DB] bg-[#FDE047] hover:scale-105 transition-transform duration-200"></button>
+                <button className="w-8 h-8 rounded-full border border-[#D1D5DB] bg-[#FCA5A5] hover:scale-105 transition-transform duration-200"></button>
+                <button className="w-8 h-8 rounded-full border border-[#D1D5DB] bg-[#4B5563] hover:scale-105 transition-transform duration-200"></button>
+                <button className="w-8 h-8 rounded-full border border-[#D1D5DB] bg-[#000000] hover:scale-105 transition-transform duration-200"></button>
+                {/* Add Pot Color Button */}
+                <button
+                  onClick={handleAddPotColor}
+                  className="w-8 h-8 rounded-full border-2 border-[#22C55E] text-[#22C55E] flex items-center justify-center hover:bg-[#F0FDF4] transition-colors duration-200"
+                  style={{ backgroundColor: '#F9FAFB' }}
+                >
                   <HiOutlinePlus className="w-4 h-4" />
                 </button>
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-text-form-label mb-2">Select Pot Sizes</label>
+              <label className="block text-sm font-medium text-[#374151] mb-2">Select Pot Sizes</label>
               <div className="flex space-x-2">
-                <button className="px-4 py-2 border border-input-border rounded-md text-gray-standard-700 text-sm hover:bg-gray-standard-100">S</button>
-                <button className="px-4 py-2 border border-input-border rounded-md text-gray-standard-700 text-sm hover:bg-gray-standard-100">M</button>
-                <button className="px-4 py-2 border border-input-border rounded-md text-gray-standard-700 text-sm hover:bg-gray-standard-100">XL</button>
-                <button className="px-4 py-2 border-2 border-brand-green text-brand-green rounded-md text-sm flex items-center justify-center hover:bg-brand-green-50 transition-colors">
-                  {/* Replaced SVG with HiOutlinePlus */}
+                {/* Pot Size Buttons */}
+                <button className="px-4 py-2 border border-[#D1D5DB] rounded-md text-[#4B5563] text-sm hover:bg-[#E5E7EB] transition-colors duration-200" style={{ backgroundColor: '#F9FAFB' }}>S</button>
+                <button className="px-4 py-2 border border-[#D1D5DB] rounded-md text-[#4B5563] text-sm hover:bg-[#E5E7EB] transition-colors duration-200" style={{ backgroundColor: '#F9FAFB' }}>M</button>
+                <button className="px-4 py-2 border border-[#D1D5DB] rounded-md text-[#4B5563] text-sm hover:bg-[#E5E7EB] transition-colors duration-200" style={{ backgroundColor: '#F9FAFB' }}>XL</button>
+                {/* Add Pot Size Button */}
+                <button
+                  onClick={handleAddPotSize}
+                  className="px-4 py-2 border-2 border-[#22C55E] text-[#22C55E] rounded-md text-sm flex items-center justify-center hover:bg-[#F0FDF4] transition-colors duration-200"
+                  style={{ backgroundColor: '#F9FAFB' }}
+                >
                   <HiOutlinePlus className="w-4 h-4" />
                 </button>
               </div>
@@ -343,12 +443,23 @@ export function AddNewProductForm() {
         </div>
       </div>
 
-      {/* Footer Buttons (Mobile/Smaller Screens) - If needed, based on typical form patterns */}
-      {/* Note: These buttons are duplicates for smaller screens or specific layouts. */}
-      {/* I've kept them as they were, just updated Tailwind classes and removed SVGs. */}
+      {/* Footer Buttons (Mobile/Smaller Screens) */}
       <div className="mt-6 flex justify-end space-x-3">
-        <button className="px-4 py-2 border border-input-border rounded-lg text-gray-standard-700 font-medium hover:bg-gray-standard-50">Save to draft</button>
-        <button className="px-4 py-2 bg-brand-green text-white rounded-lg font-medium hover:bg-brand-green-hover">Publish Product</button>
+        {/* Save to Draft Button (Footer) */}
+        <button
+          onClick={handleSaveToDraft}
+          className="px-4 py-2 border border-[#D1D5DB] rounded-lg text-[#4B5563] font-medium hover:bg-[#E5E7EB] transition-colors duration-200"
+          style={{ backgroundColor: '#F9FAFB' }}
+        >
+          Save to draft
+        </button>
+        {/* Publish Product Button (Footer) */}
+        <button
+          onClick={handlePublishProduct}
+          className="px-4 py-2 bg-[#22C55E] text-white rounded-lg font-medium hover:bg-[#16A34A] transition-colors duration-200"
+        >
+          Publish Product
+        </button>
       </div>
     </div>
   );
