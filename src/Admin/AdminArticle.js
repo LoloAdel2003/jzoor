@@ -205,7 +205,7 @@ export function ArticlesOverview() {
 
           {/* Table - Made responsive with overflow-x-auto */}
           <div className="w-full overflow-x-auto lg:overflow-x-visible" style={{ borderColor: '#E5E7EB', borderRadius: '0.5rem', marginBottom: '1rem' }}>
-            <div className="max-w-[300px] lg:min-w-full">
+            <div className="max-w-[250px] lg:min-w-full">
               <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
                 <thead style={{ backgroundColor: '#F0FDF4' }}>
                   <tr>

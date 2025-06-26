@@ -39,7 +39,7 @@ import Dashboard from './Admin/Dashboard';
 import AdminDash from './Admin/AdminDash';
 import AdminOrder from './Admin/AdminOrder';
 import AdminArticle from './Admin/AdminArticle';
-import AdminCoupons from './Admin/AdminCoupons';
+// import AdminCoupons from './Admin/AdminCoupons';
 import AdminCategory from './Admin/AdminCategory';
 import AdminTransaction from './Admin/AdminTransaction';
 import AdminAdd from './Admin/AdminAdd';
@@ -157,7 +157,7 @@ const App = () => {
          <Route path="Article" element={<AdminArticle />} />
          <Route path="Article/addNewArticle" element={<AddNewArticle />} />
       
-         <Route path="coupons" element={<AdminCoupons />} />
+         {/* <Route path="coupons" element={<AdminCoupons />} /> */}
          <Route path="category" element={<AdminCategory />} />
          <Route path="transaction" element={<AdminTransaction />} />
          <Route path="addProduct" element={<AdminAdd />} />

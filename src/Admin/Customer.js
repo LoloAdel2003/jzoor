@@ -441,7 +441,7 @@ const CustomerDashboard = () => {
         </div>
 
         <div className="w-full overflow-x-auto lg:overflow-x-visible">
-          <div className="min-w-[700px] lg:min-w-full"> {/* Increased min-width for small screens */}
+          <div className="min-w-[250px] lg:min-w-full"> {/* Increased min-width for small screens */}
             <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}> {/* divide-light-border */}
               <thead style={{ backgroundColor: '#F0FDF4' }}> {/* bg-customer-table-header-bg */}
                 <tr>
@@ -517,7 +517,7 @@ const CustomerDashboard = () => {
           <span className="text-sm" style={{ color: '#4B5563' }}> {/* text-body-text */}
             Showing <span className="font-semibold">{indexOfFirstItem + 1}</span> to <span className="font-semibold">{Math.min(indexOfLastItem, filteredCustomers.length)}</span> of <span className="font-semibold">{filteredCustomers.length}</span> entries
           </span>
-          <nav className="flex items-center space-x-2">
+          <nav className="flex flex-col md:flex-row justify-between items-center items-center space-x-2">
             <button
               onClick={handlePrevious}
               disabled={currentPage === 1}

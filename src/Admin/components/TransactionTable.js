@@ -118,7 +118,7 @@ const TransactionTable = ({
           <span className="font-semibold">{totalFilteredItems}</span> entries
         </span>
 
-        <nav className="flex items-center space-x-2">
+        <nav className="flex flex-col md:flex-row justify-between items-center items-center space-x-2">
           <button
             onClick={handlePrevious}
             disabled={currentPage === 1}

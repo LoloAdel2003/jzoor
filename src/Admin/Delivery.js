@@ -375,7 +375,7 @@ const DeliveryDashboard = () => {
         </div>
 
         <div className="w-full overflow-x-auto lg:overflow-x-visible">
-          <div className="max-w-[300px] lg:min-w-full ">
+          <div className="max-w-[250px] lg:min-w-full ">
             <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
               <thead style={{ backgroundColor: '#F0FDF4' }}>
                 <tr>
@@ -449,7 +449,7 @@ const DeliveryDashboard = () => {
           <span className="text-sm text-gray-700 mb-4 md:mb-0" style={{ color: '#4B5563' }}>
             Showing <span className="font-semibold">{indexOfFirstItem + 1}</span> to <span className="font-semibold">{Math.min(indexOfLastItem, filteredDeliveries.length)}</span> of <span className="font-semibold">{filteredDeliveries.length}</span> entries
           </span>
-          <nav className="flex items-center space-x-2">
+          <nav className="flex flex-col md:flex-row justify-between items-center items-center space-x-2">
             <button
               onClick={handlePrevious}
               disabled={currentPage === 1}

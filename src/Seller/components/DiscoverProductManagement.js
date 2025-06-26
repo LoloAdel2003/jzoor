@@ -276,7 +276,7 @@ export function DiscoverProductManagement() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center flex-wrap gap-3 py-3">
+        <div className="flex flex-col md:flex-row justify-between items-center justify-between items-center flex-wrap gap-3 py-3">
           <button
             className="flex items-center px-4 py-2 text-gray-700 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium transition-colors"
             onClick={() => setCurrentPageSeller(prev => Math.max(1, prev - 1))}
@@ -330,7 +330,7 @@ export function DiscoverProductManagement() {
         </div>
 
         <div className="w-full overflow-x-auto lg:overflow-x-visible">
-          <div className="max-w-[300px] lg:min-w-full ">
+          <div className="max-w-[250px] lg:min-w-full ">
             <table className="min-w-full divide-y divide-gray-200" style={{ borderColor: '#E5E7EB' }}>
               <thead className="bg-[#F0FDF4]"> {/* Header background color */}
                 <tr>

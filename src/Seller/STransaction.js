@@ -303,7 +303,7 @@ const AppTransaction = () => {
 
         {/* Table */}
         <div className="w-full overflow-x-auto lg:overflow-x-visible">
-          <div className="max-w-[300px] lg:min-w-full">
+          <div className="max-w-[250px] lg:min-w-full">
             <table className="w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
               <thead style={{ backgroundColor: '#F9FAFB' }}>
                 <tr>
@@ -371,7 +371,7 @@ const AppTransaction = () => {
           <span className="text-sm" style={{ color: '#4B5563' }}>
             Showing <span className="font-semibold">{filteredTransactions.length > 0 ? indexOfFirstItem + 1 : 0}</span> to <span className="font-semibold">{indexOfFirstItem + currentItems.length}</span> of <span className="font-semibold">{filteredTransactions.length}</span> entries
           </span>
-          <nav className="flex items-center space-x-2">
+          <nav className="flex flex-col md:flex-row justify-between items-center items-center space-x-2">
             <button
               onClick={handlePrevious}
               disabled={currentPage === 1}

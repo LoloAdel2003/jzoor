@@ -212,7 +212,7 @@ export function DiscoverProductManagement() {
         </div>
 
         <div className="w-full overflow-x-auto lg:overflow-x-visible">
-          <div className="max-w-[300px] lg:min-w-full ">
+          <div className="max-w-[250px] lg:min-w-full ">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-[#F0FDF4]">
                 <tr>

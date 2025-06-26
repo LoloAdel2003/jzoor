@@ -396,7 +396,7 @@ export function ProductReview() {
 
           {/* الجدول - جزء مهم للتمرير الأفقي: تأكد من أن حاوية الجدول تحتوي على overflow-x-auto */}
           <div className="w-full overflow-x-auto lg:overflow-x-visible">
-            <div className="max-w-[300px] lg:min-w-full ">
+            <div className="max-w-[250px] lg:min-w-full ">
               <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
                 <thead style={{ backgroundColor: '#F0FDF4' }}>
                   <tr>

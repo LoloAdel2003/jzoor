@@ -178,7 +178,7 @@ const App = () => {
 
         {/* Table of Deliveries */}
         <div className="w-full overflow-x-auto lg:overflow-x-visible" style={{ borderColor: '#E5E7EB', borderRadius: '0.5rem', marginBottom: '1rem' }}>
-          <div className="max-w-[300px] lg:min-w-full">
+          <div className="max-w-[250px] lg:min-w-full">
           <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}> {/* Light gray divider */}
             <thead style={{ backgroundColor: '#F0FDF4' }}> {/* Very light gray header background */}
               <tr>

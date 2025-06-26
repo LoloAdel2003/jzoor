@@ -302,7 +302,7 @@ const AppTransaction = () => {
 
         {/* Table */}
         <div className="w-full overflow-x-auto lg:overflow-x-visible">
-          <div className="max-w-[300px] lg:min-w-full">
+          <div className="max-w-[250px] lg:min-w-full">
             <table className="w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
               <thead style={{ backgroundColor: '#F9FAFB' }}>
                 <tr>
@@ -370,7 +370,7 @@ const AppTransaction = () => {
           <span className="text-sm" style={{ color: '#4B5563' }}>
             Showing <span className="font-semibold">{filteredTransactions.length > 0 ? indexOfFirstItem + 1 : 0}</span> to <span className="font-semibold">{indexOfFirstItem + currentItems.length}</span> of <span className="font-semibold">{filteredTransactions.length}</span> entries
           </span>
-          <nav className="flex items-center space-x-2">
+          <nav className="flex flex-col md:flex-row items-center space-x-2">
             <button
               onClick={handlePrevious}
               disabled={currentPage === 1}
@@ -379,26 +379,31 @@ const AppTransaction = () => {
             >
               ← Previous
             </button>
-            <div className="flex space-x-1">
-              {renderPageNumbers().map((page, index) => (
-                <button
-                  key={index}
-                  onClick={() => typeof page === 'number' && paginate(page)}
-                  className={`px-4 py-2 text-sm font-medium rounded-md
-                    ${typeof page !== 'number' ? 'cursor-default border-transparent bg-transparent hover:bg-transparent' : ''}
-                  `}
-                  style={{
-                    backgroundColor: currentPage === page ? '#2563EB' : '#FFFFFF',
-                    color: currentPage === page ? '#FFFFFF' : '#4B5563',
-                    borderColor: currentPage === page ? '#2563EB' : '#D1D5DB',
-                    boxShadow: currentPage === page ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none'
-                  }}
-                  disabled={typeof page !== 'number'}
-                >
-                  {page}
-                </button>
-              ))}
-            </div>
+           <div className="flex space-x-1">
+  {renderPageNumbers().map((page, index) => (
+    <button
+      key={index}
+      onClick={() => typeof page === 'number' && paginate(page)}
+      className={`
+        px-4 py-2 text-sm font-medium rounded-md
+        ${typeof page !== 'number' ? 'cursor-default border-transparent bg-transparent hover:bg-transparent' : ''}
+        ${index > 1 && index < renderPageNumbers().length - 2 ? 'hidden md:inline-block' : 'inline-block'}
+      `}
+      style={{
+        backgroundColor: currentPage === page ? '#2563EB' : '#FFFFFF',
+        color: currentPage === page ? '#FFFFFF' : '#4B5563',
+        borderColor: currentPage === page ? '#2563EB' : '#D1D5DB',
+        boxShadow: currentPage === page
+          ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+          : 'none'
+      }}
+      disabled={typeof page !== 'number'}
+    >
+      {page}
+    </button>
+  ))}
+</div>
+
             <button
               onClick={handleNext}
               disabled={currentPage === totalPages}
