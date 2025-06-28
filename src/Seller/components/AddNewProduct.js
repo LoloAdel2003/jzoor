@@ -26,7 +26,7 @@ export function AddNewProduct() {
         </Link>
       </div>
 
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <p className="text-gray-600 text-sm font-medium mb-2">Categories</p>
         {categories.map((category, index) => (
           <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
@@ -40,7 +40,7 @@ export function AddNewProduct() {
           </div>
         ))}
         <button className="mt-2 text-blue-600 text-sm">See more</button>
-      </div>
+      </div> */}
 
       <div>
         <p className="text-gray-600 text-sm font-medium mb-2">Product</p>
@@ -53,15 +53,15 @@ export function AddNewProduct() {
                 <p className="text-gray-500 text-sm">{product.price}</p>
               </div>
             </div>
-            <button className="px-3 py-1 border border-gray-300 rounded-md text-green-600 text-sm flex items-center">
+            {/* <Link to="seller/productList" className="px-3 py-1 border border-gray-300 rounded-md text-green-600 text-sm flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
               </svg>
               Add
-            </button>
+            </Link> */}
           </div>
         ))}
-        <button className="mt-2 text-blue-600 text-sm">See more</button>
+        <Link to="productList" className="mt-2 no-underline text-blue-600 text-sm">See more</Link>
       </div>
     </div>
   );

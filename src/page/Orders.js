@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export function OrderHistoryPage() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -31,7 +32,7 @@ export function OrderHistoryPage() {
       orderNo: '5578941201579654',
       total: '15',
       items: [
-        { image: '/imges/Dandelion.webp', name: 'Self-Watering Globe Stakes', price: '35' }
+        { image: '/imges/Gorgeously patterned vibrant glass adds a….webp', name: 'Self-Watering Globe Stakes', price: '35' }
       ]
     },
     // Add more orders as needed for different statuses
@@ -106,9 +107,9 @@ export function OrderHistoryPage() {
                       <p className="text-sm text-gray-700">${item.price}</p>
                     </div>
                   </div>
-                  <button className="px-4 py-2 border border-gray-300 rounded-md text-green-700 text-sm font-medium hover:bg-green-50 transition-colors">
+                  <Link to="/orderDetails" className="px-4 py-2 no-underline border border-gray-300 rounded-md text-green-700 text-sm font-medium hover:bg-green-50 transition-colors">
                     Details
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>

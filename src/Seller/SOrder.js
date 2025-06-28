@@ -71,7 +71,7 @@ const SellerOrdersDashboard = () => {
   const [newStatus, setNewStatus] = useState('');
 
   // Admin editable statuses
-  const adminStatuses = ['Pending', 'Preparing', 'Shipped', 'Canceled'];
+  const adminStatuses = ['Preparing', 'Shipped', 'Canceled'];
 
   // Recalculate total counts for tabs dynamically
   const totalOrdersCount = orders.length;
@@ -787,7 +787,7 @@ const OrderDetailsModal = ({ order, onClose, onAssignDelivery }) => {
 
               {/* Conditional button based on status for delivery assignment */}
               <div className="relative mt-4">
-                <button
+                {/* <button
                   onClick={handleDeliveryButtonClick}
                   // Enable for Shipped and all statuses after it, but not Canceled
                   disabled={!(allStatuses.indexOf(order.status) >= allStatuses.indexOf('Shipped') && order.status !== 'Canceled')}
@@ -797,7 +797,7 @@ const OrderDetailsModal = ({ order, onClose, onAssignDelivery }) => {
                   }`}
                 >
                   {order.deliveryPerson ? 'Change Delivery' : 'Assign To Delivery'}
-                </button>
+                </button> */}
                 {showDeliveryList && (
                   <div className="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-md shadow-lg max-h-48 overflow-y-auto">
                     {randomDeliveryPeople.map((person) => (

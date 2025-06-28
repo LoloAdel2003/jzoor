@@ -50,10 +50,10 @@ const OrderDetails = () => {
         setOrderDetails(prev => ({
             ...prev,
             items: [
-                { id: 1, name: "Jasmine & Linen Set", img: "/imges/item1.png", new_price: 28.00, quantity: 2 },
-                { id: 2, name: "Olive Tree", img: "/imges/item2.png", new_price: 5.00, quantity: 1 },
-                { id: 3, name: "Tatreez Mug", img: "/imges/item3.png", new_price: 35.00, quantity: 1 },
-                { id: 4, name: "Tulip", img: "/imges/item4.png", new_price: 10.00, quantity: 1 },
+                { id: 1, name: "Jasmine & Linen Set", img: "/imges/ma4.webp", new_price: 28.00, quantity: 2 },
+                { id: 2, name: "Olive Tree", img: "/imges/ma1.webp", new_price: 5.00, quantity: 1 },
+                { id: 3, name: "Tatreez Mug", img: "/imges/f769ad49-1fc1-4c9c-b61e-6f8308e2897d.webp", new_price: 35.00, quantity: 1 },
+                { id: 4, name: "Braided Leaf Keychains", img: "/imges/Discover the charm of handmade leaf-shaped….webp", new_price: 10.00, quantity: 1 },
             ],
             totalAmount: (28*2) + 5 + 35 + 10,
         }));
