@@ -7,17 +7,19 @@ import {
   HiOutlineDotsVertical, // For the three dots in the card
   HiX // For closing modals
 } from 'react-icons/hi'; // Importing Heroicons
+import Title from './components/Title';
 
 // Reusable Dashboard Card Component
 const DashboardCard = ({ title, value, change, isPositive }) => (
   <div className="p-6 rounded-lg shadow-md flex flex-col justify-between" style={{ backgroundColor: '#FFFFFF' }}> {/* bg-card-bg */}
     <div className="flex justify-between items-start mb-4">
       <h3 className="text-sm font-medium" style={{ color: '#4B5563' }}>{title}</h3> {/* text-body-text */}
-      <HiOutlineDotsVertical
+      {/* <HiOutlineDotsVertical
         className="cursor-pointer"
         style={{ color: '#9CA3AF' }} // text-icon-light
         size={20}
-      />
+      /> */}
+      
     </div>
     <div className="flex items-end justify-between">
       <span className="text-3xl font-semibold" style={{ color: '#1F2937' }}>{value}</span> {/* text-header-text */}
@@ -386,9 +388,10 @@ const CustomerDashboard = () => {
 
 
   return (
-    <div className="min-h-screen p-4 font-inter" style={{ backgroundColor: '#F3F4F6' }}> {/* bg-dashboard-bg */}
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold" style={{ color: '#1F2937' }}>Customer Overview</h1> {/* text-header-text */}
+    <div className="min-h-screen p-6 font-inter" style={{ backgroundColor: '#F3F4F6' }}> {/* bg-dashboard-bg */}
+      <header className="mb-4">
+        <Title title="Customer Overview" />
+        {/* <h1 className="text-3xl font-bold" style={{ color: '#1F2937' }}>Customer Overview</h1> text-header-text */}
       </header>
       <div className="flex flex-col max-w-full lg:flex-row gap-4 pb-2" >
         {/* Top Customer Stats Cards */}

@@ -37,7 +37,7 @@ export function UserProfilePage() {
   const [showReEnterPassword, setShowReEnterPassword] = useState(false);
 
   return (
-    <div className="bg-[#f3f4f6] min-h-screen font-sans p-6 md:p-10">
+    <div className="bg-[#f3f4f6] min-h-screen font-sans ">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {/* Left Column: Profile Card and Change Password */}
         <div className="lg:col-span-1 space-y-6">

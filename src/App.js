@@ -73,6 +73,7 @@ import TrackOrder from './page/TrackOrder';
 import OrderDetails from './page/OrderDetails';
 import AddNewArticle from './Admin/AddNewArticle';
 import JournalList from './page/JournalList';
+import Payment from './page/Payment';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -125,6 +126,7 @@ const App = () => {
 <Route path="/terms" element={<Terms />} />
 <Route path="/privecy" element={<Privacy />} />
 <Route path="/cookies" element={<Cookies />} />
+<Route path="/Payment" element={<Payment />} />
 
 <Route path="/journalList" element={<JournalList />} />
 

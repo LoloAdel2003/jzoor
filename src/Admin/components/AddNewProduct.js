@@ -38,10 +38,10 @@ export function AddNewProduct() {
               <p className="text-gray-800 font-medium">{category.name}</p>
             </div>
             {/* Replaced SVG with HiOutlineChevronRight */}
-            <HiOutlineChevronRight className="h-5 w-5 text-gray-400" />
+            {/* <HiOutlineChevronRight className="h-5 w-5 text-gray-400" /> */}
           </div>
         ))}
-        <button className="mt-2 text-blue-600 text-sm">See more</button>
+        <Link to="/admin/category" className="mt-2 text-blue-600 text-sm">See more</Link>
       </div>
 
       <div>
@@ -55,11 +55,10 @@ export function AddNewProduct() {
                 <p className="text-gray-500 text-sm">{product.price}</p>
               </div>
             </div>
-            <button className="px-3 py-1 border border-gray-300 rounded-md text-green-600 text-sm flex items-center">
-              {/* Replaced SVG with HiOutlinePlus */}
+            {/* <button className="px-3 py-1 border border-gray-300 rounded-md text-green-600 text-sm flex items-center">
               <HiOutlinePlus className="h-4 w-4 mr-1" />
               Add
-            </button>
+            </button> */}
           </div>
         ))}
         <button className="mt-2 text-blue-600 text-sm">See more</button>

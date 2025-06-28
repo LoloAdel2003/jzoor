@@ -68,10 +68,10 @@ export default function ReportChart() {
       <div className="">
         <div className="flex justify-between">
           <h3 className="text-lg font-semibold">Report for this week</h3>
-          <div className="gap-2 px-2 flex items-center rounded-sm bg-[#F0F3FF]">
+          {/* <div className="gap-2 px-2 flex items-center rounded-sm bg-[#F0F3FF]">
             <button className="text-xs text-green bg-white  rounded px-2 py-1">This week</button>
             <button className="text-xs text-gray-500  rounded px-2 py-1">Last week</button>
-          </div>
+          </div> */}
         </div>
 
         {/* المؤشرات */}

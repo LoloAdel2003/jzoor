@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { HiOutlinePlus, HiOutlineChevronDown, HiOutlineEye, HiOutlinePencil, HiOutlineTrash, HiX } from 'react-icons/hi';
 import { GoSearch } from 'react-icons/go';
 import { HiDotsVertical } from 'react-icons/hi';
+import Title from './components/Title';
 
 // Main Orders Dashboard Component
 const OrdersDashboard = () => {
@@ -213,20 +214,11 @@ const OrdersDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 font-inter" style={{ backgroundColor: '#F3F4F6' }}>
-      <header className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
-        <h1 className="text-3xl font-bold mb-4 md:mb-0" style={{ color: '#1F2937' }}>Order List</h1>
+    <div className="min-h-screen p-6 font-inter" style={{ backgroundColor: '#F3F4F6' }}>
+      <header className="mb-4 flex flex-col md:flex-row justify-between items-start md:items-center">
+        <Title title="Order List" />
         <div className="flex flex-col sm:flex-row gap-3">
-          {/* <button className="flex items-center justify-center px-4 py-2 rounded-md shadow-sm text-sm font-medium text-white"
-            style={{ backgroundColor: '#10B981' }}>
-            <HiOutlinePlus className="h-5 w-5 mr-2" />
-            Add Order
-          </button>
-          <button className="flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium"
-            style={{ color: '#4B5563', backgroundColor: '#FFFFFF', borderColor: '#D1D5DB' }}>
-            More Actions
-            <HiOutlineChevronDown className="h-4 w-4 ml-2" />
-          </button> */}
+         
         </div>
       </header>
 
@@ -496,11 +488,11 @@ const DashboardCard = ({ title, value, change, isPositive }) => (
   <div className="p-6 rounded-lg shadow-md flex flex-col justify-between" style={{ backgroundColor: '#FFFFFF' }}>
     <div className="flex justify-between items-start mb-4">
       <h3 className="text-sm font-medium" style={{ color: '#6B7280' }}>{title}</h3>
-      <HiDotsVertical
+      {/* <HiDotsVertical
         className="cursor-pointer"
         style={{ color: '#9CA3AF' }}
         size={20}
-      />
+      /> */}
     </div>
     <div className="flex items-end justify-between">
       <span className="text-3xl font-semibold" style={{ color: '#111827' }}>{value}</span>

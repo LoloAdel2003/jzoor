@@ -8,6 +8,7 @@ import {
   HiOutlineTrash,       // For the delete/trash icon
   HiOutlineDotsVertical // For the three dots in the card
 } from 'react-icons/hi'; // Assuming Heroicons for consistency
+import Title from './components/Title';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
@@ -207,9 +208,10 @@ const DeliveryDashboard = () => {
 
 
   return (
-    <div className="min-h-screen p-4 font-inter" style={{ backgroundColor: '#F3F4F6' }}>
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold" style={{ color: '#1F2937' }}>Delivery Overview</h1>
+    <div className="min-h-screen p-6 font-inter" style={{ backgroundColor: '#F3F4F6' }}>
+      <header className="mb-4">
+        <Title title="Delivery Overview" />
+        {/* <h1 className="text-3xl font-bold" style={{ color: '#1F2937' }}>Delivery Overview</h1> */}
       </header>
       <div className="flex flex-col lg:flex-row gap-4">
 
@@ -498,11 +500,11 @@ const DashboardCard = ({ title, value, change, isPositive }) => (
   <div className="p-6 rounded-lg shadow-md flex flex-col justify-between" style={{ backgroundColor: '#FFFFFF' }}>
     <div className="flex justify-between items-start mb-4">
       <h3 className="text-sm font-medium" style={{ color: '#6B7280' }}>{title}</h3>
-      <HiOutlineDotsVertical
+      {/* <HiOutlineDotsVertical
         className="cursor-pointer"
         style={{ color: '#9CA3AF' }}
         size={20}
-      />
+      /> */}
     </div>
     <div className="flex items-end justify-between">
       <span className="text-3xl font-semibold" style={{ color: '#111827' }}>{value}</span>

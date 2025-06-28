@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export function TransactionHistory() {
   const transactions = [
@@ -54,7 +55,7 @@ export function TransactionHistory() {
         </tbody>
       </table>
       <div className="flex justify-end mt-4">
-        <button className="px-4 py-2 border border-gray-300 rounded-md text-blue-600 hover:bg-gray-50">Details</button>
+        <Link to="transaction" className="px-4 py-2 no-underline border border-gray-300 rounded-md text-blue-600 hover:bg-gray-100">Details</Link>
       </div>
     </div>
   );

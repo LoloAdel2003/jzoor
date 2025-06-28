@@ -82,7 +82,7 @@ export function AddNewProductForm() {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm font-sans mx-auto my-8">
+    <div className="bg-white p-4 rounded-lg shadow-sm font-sans mx-auto ">
       {/* Header and Action Buttons */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex space-x-3">

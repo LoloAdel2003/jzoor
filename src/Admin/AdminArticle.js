@@ -11,6 +11,7 @@ import {
   HiOutlineArrowNarrowLeft, // للسهم السابق في الترقيم
   HiOutlineArrowNarrowRight // للسهم التالي في الترقيم
 } from 'react-icons/hi'; // افتراض استخدام Heroicons
+import Title from './components/Title';
 
 export function ArticlesOverview() {
   const [activeReviewsFilter, setActiveReviewsFilter] = useState('All Articles');
@@ -78,8 +79,9 @@ export function ArticlesOverview() {
 
   return (
     <div style={{ backgroundColor: '#F3F4F6' }} className="p-6 font-sans w-full overflow-x-hidden">
-      <div className="flex justify-between py-4">
-        <h1 className="text-xl font-semibold text-gray-800">Article Overview</h1>
+      <div className="flex justify-between mb-4">
+        <Title title="Article Overview" />
+        {/* <h1 className="text-x l font-semibold text-gray-800">Article Overview</h1> */}
 
         <div className="flex space-x-2 text-sm">
           {/* <button
@@ -108,10 +110,10 @@ export function ArticlesOverview() {
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Most Viewed Article</h2>
               <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                <HiOutlineDotsVertical className="w-5 h-5" />
+                {/* <HiOutlineDotsVertical className="w-5 h-5" /> */}
               </button>
             </div>
-            <p style={{ color: '#111827' }} className="text-xl sm:text-2xl font-bold mb-2">"{articlesOverview.mostViewedArticle}"</p>
+            <p style={{ color: '#059669' }} className="text-xl sm:text-2xl font-bold mb-2">"{articlesOverview.mostViewedArticle}"</p>
             <p style={{ color: '#6B7280' }} className="text-xs sm:text-sm">Last 7 days</p>
           </div>
 
@@ -120,9 +122,9 @@ export function ArticlesOverview() {
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Total Articles</h2>
             </div>
-            <p style={{ color: '#111827' }} className="text-3xl sm:text-4xl font-bold mb-2">{articlesOverview.totalArticles}</p>
+            <p style={{ color: '#059669' }} className="text-3xl sm:text-4xl font-bold mb-2">{articlesOverview.totalArticles}</p>
             <p style={{ color: '#059669' }} className="text-xs sm:text-sm flex items-center">
-              <HiOutlineArrowNarrowUp className="w-4 h-4 mr-1" />
+              {/* <HiOutlineArrowNarrowUp className="w-4 h-4 mr-1" /> */}
               {articlesOverview.totalArticlesChange} <span style={{ color: '#6B7280' }} className="ml-1">Last 7 days</span>
             </p>
           </div>
@@ -132,12 +134,12 @@ export function ArticlesOverview() {
             <div className="flex justify-between items-start mb-2">
               <h2 style={{ color: '#1F2937' }} className="text-base sm:text-lg font-semibold">Average Reading Time</h2>
               <button style={{ color: '#6B7280' }} className="hover:text-gray-700">
-                <HiOutlineDotsVertical className="w-5 h-5" />
+                {/* <HiOutlineDotsVertical className="w-5 h-5" /> */}
               </button>
             </div>
-            <p style={{ color: '#111827' }} className="text-3xl sm:text-4xl font-bold mb-2">{articlesOverview.averageReadingTime} (min)</p>
+            <p style={{ color: '#059669' }} className="text-3xl sm:text-4xl font-bold mb-2">{articlesOverview.averageReadingTime} (min)</p>
             <p style={{ color: '#059669' }} className="text-xs sm:text-sm flex items-center">
-              <HiOutlineArrowNarrowUp className="w-4 h-4 mr-1" />
+              {/* <HiOutlineArrowNarrowUp className="w-4 h-4 mr-1" /> */}
               {articlesOverview.averageReadingTimeChange} <span style={{ color: '#6B7280' }} className="ml-1">Last 7 days</span>
             </p>
           </div>

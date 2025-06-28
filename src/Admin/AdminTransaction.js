@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import Title from './components/Title';
 
 // Dashboard Card Component (كما هو)
 const DashboardCard = ({ title, value, change, isPositive }) => (
   <div className="p-6 rounded-lg shadow-md flex flex-col justify-between" style={{ backgroundColor: '#FFFFFF' }}>
     <div className="flex justify-between items-start mb-4">
       <h3 className="text-sm font-medium" style={{ color: '#6B7280' }}>{title}</h3>
-      <svg
+      {/* <svg
         className="cursor-pointer"
         style={{ color: '#9CA3AF' }}
         width="20"
@@ -17,7 +18,7 @@ const DashboardCard = ({ title, value, change, isPositive }) => (
         <path
           d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
         ></path>
-      </svg>
+      </svg> */}
     </div>
     <div className="flex items-end justify-between">
       <span className="text-3xl font-semibold" style={{ color: '#111827' }}>{value}</span>
@@ -207,9 +208,10 @@ const AppTransaction = () => {
 
 
   return (
-    <div className="min-h-screen p-4 font-inter" style={{ backgroundColor: '#F3F4F6' }}>
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold" style={{ color: '#1F2937' }}>Transaction Overview</h1>
+    <div className="min-h-screen p-6 font-inter" style={{ backgroundColor: '#F3F4F6' }}>
+      <header className="mb-4">
+        <Title title="Transaction Overview" />
+        {/* <h1 className="text-3xl font-bold" style={{ color: '#1F2937' }}>Transaction Overview</h1> */}
       </header>
 
       <div className="flex flex-col lg:flex-row gap-4">

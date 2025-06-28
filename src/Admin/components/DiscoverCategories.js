@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { FaSearch, FaPlus, FaEdit, FaTrash } from 'react-icons/fa'; // Font Awesome icons
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'; // iOS style arrows for pagination
+import Title from './Title';
 
 export function DiscoverCategories() {
   // Dummy data for categories
@@ -228,9 +229,10 @@ export function DiscoverCategories() {
   };
 
   return (
-    <div className="p-4 w-full min-h-screen" style={{ backgroundColor: '#F3F4F6' }}>
-      <div className="mb-6">
-        <h1 className="text-xl font-semibold text-gray-800">Discover</h1>
+    <div className="p-6 w-full min-h-screen" style={{ backgroundColor: '#F3F4F6' }}>
+      <div className="mb-4">
+<Title title="Discover" />
+        {/* <h1 className="text-xl font-semibold text-gray-800">Discover</h1> */}
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 font-sans mx-auto my-8">
