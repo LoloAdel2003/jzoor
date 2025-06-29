@@ -24,10 +24,7 @@ export function AddNewProductForm() {
 
   // --- Handlers for button functionality ---
 
-  const handleSaveToDraft = () => {
-    alert('Product saved to draft! (Functionality to be implemented)');
-    console.log('Draft Data:', { productName, productDescription, productPrice, discountedPrice, taxIncluded, stockQuantity, stockStatus, isUnlimited, highlightFeatured, productImage });
-  };
+
 
   const handlePublishProduct = () => {
     alert('Product published! (Functionality to be implemented)');
@@ -86,15 +83,7 @@ export function AddNewProductForm() {
       {/* Header and Action Buttons */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex space-x-3">
-          {/* Save to Draft Button */}
-          <button
-            onClick={handleSaveToDraft}
-            className="px-4 py-2 border border-[#D1D5DB] rounded-lg text-[#4B5563] font-medium hover:bg-[#E5E7EB] flex items-center transition-colors duration-200"
-            style={{ backgroundColor: '#F9FAFB' }} // Set specific background color
-          >
-            <HiOutlineDocumentArrowDown className="w-5 h-5 mr-2" />
-            Save to draft
-          </button>
+         
           {/* Publish Product Button */}
           <button
             onClick={handlePublishProduct}
@@ -445,14 +434,7 @@ export function AddNewProductForm() {
 
       {/* Footer Buttons (Mobile/Smaller Screens) */}
       <div className="mt-6 flex justify-end space-x-3">
-        {/* Save to Draft Button (Footer) */}
-        <button
-          onClick={handleSaveToDraft}
-          className="px-4 py-2 border border-[#D1D5DB] rounded-lg text-[#4B5563] font-medium hover:bg-[#E5E7EB] transition-colors duration-200"
-          style={{ backgroundColor: '#F9FAFB' }}
-        >
-          Save to draft
-        </button>
+       
         {/* Publish Product Button (Footer) */}
         <button
           onClick={handlePublishProduct}

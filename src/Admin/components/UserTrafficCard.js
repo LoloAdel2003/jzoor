@@ -13,6 +13,7 @@ import {
 import {
   HiOutlineEyeOff,
 } from 'react-icons/hi'; // Import HiOutlineEyeOff from 'hi'
+import { Link } from 'react-router-dom';
 
 export function UserProfilePage() {
   // State for Profile Update section
@@ -94,7 +95,7 @@ export function UserProfilePage() {
                   )}
                 </button>
               </div>
-              <a href="#" className="text-blue-600 text-sm mt-1 block">Forgot Current Password? Click here</a>
+              <Link to="/ForgetPass" className="text-blue-600 text-sm mt-1 block">Forgot Current Password? Click here</Link>
             </div>
             <div className="mb-4">
               <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-1">New Password</label>

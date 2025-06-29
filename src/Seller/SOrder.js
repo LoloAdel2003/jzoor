@@ -27,10 +27,10 @@ const SellerOrdersDashboard = () => {
       sellers: [{ name: 'Ahmad Bakir', id: '#Seller1234' }, { name: 'Huda Akram', id: '#Seller1234' }, { name: 'Admin', id: '#Seller1234' }],
       deliveryPerson: null, // Initially null
       items: [
-        { name: 'Jasmine & Linen Set', price: 28.00, quantity: 2, img: 'https://placehold.co/40x40/FF7F50/FFFFFF?text=J' },
-        { name: 'Olive Tree', price: 5.00, quantity: 1, img: 'https://placehold.co/40x40/8FBC8F/FFFFFF?text=O' },
-        { name: 'Tetraat Mug', price: 35.00, quantity: 1, img: 'https://placehold.co/40x40/ADD8E6/FFFFFF?text=M' },
-        { name: 'Tulip', price: 18.00, quantity: 1, img: 'https://placehold.co/40x40/FFB6C1/FFFFFF?text=T' },
+        { name: 'Jasmine & Linen Set', price: 28.00, quantity: 2, img: '/imges/ma4.webp' },
+        { name: 'Olive Tree', price: 5.00, quantity: 1, img: '/imges/ma1.webp' },
+        { name: 'Tetraat Mug', price: 35.00, quantity: 1, img: '/imges/f769ad49-1fc1-4c9c-b61e-6f8308e2897d.webp' },
+        { name: 'Self-Watering Pots', price: 18.00, quantity: 1, img: '/imges/e9ca5c70-89e9-4978-93ba-a025ed04b8f4.webp' },
       ],
       subtotal: 126,
       shippingCost: 0,

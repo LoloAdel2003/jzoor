@@ -11,6 +11,7 @@ import { CiLogin } from "react-icons/ci";
 import { AiOutlineShop } from "react-icons/ai";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { IoIosSettings } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const links = [
@@ -86,21 +87,15 @@ const SellerSidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </NavLink>
 
       {/* بيانات المستخدم */}
-      <div className="pt-8 flex items-center justify-between">
+      <Link to="/login" className="pt-8 flex no-underline items-center text-black justify-between">
         <img src="/imges/seller.webp" alt="user" className="w-[40px]" />
         <div className="text-sm">
           <span className="block">Ahmad Kanaan</span>
         </div>
         <CiLogin className="text-xl" />
-      </div>
+      </Link>
 
-      <div className="pt-4 flex items-center justify-between">
-        <AiOutlineShop className="text-3xl" />
-        <div className="text-sm">
-          <span className="block">Your Shop</span>
-        </div>
-        <LuSquareArrowOutUpRight className="text-xl text-gray-700" />
-      </div>
+      
     </aside>
   );
 };

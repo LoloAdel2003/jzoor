@@ -1,121 +1,28 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  HiDotsVertical,
+  HiArrowNarrowUp,
+  HiPlus,
+  HiSearch,
+  HiEye,
+  HiPencil,
+  HiTrash,
+  HiArrowNarrowLeft,
+  HiArrowNarrowRight,
+  HiX,
+  HiArrowRight,
+  HiDotsHorizontal,
+  HiClock,
+  HiArchiveBox,
+  HiCheckCircle,
+  HiXCircle,
+  HiChevronDown,
+} from 'react-icons/hi';
 
-// Inline SVG Icons (replacing react-icons/hi)
-const IconDotsVertical = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-  </svg>
-);
+import { FaTruck, FaCube } from 'react-icons/fa';
 
-const IconArrowNarrowUp = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
-  </svg>
-);
 
-const IconPlus = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-  </svg>
-);
-
-const IconSearch = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-  </svg>
-);
-
-const IconEye = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.173.1.383.1.77 0 1.154A17.925 17.925 0 0 1 12 17.25c-4.638 0-8.573-3.007-9.963-7.173Z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-  </svg>
-);
-
-const IconPencil = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-  </svg>
-);
-
-const IconTrash = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0-.352-9m1.5-9v-1.5a2.25 2.25 0 0 0-2.25-2.25H9.25a2.25 2.25 0 0 0-2.25 2.25V9m3.75-9H7.25m8.25 0h-3.75M9 6h6m-9.75 3v9.75a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V9.75M15 6h.008V6.008h-.008V6Z" />
-  </svg>
-);
-
-const IconArrowNarrowLeft = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-  </svg>
-);
-
-const IconArrowNarrowRight = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-  </svg>
-);
-
-const IconX = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-  </svg>
-);
-
-const IconArrowRight = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-  </svg>
-);
-
-const IconDotsHorizontal = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12h.008v.008H6.75V12ZM12 12h.008v.008H12V12Zm5.25 0h.008v.008H17.25V12Z" />
-  </svg>
-);
-
-const IconClock = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-  </svg>
-);
-
-const IconTruck = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375M21 12h-3.75m-9-6.75h9.375c.621 0 1.125.504 1.125 1.125v3.625m-14.001 0h.008M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-  </svg>
-);
-
-const IconCube = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-.853 4.933m-.647 3.567L12 21l-7.5-4.333V7.5M3 7.5l.853 4.933m.647 3.567L12 21m0-13.5v9" />
-  </svg>
-);
-
-const IconArchiveBox = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M21 12c0 1.657-3.693 3-8.25 3s-8.25-1.343-8.25-3M12 6V4m0 2c-2.21 0-4 2-4 4m0 0 0 4.5m4-8.5v8.5m0-8.5c2.21 0 4 2 4 4m0 0 .75 4.5m-.75-4.5c.957 0 1.872.21 2.7.594M6 15V13.5m0-1.5V10c0-1.657 3.693-3 8.25-3s8.25 1.343 8.25 3v2.25M6 13.5V18m0-4.5V12h-.75M13.5 18H21m-6 0v-2.25M3 12h.75m0 0v-2.25c0-1.657 3.693-3 8.25-3s8.25 1.343 8.25 3v2.25" />
-  </svg>
-);
-
-const IconCheckCircle = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-  </svg>
-);
-
-const IconXCircle = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-  </svg>
-);
-
-const IconChevronDown = ({ className = '' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${className}`}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-  </svg>
-);
 
 
 // Title component definition (as it was in the original context)
@@ -256,7 +163,7 @@ export function ArticlesOverview() {
             </div>
             <p style={{ color: '#059669' }} className="text-3xl sm:text-4xl font-bold mb-2">{articlesOverview.totalArticles}</p>
             <p style={{ color: '#059669' }} className="text-xs sm:text-sm flex items-center">
-              <IconArrowNarrowUp className="w-4 h-4 mr-1" />
+              <HiArrowNarrowUp className="w-4 h-4 mr-1" />
               {articlesOverview.totalArticlesChange} <span style={{ color: '#6B7280' }} className="ml-1">Last 7 days</span>
             </p>
           </div>
@@ -268,7 +175,7 @@ export function ArticlesOverview() {
             </div>
             <p style={{ color: '#059669' }} className="text-3xl sm:text-4xl font-bold mb-2">{articlesOverview.averageReadingTime} (min)</p>
             <p style={{ color: '#059669' }} className="text-xs sm:text-sm flex items-center">
-              <IconArrowNarrowUp className="w-4 h-4 mr-1" />
+              <HiArrowNarrowUp className="w-4 h-4 mr-1" />
               {articlesOverview.averageReadingTimeChange} <span style={{ color: '#6B7280' }} className="ml-1">Last 7 days</span>
             </p>
           </div>
@@ -294,10 +201,10 @@ export function ArticlesOverview() {
                   setCurrentPage(1);
                 }}
               />
-              <IconSearch className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2" style={{ color: '#9CA3AF' }} />
+              <HiSearch className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2" style={{ color: '#9CA3AF' }} />
             </div>
             <Link to="addNewArticle" style={{ backgroundColor: '#047857', color: '#FFFFFF' }} className="px-5 no-underline py-2 rounded-md flex items-center justify-center text-sm font-medium hover:bg-[#065F46] transition-colors">
-              <IconPlus className="w-5 h-5 mr-2" />
+              <HiPlus className="w-5 h-5 mr-2" />
               New Article
             </Link>
           </div>
@@ -374,7 +281,7 @@ export function ArticlesOverview() {
                             title="View Details"
                             onClick={() => handleViewArticleDetails(article)}
                           >
-                            <IconEye className="w-5 h-5" />
+                            <HiEye className="w-5 h-5" />
                           </button>
                           {/* Edit Icon */}
                           <button
@@ -383,7 +290,7 @@ export function ArticlesOverview() {
                             title="Edit Status"
                             onClick={() => handleEditArticleStatus(article)}
                           >
-                            <IconPencil className="w-5 h-5" />
+                            <HiPencil className="w-5 h-5" />
                           </button>
                           {/* Delete Icon */}
                           <button
@@ -392,7 +299,7 @@ export function ArticlesOverview() {
                             title="Delete Article"
                             onClick={() => handleDeleteArticle(article)}
                           >
-                            <IconTrash className="w-5 h-5" />
+                            <HiTrash className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -417,7 +324,7 @@ export function ArticlesOverview() {
               style={{ color: currentPage === 1 ? '#9CA3AF' : '#374151', backgroundColor: '#FFFFFF', border: '1px solid #D1D5DB', borderRadius: '0.5rem' }}
               className="flex items-center px-4 py-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              <IconArrowNarrowLeft className="h-4 w-4 mr-1" />
+              <HiArrowNarrowLeft className="h-4 w-4 mr-1" />
               Previous
             </button>
             <div className="flex flex-wrap justify-center gap-2">
@@ -439,7 +346,7 @@ export function ArticlesOverview() {
               className="flex items-center px-4 py-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Next
-              <IconArrowNarrowRight className="h-4 w-4 ml-1" />
+              <HiArrowNarrowRight className="h-4 w-4 ml-1" />
             </button>
           </div>
         </div>
@@ -486,7 +393,7 @@ const ArticleDetailsModal = ({ article, onClose }) => {
         <div className="flex justify-between items-center p-5 border-b border-[#E5E7EB]">
           <h2 className="text-xl font-semibold text-[#1F2937]">Article Details</h2>
           <button onClick={onClose} className="text-[#9CA3AF] hover:text-[#4B5563] transition-colors">
-            <IconX className="h-6 w-6" />
+            <HiX className="h-6 w-6" />
           </button>
         </div>
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -539,24 +446,24 @@ const EditArticleStatusModal = ({ article, currentStatus, onStatusChange, onSave
   const statusHierarchy = useMemo(() => ([
     {
       label: 'Update To..',
-      icon: <IconArrowRight />,
+      icon: <HiArrowRight />,
       type: 'header',
       key: 'updateTo',
     },
     {
       label: 'Publication Status',
-      icon: <IconPencil />,
+      icon: <HiPencil />,
       type: 'category',
       key: 'publicationStatus',
       expandable: true,
       statuses: [
-        { name: 'Published', label: 'Published', icon: <IconCheckCircle /> },
-        { name: 'Drafted', label: 'Drafted', icon: <IconClock /> },
+        { name: 'Published', label: 'Published', icon: <HiCheckCircle /> },
+        { name: 'Drafted', label: 'Drafted', icon: <HiClock /> },
       ].filter(s => editableStatuses.includes(s.name)),
     },
     {
       label: 'Cancel Article',
-      icon: <IconXCircle />,
+      icon: <HiXCircle />,
       type: 'status',
       name: 'Canceled',
     },
@@ -573,7 +480,7 @@ const EditArticleStatusModal = ({ article, currentStatus, onStatusChange, onSave
         <div className="flex justify-between items-center p-5 border-b border-[#E5E7EB]">
           <h2 className="text-xl font-semibold text-[#1F2937]">Edit Article Status</h2>
           <button onClick={onClose} className="text-[#9CA3AF] hover:text-[#4B5563] transition-colors">
-            <IconX className="h-6 w-6" />
+            <HiX className="h-6 w-6" />
           </button>
         </div>
         <div className="p-6">
@@ -596,7 +503,7 @@ const EditArticleStatusModal = ({ article, currentStatus, onStatusChange, onSave
                     <span>{item.label}</span>
                   </div>
                   {item.expandable && (
-                    <IconChevronDown className={`w-5 h-5 text-[#9CA3AF] transition-transform duration-200 ${expandedCategories[item.key] ? 'rotate-180' : ''}`} />
+                    <HiChevronDown className={`w-5 h-5 text-[#9CA3AF] transition-transform duration-200 ${expandedCategories[item.key] ? 'rotate-180' : ''}`} />
                   )}
                 </button>
 
@@ -651,7 +558,7 @@ const DeleteArticleConfirmationModal = ({ articleTitle, onConfirm, onCancel }) =
         <div className="flex justify-between items-center p-5 border-b border-[#E5E7EB]">
           <h2 className="text-xl font-semibold text-[#1F2937]">Confirm Deletion</h2>
           <button onClick={onCancel} className="text-[#9CA3AF] hover:text-[#4B5563] transition-colors">
-            <IconX className="h-6 w-6" />
+            <HiX className="h-6 w-6" />
           </button>
         </div>
         <div className="p-6">

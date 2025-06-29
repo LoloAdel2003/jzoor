@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom'; // Assuming react-router-dom is used for navigation
+import { FaPlus, FaSearch, FaEye, FaEdit, FaTrash } from 'react-icons/fa'; // Font Awesome icons
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'; // iOS style arrows for pagination
 
 // Helper component for displaying Title (re-defined here for self-containment)
 const Title = ({ title }) => <h1 className="text-3xl font-bold text-gray-800 mb-6">{title}</h1>;
@@ -301,8 +303,8 @@ export function DiscoverProductManagement() {
                             item.status.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesTab = (activeProductTab === 'All Product') ||
                          (activeProductTab === 'Out of Stock' && item.status === 'Out of stock') ||
-                         // Add logic for 'Featured Products' and 'On Sale' if actual data supports it
-                         (activeProductTab === 'Featured Products' && false) || // Placeholder
+                         // Add logic for 'Available' and 'On Sale' if actual data supports it
+                         (activeProductTab === 'Available' && item.status === 'Available') || // Placeholder
                          (activeProductTab === 'On Sale' && false); // Placeholder
       return matchesSearch && matchesTab;
     });
@@ -484,9 +486,7 @@ export function DiscoverProductManagement() {
             Rejected ({sellerProducts.filter(item => item.status === 'Rejected').length})
           </button>
           {/* This button doesn't filter, so it should just be a static display */}
-          <button className="px-5 py-2 border border-gray-300 rounded-md text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm">
-            Show Only My Products
-          </button>
+         
         </div>
 
         <div className="w-full overflow-x-auto lg:overflow-x-visible rounded-lg shadow-md border border-gray-200">
@@ -591,10 +591,10 @@ export function DiscoverProductManagement() {
             All Products ({stockProducts.length})
           </button>
           <button
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeProductTab === 'Featured Products' ? 'bg-[rgb(4,120,87)] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-            onClick={() => { setActiveProductTab('Featured Products'); setCurrentPageStock(1); }}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeProductTab === 'Available' ? 'bg-[rgb(4,120,87)] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+            onClick={() => { setActiveProductTab('Available'); setCurrentPageStock(1); }}
           >
-            Featured Products
+            Available  ({stockProducts.filter(item => item.status === 'Available').length})
           </button>
           <button
             className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeProductTab === 'On Sale' ? 'bg-[rgb(4,120,87)] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
@@ -607,6 +607,11 @@ export function DiscoverProductManagement() {
             onClick={() => { setActiveProductTab('Out of Stock'); setCurrentPageStock(1); }}
           >
             Out of Stock ({stockProducts.filter(item => item.status === 'Out of stock').length})
+          </button>
+           <button className="px-5 py-2 border border-gray-300 rounded-md text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm"
+                       onClick={() => { setActiveProductTab('Available'); setCurrentPageStock(1); }}
+>
+            Show Only My Products 
           </button>
         </div>
 

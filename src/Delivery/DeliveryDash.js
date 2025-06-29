@@ -406,13 +406,13 @@ const App = () => {
             </div>
           </div>
           <p className="text-sm mb-2" style={{ color: '#4B5563' }}>Current Location: Jatiala</p> {/* text-gray-600 */}
-          <p className="text-sm mb-2" style={{ color: '#4B5563' }}>Next Stop: Almosa/Gaza</p> {/* text-gray-600 */}
+          <p className="text-sm mb-2" style={{ color: '#4B5563' }}>Next Stop: Almosa/Gaza</p> text-gray-600
           <p className="text-sm mb-2" style={{ color: '#4B5563' }}>ETA: 15 min</p> {/* text-gray-600 */}
           <div className="w-full rounded-full h-2.5 mb-2" style={{ backgroundColor: '#E5E7EB' }}> {/* bg-gray-200 */}
             <div className="h-2.5 rounded-full" style={{ width: '50%', backgroundColor: '#22C55E' }}></div> {/* bg-green-500 */}
           </div>
           <p className="text-sm" style={{ color: '#4B5563' }}>Progress: ●●●●●●● 3/6</p> {/* text-gray-600 */}
-          <p className="text-sm mt-2" style={{ color: '#4B5563' }}>Next Stop: Almosa/Gaza</p> {/* text-gray-600 */}
+          {/* <p className="text-sm mt-2" style={{ color: '#4B5563' }}>Next Stop: Almosa/Gaza</p> text-gray-600 */}
         </div>
       </div>
     </div>

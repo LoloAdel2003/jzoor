@@ -66,6 +66,7 @@ const OrderDetails = () => {
     <div className="pt-[60px] md:pt-[120px] container min-h-screen px-4 md:px-0">
       <div className="flex justify-between items-center mb-8">
         <div>
+          {/* <Link to="/trackOrder" className="no-underline text-sm">Track Order </Link> */}
           <h1 className="text-2xl md:text-3xl font-bold text-[#333]">Order Details</h1>
           <p className="text-gray-600 text-sm md:text-base">Order ID: <span className="font-semibold">{orderDetails.orderId}</span></p>
         </div>

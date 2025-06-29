@@ -1,47 +1,95 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BiTimeFive } from 'react-icons/bi';
 import { MdOutlineLocalShipping } from 'react-icons/md';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom'; // تأكد من استيراد Link
+import { FiPhone } from 'react-icons/fi'; // Importing the phone icon
+
+// Phone Call Modal Component
+const PhoneCallModal = ({ isOpen, onClose, phoneNumber }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-sm p-6 animate-scaleIn">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Contact Driver</h2>
+        <p className="text-gray-700 mb-6">You can call the driver at:</p>
+        <div className="text-center mb-6">
+          <a href={`tel:${phoneNumber}`} className="text-3xl font-bold text-blue-600 hover:underline">{phoneNumber}</a>
+        </div>
+        <div className="flex justify-end space-x-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors"
+          >
+            Close
+          </button>
+          <a
+            href={`tel:${phoneNumber}`}
+            className="px-4 py-2 bg-[rgb(4,120,87)] text-white rounded-md hover:bg-green-700 transition-colors no-underline flex items-center justify-center"
+          >
+            Call Now
+          </a>
+        </div>
+      </div>
+      <style>{`
+        @keyframes scaleIn {
+          from { transform: scale(0.9); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        .animate-scaleIn {
+          animation: scaleIn 0.2s ease-out;
+        }
+      `}</style>
+    </div>
+  );
+};
+
 
 const TrackOrder = () => {
   const [currentDeliveryPhase, setCurrentDeliveryPhase] = useState('waiting_pickup');
   const [estimatedDeliveryDate, setEstimatedDeliveryDate] = useState('15/02/25');
   const [deliveryStatusText, setDeliveryStatusText] = useState('On Time');
-  const [driverName, setDriverName] = useState('Ahmad'); // هذا المتغير لم يُستخدم في الكود الحالي، يمكن إزالته إذا لم يكن له استخدام مستقبلي
   const [showOrderDetailsButtonActive, setShowOrderDetailsButtonActive] = useState(true);
   const [isCanceled, setIsCanceled] = useState(false);
+  const [showCallModal, setShowCallModal] = useState(false);
+  const [driverPhoneNumber, setDriverPhoneNumber] = useState('123-456-7890'); // رقم هاتف وهمي للسائق
 
   useEffect(() => {
     const simulateBackendUpdate = () => {
-      setTimeout(() => setCurrentDeliveryPhase('picked_up'), 3000);
-      setTimeout(() => setCurrentDeliveryPhase('pickup_done'), 6000);
-      setTimeout(() => {
+      // Clear any existing timeouts to prevent multiple simulations
+      const timeouts = [];
+      timeouts.push(setTimeout(() => setCurrentDeliveryPhase('picked_up'), 3000));
+      timeouts.push(setTimeout(() => setCurrentDeliveryPhase('pickup_done'), 6000));
+      timeouts.push(setTimeout(() => {
         setCurrentDeliveryPhase('out_for_delivery');
         setEstimatedDeliveryDate('15/02/25');
         setDeliveryStatusText('Out For Delivery');
-      }, 9000);
-      setTimeout(() => {
+      }, 9000));
+      timeouts.push(setTimeout(() => {
         setCurrentDeliveryPhase('delivered');
         setEstimatedDeliveryDate('14/02/25');
         setDeliveryStatusText('Delivered');
         setShowOrderDetailsButtonActive(true);
-      }, 12000);
+      }, 12000));
+
+      // Cleanup function to clear timeouts if component unmounts or isCanceled changes
+      return () => timeouts.forEach(clearTimeout);
     };
 
-    // شغل المحاكاة فقط إذا لم يكن الطلب ملغيًا بالفعل
     if (!isCanceled) {
       simulateBackendUpdate();
     }
-  }, [isCanceled]); // أعد تشغيل التأثير عندما تتغير حالة الإلغاء
+  }, [isCanceled]);
 
   const getOrderStatusSteps = () => {
     const steps = [
       { id: 1, label: 'Waiting Picked up', date: '10 Feb, 2025', phase: 'waiting_pickup' },
       { id: 2, label: 'Picked up', date: '10 Feb, 2025', phase: 'picked_up' },
       { id: 3, label: 'Order Processed', date: `We Are Waiting for Driver to Pick Up Product From Pickup Location`, phase: 'pickup_done', showDriverInfo: false },
-      { id: 4, label: 'Out For Delivery', date: '15 Feb, 2025', phase: 'out_for_delivery' },
+      { id: 4, label: 'Out For Delivery', date: '15 Feb, 2025', phase: 'out_for_delivery', showDriverInfo: true },
       { id: 5, label: 'Order Delivered', date: '', phase: 'delivered' },
     ];
 
@@ -51,17 +99,14 @@ const TrackOrder = () => {
 
       for (let i = 0; i < steps.length; i++) {
         const step = steps[i];
-        // إذا كان الطلب ملغى، فإن الخطوات التي لم تكتمل بعد تحصل على علامة X
-        // currentDeliveryPhase !== 'canceled_state' هو شرط للتأكد من أننا لسنا في حالة إلغاء وهمية لا تحدد مرحلة فعلية
         const isPastOrCurrentBeforeCancel = (currentDeliveryPhase !== 'canceled_state' && i < currentPhaseIndex);
 
         cancelledSteps.push({
           ...step,
-          completed: isPastOrCurrentBeforeCancel, // الخطوات المكتملة قبل الإلغاء
-          isCanceledMark: !isPastOrCurrentBeforeCancel // علامة X على الخطوات التي لم تكتمل
+          completed: isPastOrCurrentBeforeCancel,
+          isCanceledMark: !isPastOrCurrentBeforeCancel
         });
       }
-      // أضف خطوة "Order Canceled" في النهاية
       cancelledSteps.push({ id: 6, label: 'Order Canceled', date: new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).replace(',', ''), phase: 'canceled', completed: true, isCanceledStatus: true });
       return cancelledSteps;
 
@@ -78,7 +123,7 @@ const TrackOrder = () => {
 
   const getIllustrationImage = () => {
     if (isCanceled) {
-        return '/imges/cansle.webp'; // الصورة الخاصة بالإلغاء
+        return '/imges/cansle.webp';
     }
     switch (currentDeliveryPhase) {
       case 'out_for_delivery':
@@ -97,9 +142,8 @@ const TrackOrder = () => {
     const confirmCancellation = window.confirm("Are you sure you want to cancel the order?");
     if (confirmCancellation) {
         setIsCanceled(true);
-        // تحديث حالة النص إلى "Canceled" فورًا
-        setDeliveryStatusText('Canceled'); // <--- هذا هو السطر الجديد
-        setShowOrderDetailsButtonActive(false); // تعطيل زر تفاصيل الطلب
+        setDeliveryStatusText('Canceled');
+        setShowOrderDetailsButtonActive(false);
         alert("Order has been canceled. Please contact support for further assistance.");
     }
   };
@@ -149,7 +193,7 @@ const TrackOrder = () => {
             </div>
             <span
               className={`px-3 py-1 rounded-full text-sm font-medium ${
-                isCanceled ? 'bg-[#F8D7DA] text-[#DC3545]' : // إذا كان ملغى، استخدم لون الإلغاء
+                isCanceled ? 'bg-[#F8D7DA] text-[#DC3545]' :
                 deliveryStatusText === 'On Time' || deliveryStatusText === 'Delivered' ? 'bg-[#D4EDDA] text-[#28A745]' :
                 deliveryStatusText === 'Out For Delivery' ? 'bg-[#CCE5FF] text-[#007BFF]' :
                 'bg-[#FFF3CD] text-[#FFC107]'
@@ -163,16 +207,16 @@ const TrackOrder = () => {
           <div className="relative border-l-2 border-[#E9ECEF] ml-2 pl-4 space-y-2">
             {orderStatusSteps.map((step) => (
               <div key={step.id} className="relative flex items-start">
-                {step.isCanceledStatus ? ( // إذا كانت هذه هي خطوة الإلغاء النهائية
+                {step.isCanceledStatus ? (
                     <div className="absolute -left-3.5 md:-left-4 top-0 w-7 h-7 rounded-full flex items-center justify-center bg-[#DC3545] text-white">
                         <FaTimes size={16} />
                     </div>
                 ) : (
                     <div
                         className={`absolute -left-3.5 md:-left-4 top-0 w-7 h-7 rounded-full flex items-center justify-center ${
-                            step.completed && !step.isCanceledMark ? 'bg-[#4B5929] text-white' : // مكتملة وليست ملغاة
-                            step.isCanceledMark ? 'bg-[#DC3545] text-white' : // ملغاة بعلامة X
-                            'bg-[#E9ECEF] text-[#6C757D]' // غير مكتملة
+                            step.completed && !step.isCanceledMark ? 'bg-[#4B5929] text-white' :
+                            step.isCanceledMark ? 'bg-[#DC3545] text-white' :
+                            'bg-[#E9ECEF] text-[#6C757D]'
                         }`}
                     >
                         {step.completed && !step.isCanceledMark ? (
@@ -194,11 +238,14 @@ const TrackOrder = () => {
                   <p className="text-sm text-[#6C757D] pl-5">
                     {step.date}
                   </p>
-                  {/* إزالة icons السائق من "Order Processed" إذا كان ذلك هو المطلوب */}
+                  {/* Show delivery and time icons for relevant phases, and phone icon for 'out_for_delivery' */}
                   {step.phase !== 'pickup_done' && step.showDriverInfo && step.completed && !isCanceled && (
                     <div className="flex items-center space-x-2 rtl:space-x-reverse mt-2 pl-5">
                       <MdOutlineLocalShipping size={20} className="text-[#4B5929]" />
                       <BiTimeFive size={20} className="text-[#4B5929]" />
+                      {step.phase === 'out_for_delivery' && (
+                        <FiPhone size={20} className="text-[#4B5929] cursor-pointer" onClick={() => setShowCallModal(true)} />
+                      )}
                     </div>
                   )}
                   {step.phase === 'out_for_delivery' && step.completed && !isCanceled && (
@@ -210,7 +257,6 @@ const TrackOrder = () => {
           </div>
 
           {/* Cancel Button */}
-          {/* يظهر زر الإلغاء فقط إذا لم يكن الطلب قد تم تسليمه بعد ولم يتم إلغاؤه بالفعل */}
           {currentDeliveryPhase !== 'delivered' && !isCanceled && (
             <div className="flex justify-end mt-8">
               <button
@@ -221,7 +267,7 @@ const TrackOrder = () => {
               </button>
             </div>
           )}
-           {/* نص "Order has been canceled" إذا تم الإلغاء */}
+           {/* "Order has been canceled" text */}
            {isCanceled && (
              <div className="mt-8 text-center text-lg font-bold text-[#DC3545]">
                Order has been canceled.
@@ -229,6 +275,15 @@ const TrackOrder = () => {
            )}
         </div>
       </div>
+
+      {/* Render Phone Call Modal */}
+      {showCallModal && (
+        <PhoneCallModal
+          isOpen={showCallModal}
+          onClose={() => setShowCallModal(false)}
+          phoneNumber={driverPhoneNumber}
+        />
+      )}
     </div>
   );
 };

@@ -17,6 +17,7 @@ import {
   AccordionItem,
 } from 'reactstrap';
 import { FaUserFriends, FaStore, FaTruck } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [open, setOpen] = useState('1');
@@ -177,13 +178,13 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </NavLink>
 
       {/* بيانات المستخدم */}
-      <div className="pt-8 flex cursor-pointer items-center justify-between">
+      <Link to="/login" className="pt-8 flex no-underline text-black cursor-pointer items-center justify-between">
         <img src="/imges/17 Picture.webp" alt="user" className="w-[40px]" />
         <div className="text-sm">
           <span className="block">Ahmad Kanaan</span>
         </div>
         <CiLogin className="text-xl" />
-      </div>
+      </Link>
 
       <div className="pt-4 flex cursor-pointer items-center justify-between">
         <AiOutlineShop className="text-3xl" />
