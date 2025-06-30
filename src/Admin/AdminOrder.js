@@ -53,7 +53,7 @@ const OrdersDashboard = () => {
     { id: 8, orderId: '#ORD0008', product: 'Apploido', date: '01-01-2025', price: '49.99', paymentMethod: 'Visa', status: 'Delivered', customer: { name: 'Ivan Red', id: '#CU241', address: '404 Willow Ct, Anyplace' }, sellers: [{ name: 'Judy Orange', id: '#Seller1241' }], items: [{ name: 'Item G', price: 40, quantity: 1 }], subtotal: 40, shippingCost: 0, discount: 0, total: 40, creditCard: '**** **** **** 3456', deliveryPerson: { name: 'Mona Fahed', id: '#DLVR241', phone: '0592890123' } },
     { id: 9, orderId: '#ORD0009', product: 'Apploido', date: '01-01-2025', price: '49.99', paymentMethod: 'Visa', status: 'Shipped', customer: { name: 'Kevin White', id: '#CU242', address: '505 Maple Ave, Someplace' }, sellers: [{ name: 'Liam Black', id: '#Seller1242' }], items: [{ name: 'Item H', price: 12, quantity: 2 }], subtotal: 24, shippingCost: 4, discount: 0, total: 28, creditCard: '**** **** **** 7890', deliveryPerson: null },
     { id: 10, orderId: '#ORD0010', product: 'Apploido', date: '01-01-2025', price: '49.99', paymentMethod: 'Visa', status: 'Preparing', customer: { name: 'Mia Green', id: '#CU243', address: '606 Spruce St, Nowhere Fast' }, sellers: [{ name: 'Noah Brown', id: '#Seller1243' }], items: [{ name: 'Item I', price: 8, quantity: 3 }], subtotal: 24, shippingCost: 0, discount: 2, total: 22, creditCard: '**** **** **** 1098', deliveryPerson: null },
-    { id: 11, orderId: '#ORD0011', product: 'Product X', date: '01-02-2025', price: '25.00', paymentMethod: 'PayPal', status: 'Pending', customer: { name: 'Olivia Gray', id: '#CU244', address: '707 Poplar Ln, Just Here' }, sellers: [{ name: 'Peter White', id: '#Seller1244' }], items: [{ name: 'Item J', price: 70, quantity: 1 }], subtotal: 70, shippingCost: 5, discount: 0, total: 75, creditCard: 'N/A', deliveryPerson: null },
+    { id: 11, orderId: '#ORD0011', product: 'Product X', date: '01-02-2025', price: '25.00', paymentMethod: 'PayPal', status: 'shipped', customer: { name: 'Olivia Gray', id: '#CU244', address: '707 Poplar Ln, Just Here' }, sellers: [{ name: 'Peter White', id: '#Seller1244' }], items: [{ name: 'Item J', price: 70, quantity: 1 }], subtotal: 70, shippingCost: 5, discount: 0, total: 75, creditCard: 'N/A', deliveryPerson: null },
     { id: 12, orderId: '#ORD0012', product: 'Product Y', date: '01-03-2025', price: '75.50', paymentMethod: 'Credit Card', status: 'Delivered', customer: { name: 'Quinn Blue', id: '#CU245', address: '808 Fir Ave, Way Out' }, sellers: [{ name: 'Rachel Red', id: '#Seller1245' }], items: [{ name: 'Item K', price: 15, quantity: 1 }], subtotal: 15, shippingCost: 0, discount: 0, total: 15, creditCard: '**** **** **** 2345', deliveryPerson: { name: 'Sara Kamal', id: '#DLVR245', phone: '0592345678' } },
     { id: 13, orderId: '#ORD0013', product: 'Product Z', date: '01-04-2025', price: '120.00', paymentMethod: 'Bank Transfer', status: 'Canceled', customer: { name: 'Sam Yellow', id: '#CU246', address: '909 Palm St, Near Here' }, sellers: [{ name: 'Tina Green', id: '#Seller1246' }], items: [{ name: 'Item L', price: 200, quantity: 1 }], subtotal: 200, shippingCost: 10, discount: 20, total: 190, creditCard: 'N/A', deliveryPerson: null },
     { id: 14, orderId: '#ORD0014', product: 'Apploido', date: '01-05-2025', price: '30.00', paymentMethod: 'Visa', status: 'Shipped', customer: { name: 'Uma Brown', id: '#CU247', address: '111 Sycamore Ln, The Place' }, sellers: [{ name: 'Victor Orange', id: '#Seller1247' }], items: [{ name: 'Item M', price: 50, quantity: 1 }], subtotal: 50, shippingCost: 0, discount: 0, total: 50, creditCard: '**** **** **** 6789', deliveryPerson: null },
@@ -83,6 +83,8 @@ const OrdersDashboard = () => {
   const totalOrdersCount = orders.length;
   const completedOrdersCount = orders.filter(order => order.status === 'Delivered').length;
   const pendingOrdersCount = orders.filter(order => order.status === 'Pending' || order.status === 'Preparing').length;
+    const shippedOrdersCount = orders.filter(order => order.status === 'Shipped' || order.status === 'shipped').length;
+
   const canceledOrdersCount = orders.filter(order => order.status === 'Canceled').length;
 
   // Effect to reset page to 1 when filters or tabs change
@@ -107,6 +109,9 @@ const OrdersDashboard = () => {
         matchesTab = order.status === 'Delivered';
       } else if (activeTab === 'Pending') {
         matchesTab = order.status === 'Pending' || order.status === 'Preparing';
+        } else if (activeTab === 'Shipped') {
+        matchesTab = order.status === 'Shipped' || order.status === 'Shipped';
+    
       } else if (activeTab === 'Canceled') {
         matchesTab = order.status === 'Canceled';
       } else if (activeTab === 'All orders') {
@@ -286,7 +291,7 @@ const OrdersDashboard = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
           {/* Tabs for filtering orders */}
           <div className="flex flex-wrap gap-2 text-sm font-medium text-[#4B5563]">
-            {['All orders', 'Completed', 'Pending', 'Canceled'].map(tab => (
+            {['All orders', 'Completed', 'Pending','Shipped', 'Canceled'].map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -300,6 +305,11 @@ const OrdersDashboard = () => {
                   tab === 'All orders' ? totalOrdersCount :
                   tab === 'Completed' ? completedOrdersCount :
                   tab === 'Pending' ? pendingOrdersCount :
+                  
+                  tab === 'Shipped' ? shippedOrdersCount:
+                  
+                  
+                  
                   tab === 'Canceled' ? canceledOrdersCount : 0
                 })
               </button>
