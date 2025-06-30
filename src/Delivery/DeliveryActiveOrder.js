@@ -1,5 +1,346 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+
 import Chart from 'chart.js/auto'; // Import Chart.js
+import {
+  FiTruck,        // Corresponds to 'Truck'
+  FiPackage,      // Corresponds to 'Package'
+  FiClock,        // Corresponds to 'Clock'
+  FiMapPin,       // Corresponds to 'MapPin'
+  FiSearch,       // Corresponds to 'Search'
+  FiPhone,        // Corresponds to 'Phone'
+  FiMap,          // A good alternative for 'LocateFixed'/'Track'
+  FiMoreVertical, // Corresponds to 'MoreVertical'
+  FiChevronLeft,  // Corresponds to 'ChevronLeft'
+  FiChevronRight, // Corresponds to 'ChevronRight'
+  FiFilter,       // Corresponds to 'Filter'
+  FiEdit,         // Corresponds to 'Edit'
+  FiEye,          // Corresponds to 'Eye'
+  FiCheck,        // Corresponds to 'Check'
+  FiX,            // Corresponds to 'X'
+  FiCreditCard // Added for Payment Details section
+} from 'react-icons/fi';
+
+
+// Helper function to render Lucide-like icons using react-icons/fi
+const Icon = ({ name, size = 20, color = 'currentColor', className = '' }) => {
+  switch (name) {
+    case 'Truck':
+      return <FiTruck size={size} color={color} className={className} />;
+    case 'Package':
+      return <FiPackage size={size} color={color} className={className} />;
+    case 'Clock':
+      return <FiClock size={size} color={color} className={className} />;
+    case 'MapPin':
+      return <FiMapPin size={size} color={color} className={className} />;
+    case 'Search':
+      return <FiSearch size={size} color={color} className={className} />;
+    case 'Phone':
+      return <FiPhone size={size} color={color} className={className} />;
+    case 'LocateFixed': // Using FiMap as a close alternative for 'LocateFixed' or 'Track'
+      return <FiMap size={size} color={color} className={className} />;
+    case 'MoreVertical':
+      return <FiMoreVertical size={size} color={color} className={className} />;
+    case 'ChevronLeft':
+      return <FiChevronLeft size={size} color={color} className={className} />;
+    case 'ChevronRight':
+      return <FiChevronRight size={size} color={color} className={className} />;
+    case 'Filter':
+      return <FiFilter size={size} color={color} className={className} />;
+    case 'Edit':
+      return <FiEdit size={size} color={color} className={className} />;
+    case 'Eye':
+      return <FiEye size={size} color={color} className={className} />;
+    case 'Check':
+      return <FiCheck size={size} color={color} className={className} />;
+    case 'X':
+      return <FiX size={size} color={color} className={className} />;
+    case 'CreditCard':
+        return <FiCreditCard size={size} color={color} className={className} />;
+    default:
+      return null;
+  }
+};
+
+
+// OrderDetailsModal Component - Corrected for ESLint Rules of Hooks
+const OrderDetailsModal = ({ isOpen, onClose, order }) => {
+  // All hooks must be called unconditionally at the top level of your component.
+  const modalRef = useRef(null);
+
+  // Close modal if clicked outside or on Escape key
+  useEffect(() => {
+    // Only attach event listeners if the modal is actually open
+    if (isOpen) {
+      const handleClickOutside = (event) => {
+        // Check if click is outside the modal content
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          onClose();
+        }
+      };
+
+      const handleEscapeKey = (event) => {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+
+      // Cleanup function to remove event listeners
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('keydown', handleEscapeKey);
+      };
+    }
+    // Effect runs when isOpen or onClose changes.
+    // If isOpen becomes false, the cleanup function from the previous render (where isOpen was true)
+    // will correctly remove the event listeners.
+  }, [isOpen, onClose]); // Dependencies: Re-run effect if isOpen or onClose changes
+
+  // Now, you can conditionally return null (or render nothing) after the hooks have been called.
+  if (!isOpen || !order) {
+    return null;
+  }
+
+  // Define styles here or import them (as they were in your original snippet)
+  const modalOverlayStyle = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1000,
+  };
+
+  const modalContentContainerStyle = {
+    backgroundColor: '#F3F4F6', // Lighter gray background for the container
+    borderRadius: '0.75rem', // rounded-lg
+    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    width: '95%', // w-95
+    maxWidth: '1200px', // max-w-5xl
+    maxHeight: '90vh', // h-90vh
+    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+  };
+
+  const modalHeaderStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '1rem 1.5rem', // p-4, px-6
+    backgroundColor: '#FFFFFF', // bg-white
+    borderBottom: '1px solid #E5E7EB', // border-b border-gray-200
+    borderRadius: '0.75rem 0.75rem 0 0', // rounded-t-lg
+  };
+
+  const closeButtonStyle = {
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '0.5rem',
+    borderRadius: '0.375rem',
+  };
+
+  const modalBodyStyle = {
+    padding: '1.5rem', // p-6
+    flexGrow: 1, // Allow content to grow
+    overflowY: 'auto', // Enable scrolling for body content
+    backgroundColor: '#F3F4F6', // bg-gray-100
+  };
+
+  return (
+    <div className="modal-overlay" style={modalOverlayStyle}>
+      <div ref={modalRef} className="modal-content-container" style={modalContentContainerStyle}>
+        <div className="modal-header" style={modalHeaderStyle}>
+          <h2 className="text-xl font-semibold" style={{ color: '#1F2937' }}>Order Details</h2>
+          <button onClick={onClose} className="close-button" style={closeButtonStyle}>
+            <Icon name="X" size={24} color="#9CA3AF" />
+          </button>
+        </div>
+
+        <div className="modal-body" style={modalBodyStyle}>
+          {/* Top Section: Client Info & Status Progress */}
+          <div className="flex flex-col md:flex-row items-center justify-between mb-6 p-4 bg-white rounded-lg shadow-sm">
+            <div className="flex items-center space-x-3 rtl:space-x-reverse mb-4 md:mb-0">
+              <img
+                src={order.avatar}
+                alt={order.customerDetails.name}
+                className="w-16 h-16 rounded-full border-2"
+                style={{ borderColor: '#E5E7EB' }}
+              />
+              <div>
+                <p className="text-lg font-semibold" style={{ color: '#1F2937' }}>{order.customerDetails.name}</p>
+                <p className="text-sm" style={{ color: '#6B7280' }}>(ID: {order.customerDetails.id})</p>
+                <p className="text-sm" style={{ color: '#6B7280' }}>{order.customerDetails.location}</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center md:items-end space-y-2">
+              <p className="text-sm font-medium" style={{ color: '#4B5563' }}>Assigned: {order.customerDetails.assignedTime}</p>
+              <div className="flex items-center space-x-2">
+                <button className="flex items-center space-x-1 rtl:space-x-reverse px-4 py-2 rounded-lg text-white font-medium"
+                  style={{ backgroundColor: '#22C55E' }}>
+                  <Icon name="Phone" size={16} />
+                  <span>Call</span>
+                </button>
+                <button className="flex items-center space-x-1 rtl:space-x-reverse px-4 py-2 rounded-lg text-white font-medium"
+                  style={{ backgroundColor: '#22C55E' }}>
+                  <Icon name="Chat" size={16} />
+                  <span>Chat</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Order Progress Line (from image) */}
+          <div className="flex justify-between items-center relative py-4 mb-6 px-4 bg-white rounded-lg shadow-sm">
+            {order.progress.map((step, index) => {
+              const isCanceledOrder = order.status === 'Canceled';
+              const isCurrentStepCanceled = step === 'Canceled';
+              const isActiveStepInNormalFlow = index <= order.currentProgressIndex && !isCanceledOrder;
+
+              let circleBgColor = '#FFFFFF';
+              let circleBorderColor = '#D1D5DB';
+              let textColor = '#6B7280';
+              let lineColor = '#D1D5DB';
+              let iconComponent = null;
+
+              if (isCanceledOrder && isCurrentStepCanceled) {
+                circleBgColor = '#DC2626';
+                circleBorderColor = '#DC2626';
+                iconComponent = <Icon name="X" size={12} color="white" />;
+              } else if (isActiveStepInNormalFlow) {
+                circleBgColor = '#22C55E';
+                circleBorderColor = '#22C55E';
+                iconComponent = <Icon name="Check" size={12} color="white" />; // Changed color to white for checkmark on green circle
+              }
+
+              if (index < order.progress.length - 1) {
+                const nextStep = order.progress[index + 1];
+                const nextStepIsCanceled = nextStep === 'Canceled';
+
+                if (isCanceledOrder && (isCurrentStepCanceled || (order.currentProgressIndex > index && nextStepIsCanceled))) {
+                  lineColor = '#DC2626';
+                } else if (index < order.currentProgressIndex && !isCanceledOrder) {
+                  lineColor = '#22C55E';
+                }
+              }
+
+              return (
+                <React.Fragment key={step}>
+                  <div className="flex flex-col items-center flex-1 min-w-0">
+                    <div
+                      className={`w-5 h-5 rounded-full border-2 flex items-center justify-center`}
+                      style={{
+                        backgroundColor: circleBgColor,
+                        borderColor: circleBorderColor,
+                        minWidth: '20px', // Ensure circles don't shrink too much
+                        minHeight: '20px',
+                      }}
+                    >
+                      {iconComponent}
+                    </div>
+                    <p className={`mt-2 text-xs text-center ${index === order.currentProgressIndex ? 'font-semibold' : 'font-normal'}`}
+                      style={{ color: textColor }}>
+                      {step.replace(' ', '\n')}
+                    </p>
+                  </div>
+                  {index < order.progress.length - 1 && (
+                    <div className={`flex-1 h-0.5`} style={{ backgroundColor: lineColor }}></div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
+
+          {/* Main Content: Order ID, Items, Location, Payment */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Order ID & Items */}
+            <div className="lg:col-span-1 bg-white rounded-lg shadow-sm p-4">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-semibold" style={{ color: '#1F2937' }}>Order Id: {order.customerDetails.orderNumber}</h3>
+                <span className="text-sm font-medium" style={{ color: '#6B7280' }}>{order.customerDetails.itemsCount} Items</span>
+              </div>
+              <div className="space-y-3">
+                {order.customerDetails.products.map((product, index) => (
+                  <div key={index} className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src={product.image} alt={product.name} className="w-16 h-16 rounded-lg object-cover" />
+                    <div>
+                      <p className="font-medium" style={{ color: '#1F2937' }}>{product.name}</p>
+                      <p className="text-sm" style={{ color: '#6B7280' }}>${product.price}.00</p>
+                      <p className="text-xs" style={{ color: '#9CA3AF' }}>{product.quantity} Items</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Location Details */}
+            <div className="lg:col-span-1 bg-white rounded-lg shadow-sm p-4">
+              <h3 className="text-lg font-semibold mb-4" style={{ color: '#1F2937' }}>Location Details</h3>
+              <img src={order.customerDetails.locationDetails.mapImage} alt="Map" className="w-full h-48 object-cover rounded-lg mb-4" />
+              <div className="space-y-2 text-sm" style={{ color: '#4B5563' }}>
+                <p className="font-medium">ETA: {order.customerDetails.locationDetails.eta}</p>
+                <p>Current Location: {order.customerDetails.locationDetails.currentLocation}</p>
+                <p>Customer Location: {order.customerDetails.locationDetails.customerLocation}</p>
+              </div>
+              <button className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 mt-4 rounded-lg text-white font-medium w-full justify-center"
+                style={{ backgroundColor: '#22C55E' }}>
+                <Icon name="LocateFixed" size={16} />
+                <span>Track</span>
+              </button>
+            </div>
+
+            {/* Payment Details */}
+            <div className="lg:col-span-1 bg-white rounded-lg shadow-sm p-4">
+              <h3 className="text-lg font-semibold mb-4" style={{ color: '#1F2937' }}>Payment Details</h3>
+              <div className="space-y-2 text-sm mb-4">
+                <div className="flex justify-between" style={{ color: '#4B5563' }}>
+                  <span>Subtotal</span>
+                  <span>${order.customerDetails.paymentDetails.subtotal}</span>
+                </div>
+                <div className="flex justify-between" style={{ color: '#4B5563' }}>
+                  <span>Shipping Cost</span>
+                  <span className="font-semibold" style={{color: '#22C55E'}}>{order.customerDetails.paymentDetails.shippingCost}</span>
+                </div>
+                <div className="flex justify-between" style={{ color: '#4B5563' }}>
+                  <span>Discount</span>
+                  <span>{order.customerDetails.paymentDetails.discount}</span>
+                </div>
+                <div className="flex justify-between pt-2 border-t" style={{ borderColor: '#E5E7EB', color: '#1F2937' }}>
+                  <span className="text-lg font-semibold">Total</span>
+                  <span className="text-lg font-semibold">${order.customerDetails.paymentDetails.total}</span>
+                </div>
+              </div>
+
+              <h4 className="font-semibold mb-2" style={{ color: '#1F2937' }}>Credit Card</h4>
+              <div className="flex items-center justify-between p-3 rounded-lg border" style={{ borderColor: '#D1D5DB' }}>
+                <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                  <Icon name="CreditCard" size={24} style={{ color: '#9CA3AF' }} />
+                  <span className="font-medium" style={{ color: '#1F2937' }}>{order.customerDetails.paymentDetails.creditCard}</span>
+                </div>
+                {/* <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_set_2014.svg" alt="PayPal" className="h-6" /> */}
+              </div>
+
+              <div className="mt-4 text-sm" style={{ color: '#6B7280' }}>
+                Order Statuses: <span className="font-semibold text-blue-600 flex items-center inline-flex space-x-1 rtl:space-x-reverse">
+                  <FiTruck size={16} /> {order.status}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 const App = () => {
   // Placeholder data for demonstration
@@ -14,6 +355,31 @@ const App = () => {
       status: 'Picked Up',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 1,
+      customerDetails: { // Added customerDetails for modal
+        id: 'CUST001',
+        name: 'Yara Yazgi',
+        location: 'Ramallah, Al-Tireh St',
+        assignedTime: '12:30 PM',
+        orderNumber: '00075',
+        itemsCount: 2,
+        products: [
+          { name: 'Olive Tree', image: '/imges/ma1.webp', price: 50, quantity: 1 },
+          { name: 'Jasmine', image: '/imges/ma4.webp', price: 20, quantity: 1 },
+        ],
+        locationDetails: {
+          eta: '25 min',
+          currentLocation: 'Near Beitunia checkpoint',
+          customerLocation: 'Al-Tireh St, Ramallah',
+          mapImage: 'map.png',
+        },
+        paymentDetails: {
+          subtotal: '70.00',
+          shippingCost: 'Free',
+          discount: '$0.00',
+          total: '70.00',
+          creditCard: '**** **** **** 1234',
+        },
+      },
     },
     {
       orderId: '00076',
@@ -25,6 +391,30 @@ const App = () => {
       status: 'In Transit',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 2,
+      customerDetails: {
+        id: 'CUST002',
+        name: 'Nael Abd',
+        location: 'Gaza, Al-Rimail St',
+        assignedTime: '10:30 PM',
+        orderNumber: '00076',
+        itemsCount: 1,
+        products: [
+          { name: 'Imported Coffee', image: 'https://via.placeholder.com/60', price: 35, quantity: 1 },
+        ],
+        locationDetails: {
+          eta: '15 min',
+          currentLocation: 'Near Gaza Port',
+          customerLocation: 'Al-Rimail St, Gaza',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Gaza',
+        },
+        paymentDetails: {
+          subtotal: '35.00',
+          shippingCost: '$5.00',
+          discount: '$0.00',
+          total: '40.00',
+          creditCard: '**** **** **** 5678',
+        },
+      },
     },
     {
       orderId: '00077',
@@ -36,6 +426,31 @@ const App = () => {
       status: 'In Transit',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 2,
+      customerDetails: {
+        id: 'CUST003',
+        name: 'Yara Yazgi',
+        location: 'Ramallah, Al-Tireh St',
+        assignedTime: '12:30 PM',
+        orderNumber: '00077',
+        itemsCount: 3,
+        products: [
+          { name: 'Bread', image: 'https://via.placeholder.com/60', price: 5, quantity: 2 },
+          { name: 'Cheese', image: 'https://via.placeholder.com/60', price: 15, quantity: 1 },
+        ],
+        locationDetails: {
+          eta: '10 min',
+          currentLocation: 'Near Ramallah City Center',
+          customerLocation: 'Al-Tireh St, Ramallah',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Ramallah',
+        },
+        paymentDetails: {
+          subtotal: '25.00',
+          shippingCost: 'Free',
+          discount: '$2.00',
+          total: '23.00',
+          creditCard: '**** **** **** 9012',
+        },
+      },
     },
     {
       orderId: '00078',
@@ -47,6 +462,30 @@ const App = () => {
       status: 'Waiting Picked up',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 0,
+      customerDetails: {
+        id: 'CUST004',
+        name: 'Ahmed Ali',
+        location: 'Nablus, Main St',
+        assignedTime: '09:00 AM',
+        orderNumber: '00078',
+        itemsCount: 1,
+        products: [
+          { name: 'Laptop', image: 'https://via.placeholder.com/60', price: 1200, quantity: 1 },
+        ],
+        locationDetails: {
+          eta: '45 min',
+          currentLocation: 'Near Nablus Old City',
+          customerLocation: 'Main St, Nablus',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Nablus',
+        },
+        paymentDetails: {
+          subtotal: '1200.00',
+          shippingCost: '$10.00',
+          discount: '$50.00',
+          total: '1160.00',
+          creditCard: '**** **** **** 3456',
+        },
+      },
     },
     {
       orderId: '00079',
@@ -58,6 +497,30 @@ const App = () => {
       status: 'Delivered',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 3,
+      customerDetails: {
+        id: 'CUST005',
+        name: 'Sara Omar',
+        location: 'Jenin, University Rd',
+        assignedTime: '01:00 PM',
+        orderNumber: '00079',
+        itemsCount: 4,
+        products: [
+          { name: 'Books', image: 'https://via.placeholder.com/60', price: 75, quantity: 4 },
+        ],
+        locationDetails: {
+          eta: '30 min',
+          currentLocation: 'Near Jenin Refugee Camp',
+          customerLocation: 'University Rd, Jenin',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Jenin',
+        },
+        paymentDetails: {
+          subtotal: '75.00',
+          shippingCost: 'Free',
+          discount: '$0.00',
+          total: '75.00',
+          creditCard: '**** **** **** 7890',
+        },
+      },
     },
     {
       orderId: '00080',
@@ -69,6 +532,30 @@ const App = () => {
       status: 'Canceled', // Added a canceled status for testing
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered', 'Canceled'], // Adding canceled to progress for this one
       currentProgressIndex: 4, // Index for Canceled
+      customerDetails: {
+        id: 'CUST006',
+        name: 'Omar Khaled',
+        location: 'Hebron, Old City',
+        assignedTime: '02:00 PM',
+        orderNumber: '00080',
+        itemsCount: 1,
+        products: [
+          { name: 'Fragile Ceramics', image: 'https://via.placeholder.com/60', price: 150, quantity: 1 },
+        ],
+        locationDetails: {
+          eta: '50 min',
+          currentLocation: 'Near Abraham Mosque',
+          customerLocation: 'Old City, Hebron',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Hebron',
+        },
+        paymentDetails: {
+          subtotal: '150.00',
+          shippingCost: '$15.00',
+          discount: '$0.00',
+          total: '165.00',
+          creditCard: '**** **** **** 2345',
+        },
+      },
     },
     {
       orderId: '00081',
@@ -80,6 +567,30 @@ const App = () => {
       status: 'Waiting Picked up',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 0,
+      customerDetails: {
+        id: 'CUST007',
+        name: 'Layla Said',
+        location: 'Ramallah, An-Najah St',
+        assignedTime: '03:00 PM',
+        orderNumber: '00081',
+        itemsCount: 2,
+        products: [
+          { name: 'Documents', image: 'https://via.placeholder.com/60', price: 10, quantity: 1 },
+        ],
+        locationDetails: {
+          eta: '20 min',
+          currentLocation: 'Near An-Najah University',
+          customerLocation: 'An-Najah St, Ramallah',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Ramallah',
+        },
+        paymentDetails: {
+          subtotal: '10.00',
+          shippingCost: '$3.00',
+          discount: '$0.00',
+          total: '13.00',
+          creditCard: '**** **** **** 6789',
+        },
+      },
     },
     {
       orderId: '00082',
@@ -91,6 +602,30 @@ const App = () => {
       status: 'Picked Up',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 1,
+      customerDetails: {
+        id: 'CUST008',
+        name: 'Khaled Nader',
+        location: 'Gaza, Beach Rd',
+        assignedTime: '09:30 AM',
+        orderNumber: '00082',
+        itemsCount: 1,
+        products: [
+          { name: 'Beach Towels', image: 'https://via.placeholder.com/60', price: 25, quantity: 3 },
+        ],
+        locationDetails: {
+          eta: '10 min',
+          currentLocation: 'Near Gaza Beach',
+          customerLocation: 'Beach Rd, Gaza',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Gaza',
+        },
+        paymentDetails: {
+          subtotal: '75.00',
+          shippingCost: 'Free',
+          discount: '$0.00',
+          total: '75.00',
+          creditCard: '**** **** **** 0123',
+        },
+      },
     },
     {
       orderId: '00083',
@@ -102,35 +637,85 @@ const App = () => {
       status: 'In Transit',
       progress: ['Waiting Picked up', 'Picked Up', 'In Transit', 'Delivered'],
       currentProgressIndex: 2,
+      customerDetails: {
+        id: 'CUST009',
+        name: 'Fatima Yousef',
+        location: 'Bethlehem, Manger Sq',
+        assignedTime: '11:45 AM',
+        orderNumber: '00083',
+        itemsCount: 2,
+        products: [
+          { name: 'Souvenirs', image: 'https://via.placeholder.com/60', price: 40, quantity: 2 },
+        ],
+        locationDetails: {
+          eta: '18 min',
+          currentLocation: 'Near Church of Nativity',
+          customerLocation: 'Manger Sq, Bethlehem',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Bethlehem',
+        },
+        paymentDetails: {
+          subtotal: '80.00',
+          shippingCost: '$7.00',
+          discount: '$5.00',
+          total: '82.00',
+          creditCard: '**** **** **** 4567',
+        },
+      },
     },
   ];
 
   // Duplicate data to create more pages for demonstration
-  const duplicatedOrders1 = originalOrders.map((o, index) => ({
+  const duplicatedOrders1 = originalOrders.map((o) => ({
     ...o,
     orderId: `DUP1_${o.orderId}`,
     clientName: `${o.clientName} (Dupe1)`,
-    currentProgressIndex: o.currentProgressIndex, // Maintain original progress index
-    status: o.status, // Maintain original status
+    // Ensure customerDetails is also duplicated and has unique data if needed,
+    // or just reference the same details if they are generic.
+    customerDetails: {
+      ...o.customerDetails,
+      id: `DUP1_${o.customerDetails.id}`,
+      name: `${o.customerDetails.name} (Dupe1)`,
+      orderNumber: `DUP1_${o.customerDetails.orderNumber}`,
+    }
   }));
 
-  const duplicatedOrders2 = originalOrders.map((o, index) => ({
+  const duplicatedOrders2 = originalOrders.map((o) => ({
     ...o,
     orderId: `DUP2_${o.orderId}`,
     clientName: `${o.clientName} (Dupe2)`,
-    currentProgressIndex: o.currentProgressIndex, // Maintain original progress index
-    status: o.status, // Maintain original status
+    customerDetails: {
+      ...o.customerDetails,
+      id: `DUP2_${o.customerDetails.id}`,
+      name: `${o.customerDetails.name} (Dupe2)`,
+      orderNumber: `DUP2_${o.customerDetails.orderNumber}`,
+    }
   }));
 
   const allOrdersData = [...originalOrders, ...duplicatedOrders1, ...duplicatedOrders2];
 
   const [recentOrders, setRecentOrders] = useState(allOrdersData);
-  const [activeTab, setActiveTab] = useState('All orders'); // Changed from 'All order' to 'All orders' for consistency
-  const [searchTerm, setSearchTerm] = useState(''); // Global search term
+  const [activeTab, setActiveTab] = useState('All orders');
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 3; // Display 3 orders per page
+
+  // State for the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
+  // Open modal handler
+  const openOrderDetailsModal = useCallback((order) => {
+    setSelectedOrder(order);
+    setIsModalOpen(true);
+  }, []);
+
+  // Close modal handler
+  const closeOrderDetailsModal = useCallback(() => {
+    setIsModalOpen(false);
+    setSelectedOrder(null);
+  }, []);
 
   // Calculate filtered orders based on activeTab and searchTerm
   const filteredOrders = useMemo(() => {
@@ -166,7 +751,7 @@ const App = () => {
       'In Transit': recentOrders.filter(order => order.status === 'In Transit').length,
       'Canceled': recentOrders.filter(order => order.status === 'Canceled').length,
       'Waiting Picked up': recentOrders.filter(order => order.status === 'Waiting Picked up').length,
-      'Delivered': recentOrders.filter(order => order.status === 'Delivered').length, // Added Delivered count
+      'Delivered': recentOrders.filter(order => order.status === 'Delivered').length,
     };
     return counts;
   }, [recentOrders]);
@@ -259,7 +844,9 @@ const App = () => {
       prevOrders.map(order => {
         if (order.orderId === orderId) {
           const newProgressIndex = order.progress.indexOf(newStatus);
-          // Special handling for Canceled status
+          const currentCanceledIndex = order.progress.indexOf('Canceled');
+
+          // If clicking on 'Canceled' status
           if (newStatus === 'Canceled') {
             return {
               ...order,
@@ -267,27 +854,31 @@ const App = () => {
               currentProgressIndex: newProgressIndex,
             };
           } else {
-            // For non-canceled statuses, ensure progress only moves forward or to a specific previous step
-            // This prevents "un-canceling" by clicking an early step if the order was genuinely canceled
-            // If the current order is Canceled and a non-Canceled step is clicked, it's a valid change.
-            const currentCanceledIndex = order.progress.indexOf('Canceled');
+            // If the order was canceled and a non-canceled step is clicked (to "uncancel" or revert)
             if (order.status === 'Canceled' && newProgressIndex < currentCanceledIndex) {
-                 // If was canceled and now a non-canceled previous step is clicked, "uncancel"
-                return {
-                    ...order,
-                    status: newStatus,
-                    currentProgressIndex: newProgressIndex,
-                };
-            } else if (newProgressIndex >= order.currentProgressIndex) {
-                // Otherwise, allow normal forward progression or setting to an earlier step if already passed.
-                return {
-                    ...order,
-                    status: newStatus,
-                    currentProgressIndex: newProgressIndex,
-                };
+              return {
+                ...order,
+                status: newStatus,
+                currentProgressIndex: newProgressIndex,
+              };
             }
-            // If trying to go backward to a step before currentProgressIndex for a non-canceled order,
-            // or if the order is not canceled and the newStatus is after Canceled in array but Canceled is not current, do nothing.
+            // Normal progression: only allow moving forward or staying at the same step
+            else if (newProgressIndex >= order.currentProgressIndex) {
+                // Also ensures that if a step after 'Canceled' (if Canceled isn't current) is clicked, it won't jump past it.
+                // This logic may need refinement based on exact desired behavior for re-activating canceled orders.
+                // For now, it prevents "jumping over" canceled if it's already past it in index.
+                if (currentCanceledIndex !== -1 && newProgressIndex > currentCanceledIndex && order.currentProgressIndex <= currentCanceledIndex) {
+                    // Prevent activating steps *after* Canceled if Canceled hasn't been passed yet.
+                    // Or you might want to allow this, depending on business logic.
+                    return order;
+                }
+              return {
+                ...order,
+                status: newStatus,
+                currentProgressIndex: newProgressIndex,
+              };
+            }
+            // Do nothing if trying to go backward on an active order or other invalid transitions
             return order;
           }
         }
@@ -297,206 +888,7 @@ const App = () => {
   }, []);
 
 
-  // Helper function to render Lucide-like icons using inline SVGs
-  const Icon = ({ name, size = 20, color = 'currentColor', className = '' }) => {
-    switch (name) {
-      case 'Truck':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-            <path d="M15 18H9"></path>
-            <path d="M19 18h2a1 2 0 0 0 1-1v-3.82a1 1 0 0 0-.84-1l-3.32-1.66A2 2 0 0 0 15 8.16V6a2 2 0 0 0-2-2h-3"></path>
-            <circle cx="7" cy="18" r="2"></circle>
-            <circle cx="17" cy="18" r="2"></circle>
-          </svg>
-        );
-      case 'Package':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <path d="M12.89 1.45L19.22 4c.82.32 1.25 1.22.9 2.05l-4.4 10.59a1 1 0 0 1-.92.65H8.38a1 1 0 0 1-.92-.65L3.88 6.05c-.34-.83.08-1.73.9-2.05l6.33-2.55a2 2 0 0 1 1.78 0z"></path>
-            <path d="M2.89 15.5L7 17.5l4.33 2.16c.82.32 1.78.32 2.6 0L17 17.5l4.11-2"></path>
-          </svg>
-        );
-      case 'Clock':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-        );
-      case 'MapPin':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-        );
-      case 'Search':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </svg>
-        );
-      case 'Phone':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-          </svg>
-        );
-      case 'LocateFixed': // Using this for "Track" as it represents location
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <line x1="2" x2="5" y1="12" y2="12"></line>
-            <line x1="19" x2="22" y1="12" y2="12"></line>
-            <line x1="12" x2="12" y1="2" y2="5"></line>
-            <line x1="12" x2="12" y1="19" y2="22"></line>
-            <circle cx="12" cy="12" r="7"></circle>
-          </svg>
-        );
-      case 'MoreVertical':
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-          >
-            <circle cx="12" cy="12" r="1"></circle>
-            <circle cx="12" cy="5" r="1"></circle>
-            <circle cx="12" cy="19" r="1"></circle>
-          </svg>
-        );
-      case 'ChevronLeft':
-        return (
-            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="15 18 9 12 15 6"></polyline></svg>
-        );
-      case 'ChevronRight':
-        return (
-            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="9 18 15 12 9 6"></polyline></svg>
-        );
-      case 'Filter': // Added Filter icon SVG
-        return (
-          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-          </svg>
-        );
-      case 'Edit': // Added Edit icon SVG
-        return (
-          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-          </svg>
-        );
-      case 'Eye': // Added Eye icon SVG
-        return (
-          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-        );
-      case 'Check': // Added Check icon SVG for timeline
-        return (
-            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-        );
-      case 'X': // Added X icon SVG for canceled status
-        return (
-            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        );
-      default:
-        return null;
-    }
-  };
-
-  const SummaryCard = ({ iconName, value, label }) => ( // Changed iconName to IconComponent
+  const SummaryCard = ({ iconName, value, label }) => (
     <div className="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm w-full">
       <div className="p-3 rounded-full" style={{ backgroundColor: '#D1FAE5' }}> {/* bg-green-100 */}
         <Icon name={iconName} size={24} style={{ color: '#059669' }} /> {/* text-green-600 */}
@@ -508,15 +900,15 @@ const App = () => {
     </div>
   );
 
-  const OrderItem = ({ order, onStatusClick }) => { // Added onStatusClick prop
+  const OrderItem = ({ order, onStatusClick, onOpenDetails }) => { // Added onOpenDetails prop
     const isCallEnabled = useMemo(() => {
-        // Enable Call button if status is Waiting Picked up, Picked Up, or In Transit
-        return ['Waiting Picked up', 'Picked Up', 'In Transit'].includes(order.status);
+      // Enable Call button if status is Waiting Picked up, Picked Up, or In Transit
+      return ['Waiting Picked up', 'Picked Up', 'In Transit'].includes(order.status);
     }, [order.status]);
 
     const isTrackEnabled = useMemo(() => {
-        // Enable Track button if status is Picked Up or In Transit
-        return ['Picked Up', 'In Transit'].includes(order.status);
+      // Enable Track button if status is Picked Up or In Transit
+      return ['Picked Up', 'In Transit'].includes(order.status);
     }, [order.status]);
 
     return (
@@ -535,7 +927,7 @@ const App = () => {
               <p className="text-sm" style={{ color: '#6B7280' }}>Order#{order.orderId}</p> {/* Changed order.id to order.orderId */}
             </div>
           </div>
-          <div className="cursor-pointer" style={{ color: '#9CA3AF' }}> {/* text-gray-400 */}
+          <div className="cursor-pointer" style={{ color: '#9CA3AF' }} onClick={() => onOpenDetails(order)}> {/* Added onClick to open modal */}
             <Icon name="MoreVertical" size={20} />
           </div>
         </div>
@@ -641,7 +1033,6 @@ const App = () => {
               <React.Fragment key={step}>
                 <div
                     className="flex flex-col items-center flex-1 min-w-0 cursor-pointer" // Added cursor-pointer
-                    // Removed whitespace-nowrap here to allow text to wrap
                     onClick={() => onStatusClick(order.orderId, step)} // Added onClick handler
                 >
                   <div
@@ -654,7 +1045,7 @@ const App = () => {
                     {isCurrentStepCanceled && isCanceledOrder ? (
                         <Icon name="X" size={12} color="white" /> // 'X' for Canceled
                     ) : isActiveStepInNormalFlow ? (
-                        <Icon name="Check" size={12} /> // Check for active non-canceled steps
+                        <Icon name="Check" size={12} color="white" /> // Check for active non-canceled steps, color white
                     ) : null}
                   </div>
                   <p
@@ -793,7 +1184,12 @@ const App = () => {
         <div>
           {currentOrders.length > 0 ? (
             currentOrders.map((order) => ( // Display orders for the current page
-              <OrderItem key={order.orderId} order={order} onStatusClick={handleProgressStepClick} />
+              <OrderItem
+                key={order.orderId}
+                order={order}
+                onStatusClick={handleProgressStepClick}
+                onOpenDetails={openOrderDetailsModal} // Pass the handler to open the modal
+              />
             ))
           ) : (
             <p className="text-center text-gray-600">No orders found matching your criteria.</p>
@@ -840,6 +1236,13 @@ const App = () => {
           </button>
         </div>
       </div>
+
+      {/* Order Details Modal */}
+      <OrderDetailsModal
+        isOpen={isModalOpen}
+        onClose={closeOrderDetailsModal}
+        order={selectedOrder}
+      />
     </div>
   );
 };

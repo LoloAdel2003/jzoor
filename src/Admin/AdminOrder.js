@@ -26,7 +26,9 @@ const OrdersDashboard = () => {
       date: '01-01-2025',
       price: '49.99',
       paymentMethod: 'Visa',
-      status: 'Waiting Picked Up',
+      status:
+      
+      'Waiting Picked Up',
       customer: { name: 'Mariam Eqdaih', id: '#CU234', address: 'Palestine, Gaza, Al-Nusirat, 20 Street' },
       sellers: [{ name: 'Ahmad Bakir', id: '#Seller1234' }, { name: 'Huda Akram', id: '#Seller1234' }, { name: 'Admin', id: '#Seller1234' }],
       deliveryPerson: null, // Initially null
@@ -758,12 +760,7 @@ const OrderDetailsModal = ({ order, onClose, onAssignDelivery }) => {
               <h3 className="font-semibold mt-4 mb-3 text-[#1F2937]">Payment Method:</h3>
               <div className="flex items-center justify-between text-sm text-[#4B5563]">
                 <span>{order.paymentMethod}</span>
-                {order.paymentMethod === 'Visa' && (
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Visa_Inc._logo.svg" alt="Visa" className="h-4" />
-                )}
-                {order.paymentMethod === 'PayPal' && (
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-5" />
-                )}
+               
                 {/* Add other payment method icons if needed */}
               </div>
               {order.creditCard !== 'N/A' && (
