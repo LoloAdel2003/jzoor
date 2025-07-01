@@ -219,7 +219,7 @@ const Chat = () => {
 
       {/* Sidebar - Contacts List Section */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white shadow-md md:mt-2 md:ml-2 z-50 transition-transform duration-300 ease-in-out
+        className={`fixed top-0 left-0 h-full bg-white shadow-md md:mt-2 md:ml-2 z-30 transition-transform duration-300 ease-in-out
                      ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
                      md:relative md:translate-x-0 md:flex md:w-1/3 lg:w-1/4 xl:w-1/5 md:min-w-[280px] md:shadow-none
                      w-full max-w-[320px] sm:max-w-[360px] flex-col flex`}

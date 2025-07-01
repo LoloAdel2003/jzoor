@@ -548,36 +548,7 @@ const SellersDashboard = () => {
         <div className="bg-white p-6 rounded-lg max-w-full flex-1 flex flex-col shadow-md mb-6">
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-gray-800">Sellers Overview</h2>
-            <div className="flex gap-2 text-sm font-medium">
-              <button
-                onClick={() => setChartPeriod('This week')}
-                className={`py-1 px-3 rounded-md transition-colors duration-200 ${
-                  chartPeriod === 'This week'
-                    ? 'text-white shadow-md'
-                    : 'text-gray-800'
-                }`}
-                style={{
-                  backgroundColor: chartPeriod === 'This week' ? 'rgb(4,120,87)' : '#F3F4F6',
-                  color: chartPeriod === 'This week' ? '#FFFFFF' : '#1F2937'
-                }}
-              >
-                This week
-              </button>
-              <button
-                onClick={() => setChartPeriod('Last week')}
-                className={`py-1 px-3 rounded-md transition-colors duration-200 ${
-                  chartPeriod === 'Last week'
-                    ? 'text-white shadow-md'
-                    : 'text-gray-800'
-                }`}
-                style={{
-                  backgroundColor: chartPeriod === 'Last week' ? 'rgb(4,120,87)' : '#F3F4F6',
-                  color: chartPeriod === 'Last week' ? '#FFFFFF' : '#1F2937'
-                }}
-              >
-                Last week
-              </button>
-            </div>
+           
           </div>
 
           {/* Product Statuses and Sellers Statuses Charts */}

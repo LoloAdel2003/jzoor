@@ -64,9 +64,9 @@ export function SalesInsights() {
   };
 
   const salesData = [
-    { country: "Palestine", flag: "🇵🇸", sales: "5K", percentage: "25.8%", trend: "up" ,img:"imges/Frame 4275.webp"},
+    { country: "Palestine", flag: "🇵🇸", sales: "5K", percentage: "25.8%", trend: "up" ,img :"imges/Frame 4273.webp"},
     { country: "Jordan", flag: "🇯🇴", sales: "2.4K", percentage: "15.8%", trend: "down",img :"imges/Frame 4274.webp" },
-    { country: "Egypt", flag: "🇪🇬", sales: "2.6K", percentage: "35.8%", trend: "up",img :"imges/Frame 4273.webp" },
+    { country: "Egypt", flag: "🇪🇬", sales: "2.6K", percentage: "35.8%", trend: "up",img:"imges/Frame 4275.webp" },
   ];
 
   return (

@@ -4,7 +4,9 @@ import { BiTimeFive } from 'react-icons/bi';
 import { MdOutlineLocalShipping } from 'react-icons/md';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { FaTimes } from 'react-icons/fa';
-import { FiPhone } from 'react-icons/fi'; // Importing the phone icon
+import { FiPhone } from 'react-icons/fi';
+import { LuMessageCircle } from "react-icons/lu";
+ // Importing the phone icon
 
 // Phone Call Modal Component
 const PhoneCallModal = ({ isOpen, onClose, phoneNumber }) => {
@@ -243,8 +245,13 @@ const TrackOrder = () => {
                     <div className="flex items-center space-x-2 rtl:space-x-reverse mt-2 pl-5">
                       <MdOutlineLocalShipping size={20} className="text-[#4B5929]" />
                       <BiTimeFive size={20} className="text-[#4B5929]" />
+
+                      <Link to="/profile/chat" ><LuMessageCircle size={20} className="text-[#4B5929]"  />
+</Link>
                       {step.phase === 'out_for_delivery' && (
+                        
                         <FiPhone size={20} className="text-[#4B5929] cursor-pointer" onClick={() => setShowCallModal(true)} />
+
                       )}
                     </div>
                   )}

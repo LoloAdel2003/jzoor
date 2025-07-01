@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './page/Home';
 import Login from './page/Login';
+import ADLogin from './page/ADLogin';
+
 import Register from './page/Register';
 import Cart from './page/Cart';
 import Favarate from './page/Favarate';
@@ -17,7 +19,7 @@ import GiftList from './page/GiftList';
 import ForgetPass from './page/ForgetPass';
 import VerifyCode from './page/VerifyCode';
 import SetPass from './page/SetPass';
-import SellerLogin from './page/SellerLogin';
+// import SellerLogin from './page/SellerLogin';
 // import SellerDash from './page/SellerDash';
 import FavoriteSection from './page/FavoriteSection';
 import JournalDetails from './page/JournalDetails';
@@ -25,7 +27,7 @@ import GiftDetails from './page/GiftDetails';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import SellerProduct from './page/SellerProduct';
 import SellerProductDetails from './page/SellerProductDetails';
-import Profile from './page/Profile';
+// import Profile from './page/Profile';
 import Pots from './page/Pots'
 import MyProfile from './page/MyProfile';
 import MyAccount from './page/MyAccount';
@@ -61,7 +63,6 @@ import SAdd from './Seller/SAdd';
 import SProductList from './Seller/SProductList';
 import SReview from './Seller/SReview';
 import SProfile from './Seller/SProfile';
-import MyVouchersPage from './page/MyVouchersPage';
 import Customer from './Admin/Customer';
 import Seller from './Admin/Seller';
 import Delivery from './Admin/Delivery';
@@ -154,7 +155,9 @@ const App = () => {
           
           {/* admin route  */}
           <Route path="/admin" element={<Dashboard />}>
+
           <Route index element={<AdminDash />} />
+          {/* <Route path="login" element={<Login />} /> */}
          <Route path="Order" element={<AdminOrder />} />
          <Route path="Article" element={<AdminArticle />} />
          <Route path="Article/addNewArticle" element={<AddNewArticle />} />
@@ -174,6 +177,8 @@ const App = () => {
 
 
         </Route>
+                <Route path="admin/login" element={<ADLogin />}  />
+
         {/* end admin route  */}
         {/* seller route  */}
         <Route path="/seller" element={<SellerDashboard />}>
@@ -190,8 +195,10 @@ const App = () => {
 
         </Route>
         {/* end seller route  */}
+
         {/* delivery route  */}
         <Route path="/delivery" element={<DeliveryDashboard />}>
+
           <Route index element={<DeliveryDash />} />
          <Route path="Order" element={<DeliveryActiveOrder />} />
          <Route path="archeived" element={<Archeived />} />
@@ -200,6 +207,8 @@ const App = () => {
          
 
         </Route>
+                <Route path="delivery/login" element={<ADLogin />}  />
+
          {/* end delivery route  */}
           
        

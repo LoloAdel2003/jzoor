@@ -56,11 +56,11 @@ const DashboardCard = ({ title, value, change, isPositive }) => (
   <div className="p-6 rounded-lg shadow-md flex flex-col justify-between bg-white">
     <div className="flex justify-between items-start mb-4">
       <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-      <IconDotsVertical
+      {/* <IconDotsVertical
         className="cursor-pointer text-gray-400 hover:text-gray-600 transition-colors"
         size={20}
         title="More options"
-      />
+      /> */}
     </div>
     <div className="flex items-end justify-between">
       <span className="text-3xl font-semibold text-gray-900">{value}</span>
@@ -110,7 +110,7 @@ const DeliveryModal = ({ isOpen, onClose, delivery, mode, onSave, onDeleteConfir
     }
   };
 
-  const statusOptions = ['Active', 'Waiting', 'Suspended'];
+  const statusOptions = ['Active',  'Suspended'];
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -267,19 +267,19 @@ const DeliveryDashboard = () => {
   const [allDeliveries, setAllDeliveries] = useState([
     { id: '#DEL001', name: 'John Doe', phone: '+1234567890', activeOrder: 25, completed: 200, status: 'Active' },
     { id: '#DEL002', name: 'Jane Smith', phone: '+1234567891', activeOrder: 5, completed: 150, status: 'Suspended' },
-    { id: '#DEL003', name: 'Emily Davis', phone: '+1234567892', activeOrder: 30, completed: 300, status: 'Waiting' },
+    { id: '#DEL003', name: 'Emily Davis', phone: '+1234567892', activeOrder: 30, completed: 300, status: 'Active' },
     { id: '#DEL004', name: 'Michael Brown', phone: '+1234567893', activeOrder: 10, completed: 180, status: 'Active' },
-    { id: '#DEL005', name: 'Sarah Wilson', phone: '+1234567894', activeOrder: 12, completed: 90, status: 'Waiting' },
+    { id: '#DEL005', name: 'Sarah Wilson', phone: '+1234567894', activeOrder: 12, completed: 90, status: 'Active' },
     { id: '#DEL006', name: 'David Lee', phone: '+1234567895', activeOrder: 8, completed: 210, status: 'Suspended' },
     { id: '#DEL007', name: 'Laura Garcia', phone: '+1234567896', activeOrder: 18, completed: 120, status: 'Active' },
-    { id: '#DEL008', name: 'James Martinez', phone: '+1234567897', activeOrder: 7, completed: 50, status: 'Waiting' },
+    { id: '#DEL008', name: 'James Martinez', phone: '+1234567897', activeOrder: 7, completed: 50, status: 'Active' },
     { id: '#DEL009', name: 'Olivia Rodriguez', phone: '+1234567898', activeOrder: 22, completed: 250, status: 'Active' },
     { id: '#DEL010', name: 'William Hernandez', phone: '+1234567899', activeOrder: 3, completed: 70, status: 'Suspended' },
     { id: '#DEL011', name: 'Sophia Lopez', phone: '+1234567800', activeOrder: 15, completed: 190, status: 'Active' },
-    { id: '#DEL012', name: 'Daniel Gonzalez', phone: '+1234567801', activeOrder: 28, completed: 320, status: 'Waiting' },
+    { id: '#DEL012', name: 'Daniel Gonzalez', phone: '+1234567801', activeOrder: 28, completed: 320, status: 'Active' },
     { id: '#DEL013', name: 'Ava Perez', phone: '+1234567802', activeOrder: 6, completed: 100, status: 'Suspended' },
     { id: '#DEL014', name: 'Matthew Sanchez', phone: '+1234567803', activeOrder: 19, completed: 230, status: 'Active' },
-    { id: '#DEL015', name: 'Isabella Rivera', phone: '+1234567804', activeOrder: 9, completed: 110, status: 'Waiting' },
+    { id: '#DEL015', name: 'Isabella Rivera', phone: '+1234567804', activeOrder: 9, completed: 110, status: 'Active' },
   ]);
 
   const [chartPeriod, setChartPeriod] = useState('This week');
@@ -300,8 +300,6 @@ const DeliveryDashboard = () => {
     // Filter by tab
     if (activeTab === 'Active') {
       currentFiltered = currentFiltered.filter(delivery => delivery.status === 'Active');
-    } else if (activeTab === 'Accept Waiting') { // 'Accept Waiting' in UI maps to 'Waiting' status
-      currentFiltered = currentFiltered.filter(delivery => delivery.status === 'Waiting');
     } else if (activeTab === 'Suspended') {
       currentFiltered = currentFiltered.filter(delivery => delivery.status === 'Suspended');
     }
@@ -344,7 +342,7 @@ const DeliveryDashboard = () => {
   // Dynamically calculate the count for each tab
   const allDeliveryCount = allDeliveries.length;
   const activeCount = allDeliveries.filter(d => d.status === 'Active').length;
-  const waitingCount = allDeliveries.filter(d => d.status === 'Waiting').length;
+  // const waitingCount = allDeliveries.filter(d => d.status === 'Waiting').length;
   const suspendedCount = allDeliveries.filter(d => d.status === 'Suspended').length;
 
   // Chart.js Data and Options
@@ -537,36 +535,7 @@ const DeliveryDashboard = () => {
         <div className="bg-white p-6 rounded-lg max-w-full flex-1 flex flex-col shadow-md mb-6">
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-gray-800">Delivery Overview</h2>
-            <div className="flex gap-2 text-sm font-medium">
-              <button
-                onClick={() => setChartPeriod('This week')}
-                className={`py-1 px-3 rounded-md transition-colors duration-200 ${
-                  chartPeriod === 'This week'
-                    ? 'text-white shadow-md'
-                    : 'text-gray-800'
-                }`}
-                style={{
-                  backgroundColor: chartPeriod === 'This week' ? 'rgb(4,120,87)' : '#F3F4F6',
-                  color: chartPeriod === 'This week' ? '#FFFFFF' : '#1F2937'
-                }}
-              >
-                This week
-              </button>
-              <button
-                onClick={() => setChartPeriod('Last week')}
-                className={`py-1 px-3 rounded-md transition-colors duration-200 ${
-                  chartPeriod === 'Last week'
-                    ? 'text-white shadow-md'
-                    : 'text-gray-800'
-                }`}
-                style={{
-                  backgroundColor: chartPeriod === 'Last week' ? 'rgb(4,120,87)' : '#F3F4F6',
-                  color: chartPeriod === 'Last week' ? '#FFFFFF' : '#1F2937'
-                }}
-              >
-                Last week
-              </button>
-            </div>
+           
           </div>
 
           {/* Product Statuses and Delivery Statuses Charts */}
@@ -630,18 +599,7 @@ const DeliveryDashboard = () => {
             >
               Active ({activeCount})
             </button>
-            <button
-              onClick={() => setActiveTab('Accept Waiting')}
-              className={`py-2 px-4 rounded-md transition-colors duration-200 ${
-                activeTab === 'Accept Waiting' ? 'text-white shadow-md' : 'text-gray-800'
-              }`}
-              style={{
-                backgroundColor: activeTab === 'Accept Waiting' ? 'rgb(4,120,87)' : '#F3F4F6',
-                color: activeTab === 'Accept Waiting' ? '#FFFFFF' : '#1F2937'
-              }}
-            >
-              Accept Waiting ({waitingCount})
-            </button>
+           
             <button
               onClick={() => setActiveTab('Suspended')}
               className={`py-2 px-4 rounded-md transition-colors duration-200 ${
@@ -697,7 +655,7 @@ const DeliveryDashboard = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                         delivery.status === 'Active' ? 'bg-green-100 text-green-800' :
-                        delivery.status === 'Waiting' ? 'bg-yellow-100 text-yellow-800' :
+                       
                         'bg-red-100 text-red-800' // Suspended
                       }`}>
                         {delivery.status}

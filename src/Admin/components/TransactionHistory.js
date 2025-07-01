@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export function TransactionHistory() {
   const transactions = [
     { no: 1, idCustomer: '#6545', orderDate: '01 Oct | 11:29 am', status: 'Paid', amount: '$64' },
-    { no: 2, idCustomer: '#5412', orderDate: '01 Oct | 11:29 am', status: 'Pendle', amount: '$55' },
+    { no: 2, idCustomer: '#5412', orderDate: '01 Oct | 11:29 am', status: 'Pending', amount: '$55' },
     { no: 3, idCustomer: '#6622', orderDate: '01 Oct | 11:29 am', status: 'Paid', amount: '$15' },
     { no: 4, idCustomer: '#6462', orderDate: '01 Oct | 11:29 am', status: 'Paid', amount: '$26' },
     { no: 5, idCustomer: '#6462', orderDate: '01 Oct | 11:29 am', status: 'Paid', amount: '$26' },
