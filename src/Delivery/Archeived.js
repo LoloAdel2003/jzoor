@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiSearch, FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi'; // Import icons from Feather Icons
+import OrderDetailsModal from './OrderDetailsModal'; // Import the new modal component
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('All order (240)');
@@ -9,6 +10,10 @@ const App = () => {
   const [showAreaModal, setShowAreaModal] = useState(false);
   const [filterDate, setFilterDate] = useState('');
   const [filterArea, setFilterArea] = useState('');
+  // New state for OrderDetailsModal
+  const [showOrderDetailsModal, setShowOrderDetailsModal] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
   const itemsPerPage = 8; // Number of items to display per page
 
   // Dummy data for archived deliveries
@@ -136,6 +141,18 @@ const App = () => {
     // Filtering is handled by filteredDeliveries
   };
 
+  // Function to open the order details modal
+  const handleViewDetails = (order) => {
+    setSelectedOrder(order);
+    setShowOrderDetailsModal(true);
+  };
+
+  // Function to close the order details modal
+  const handleCloseOrderDetailsModal = () => {
+    setShowOrderDetailsModal(false);
+    setSelectedOrder(null);
+  };
+
   return (
     <div className="min-h-screen p-4 sm:p-6 lg:p-8" style={{ backgroundColor: '#F0F2F5' }}> {/* Light gray background */}
       <div className="bg-white rounded-lg shadow-sm p-4 md:p-6">
@@ -189,7 +206,7 @@ const App = () => {
             <thead style={{ backgroundColor: '#F0FDF4' }}> {/* Very light gray header background */}
               <tr>
                 {['Order ID','Customer Name' ,'Date','Delivery Time','Destination','Action'].map(header=>(
-                  <th  key={header}
+                  <th  key={header}
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                   style={{ color: '#065F46' }}
@@ -210,7 +227,13 @@ const App = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#4A5568' }}>{delivery.deliveryTime}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: '#4A5568' }}>{delivery.destination}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-blue-600 hover:text-blue-800" style={{ color: '#065F46' }}>View Details</button>
+                      <button
+                        className="text-blue-600 hover:text-blue-800"
+                        style={{ color: '#065F46' }}
+                        onClick={() => handleViewDetails(delivery)} // Call handler on click
+                      >
+                        View Details
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -230,7 +253,7 @@ const App = () => {
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             className="flex items-center space-x-1 rtl:space-x-reverse px-4 py-2 text-sm font-medium rounded-lg disabled:opacity-50 disabled:cursor-not-allowed mb-2 sm:mb-0"
-            style={{ color: '#4A5568', backgroundColor: 'transparent',  }}
+            style={{ color: '#4A5568', backgroundColor: 'transparent',  }}
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#EDF2F7'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
@@ -380,6 +403,14 @@ const App = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Order Details Modal */}
+      {showOrderDetailsModal && (
+        <OrderDetailsModal
+          order={selectedOrder}
+          onClose={handleCloseOrderDetailsModal}
+        />
       )}
     </div>
   );

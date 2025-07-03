@@ -75,6 +75,10 @@ import OrderDetails from './page/OrderDetails';
 import AddNewArticle from './Admin/AddNewArticle';
 import JournalList from './page/JournalList';
 import Payment from './page/Payment';
+import AdminShop from './Admin/AdminShop';
+import AdminNotifications from './Admin/AdminNotification';
+import SellerNotifications from './Seller/SellerNotification';
+import DeliveryNotifications from './Delivery/deliveryNotification';
 // import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
@@ -157,12 +161,12 @@ const App = () => {
           <Route path="/admin" element={<Dashboard />}>
 
           <Route index element={<AdminDash />} />
-          {/* <Route path="login" element={<Login />} /> */}
+          <Route path="shop" element={<AdminShop />} />
          <Route path="Order" element={<AdminOrder />} />
          <Route path="Article" element={<AdminArticle />} />
          <Route path="Article/addNewArticle" element={<AddNewArticle />} />
       
-         {/* <Route path="coupons" element={<AdminCoupons />} /> */}
+         <Route path="notification" element={<AdminNotifications />} />
          <Route path="category" element={<AdminCategory />} />
          <Route path="transaction" element={<AdminTransaction />} />
          <Route path="addProduct" element={<AdminAdd />} />
@@ -184,6 +188,8 @@ const App = () => {
         <Route path="/seller" element={<SellerDashboard />}>
           <Route index element={<SellerDash />} />
          <Route path="Order" element={<SOrder />} />
+                  <Route path="notification" element={<SellerNotifications />} />
+
          <Route path="customer" element={<SCustomer />} />
          <Route path="transaction" element={<STransaction />} />
          <Route path="addProduct" element={<SAdd />} />
@@ -201,6 +207,8 @@ const App = () => {
 
           <Route index element={<DeliveryDash />} />
          <Route path="Order" element={<DeliveryActiveOrder />} />
+                  <Route path="notification" element={<DeliveryNotifications />} />
+
          <Route path="archeived" element={<Archeived />} />
          <Route path="message" element={<DMessage />} />
          <Route path="setting" element={<DProfile />} />

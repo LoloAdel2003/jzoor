@@ -14,6 +14,7 @@ export const ProductProvider = ({ children }) => {
 
 
 
+  const [notification, setNotification] = useState([]);
 
   const [cart, setCart] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -21,6 +22,19 @@ export const ProductProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [selectedJournal, setSelectedJournal] = useState(null);
   // تحميل البيانات من JSON باستخدام fetch
+   useEffect(() => {
+    fetch('Notifications.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setNotification(data); // عرض أول 8 منتجات فقط
+      })
+      .catch((err) => {
+        console.error('حدث خطأ   :', err);
+      });
+  }, []);
+
+
+  
   useEffect(() => {
     fetch('data.json')
       .then((res) => res.json())
@@ -192,6 +206,7 @@ const handleRemoveFromFavorite = (id) => {
         setSelectedGift,
         favorites,
         setFavorites,
+        notification,
         handleAddToCart,
         handleAddToFavorite,
         removeFromCart,

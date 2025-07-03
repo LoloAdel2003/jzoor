@@ -68,7 +68,7 @@ const DeliverySidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </NavLink>
 
       {/* بيانات المستخدم */}
-      <Link to="/login" className="text-black pt-8 no-underline flex items-center justify-between">
+      <Link to="/delivery/login" className="text-black pt-8 no-underline flex items-center justify-between">
         <img src="/imges/deivery.webp" alt="user" className="w-[40px]" />
         <div className="text-sm">
           <span className="block">Ahmad Kanaan</span>

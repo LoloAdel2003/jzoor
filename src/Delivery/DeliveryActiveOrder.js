@@ -2,23 +2,25 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 
 import Chart from 'chart.js/auto'; // Import Chart.js
 import {
-  FiTruck,        // Corresponds to 'Truck'
-  FiPackage,      // Corresponds to 'Package'
-  FiClock,        // Corresponds to 'Clock'
-  FiMapPin,       // Corresponds to 'MapPin'
-  FiSearch,       // Corresponds to 'Search'
-  FiPhone,        // Corresponds to 'Phone'
-  FiMap,          // A good alternative for 'LocateFixed'/'Track'
+  FiTruck, // Corresponds to 'Truck'
+  FiPackage, // Corresponds to 'Package'
+  FiClock, // Corresponds to 'Clock'
+  FiMapPin, // Corresponds to 'MapPin'
+  FiSearch, // Corresponds to 'Search'
+  FiPhone, // Corresponds to 'Phone'
+  FiMap, // A good alternative for 'LocateFixed'/'Track'
   FiMoreVertical, // Corresponds to 'MoreVertical'
-  FiChevronLeft,  // Corresponds to 'ChevronLeft'
+  FiChevronLeft, // Corresponds to 'ChevronLeft'
   FiChevronRight, // Corresponds to 'ChevronRight'
-  FiFilter,       // Corresponds to 'Filter'
-  FiEdit,         // Corresponds to 'Edit'
-  FiEye,          // Corresponds to 'Eye'
-  FiCheck,        // Corresponds to 'Check'
-  FiX,            // Corresponds to 'X'
-  FiCreditCard // Added for Payment Details section
+  FiFilter, // Corresponds to 'Filter'
+  FiEdit, // Corresponds to 'Edit'
+  FiEye, // Corresponds to 'Eye'
+  FiCheck, // Corresponds to 'Check'
+  FiX, // Corresponds to 'X'
+  FiCreditCard, // Added for Payment Details section
+  FiMessageSquare, // Using for Chat
 } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 
 // Helper function to render Lucide-like icons using react-icons/fi
@@ -55,24 +57,46 @@ const Icon = ({ name, size = 20, color = 'currentColor', className = '' }) => {
     case 'X':
       return <FiX size={size} color={color} className={className} />;
     case 'CreditCard':
-        return <FiCreditCard size={size} color={color} className={className} />;
+      return <FiCreditCard size={size} color={color} className={className} />;
+    case 'Chat': // Added for chat icon
+      return <FiMessageSquare size={size} color={color} className={className} />;
     default:
       return null;
   }
 };
 
 
+// Placeholder for LiveMapWidget
+// You should replace this with your actual LiveMapWidget component
+const LiveMapWidget = ({ orderLocation, style }) => {
+  // This component would typically integrate a map library (e.g., Google Maps, Leaflet)
+  // and display the order's real-time location.
+  // For demonstration, we'll just show the map image and location text.
+  return (
+    <div style={{ ...style, width: '100%', height: '400px', backgroundColor: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', overflow: 'hidden' }}>
+      {orderLocation && orderLocation.mapImage ? (
+        <img src={orderLocation.mapImage} alt="Live Map" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      ) : (
+        <p style={{ color: '#6B7280', textAlign: 'center' }}>
+          Map for {orderLocation?.customerLocation || 'Unknown Location'}
+          <br/>
+          (Live Map Widget Placeholder)
+        </p>
+      )}
+    </div>
+  );
+};
+
+
 // OrderDetailsModal Component - Corrected for ESLint Rules of Hooks
 const OrderDetailsModal = ({ isOpen, onClose, order }) => {
-  // All hooks must be called unconditionally at the top level of your component.
   const modalRef = useRef(null);
+  const [showLiveMap, setShowLiveMap] = useState(false); // State to toggle map visibility
 
   // Close modal if clicked outside or on Escape key
   useEffect(() => {
-    // Only attach event listeners if the modal is actually open
     if (isOpen) {
       const handleClickOutside = (event) => {
-        // Check if click is outside the modal content
         if (modalRef.current && !modalRef.current.contains(event.target)) {
           onClose();
         }
@@ -87,18 +111,21 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEscapeKey);
 
-      // Cleanup function to remove event listeners
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
         document.removeEventListener('keydown', handleEscapeKey);
       };
     }
-    // Effect runs when isOpen or onClose changes.
-    // If isOpen becomes false, the cleanup function from the previous render (where isOpen was true)
-    // will correctly remove the event listeners.
   }, [isOpen, onClose]); // Dependencies: Re-run effect if isOpen or onClose changes
 
-  // Now, you can conditionally return null (or render nothing) after the hooks have been called.
+  // Reset showLiveMap state when modal opens/closes
+  useEffect(() => {
+    if (!isOpen) {
+      setShowLiveMap(false); // Hide map when modal closes
+    }
+  }, [isOpen]);
+
+
   if (!isOpen || !order) {
     return null;
   }
@@ -154,6 +181,19 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
     backgroundColor: '#F3F4F6', // bg-gray-100
   };
 
+  // Function to simulate a call action
+  const handleCall = () => {
+    alert(`Calling ${order.customerDetails.name}... (This is a simulation)`);
+    // In a real application, you'd integrate with a phone API or provide instructions.
+  };
+
+  // Function to simulate a chat action
+  const handleChat = () => {
+    alert(`Opening chat with ${order.customerDetails.name}... (This is a simulation)`);
+    // In a real application, you'd navigate to a chat interface.
+  };
+
+
   return (
     <div className="modal-overlay" style={modalOverlayStyle}>
       <div ref={modalRef} className="modal-content-container" style={modalContentContainerStyle}>
@@ -184,16 +224,22 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
             <div className="flex flex-col items-center md:items-end space-y-2">
               <p className="text-sm font-medium" style={{ color: '#4B5563' }}>Assigned: {order.customerDetails.assignedTime}</p>
               <div className="flex items-center space-x-2">
-                <button className="flex items-center space-x-1 rtl:space-x-reverse px-4 py-2 rounded-lg text-white font-medium"
-                  style={{ backgroundColor: '#22C55E' }}>
+                <button
+                  className="flex items-center space-x-1 rtl:space-x-reverse px-4 py-2 rounded-lg text-white font-medium"
+                  style={{ backgroundColor: '#22C55E' }}
+                  onClick={handleCall} // Call functionality
+                >
                   <Icon name="Phone" size={16} />
                   <span>Call</span>
                 </button>
-                <button className="flex items-center space-x-1 rtl:space-x-reverse px-4 py-2 rounded-lg text-white font-medium"
-                  style={{ backgroundColor: '#22C55E' }}>
+                <Link to="/delivery/message"
+                  className="flex items-center space-x-1 rtl:space-x-reverse px-4 py-2 rounded-lg text-white font-medium"
+                  style={{ backgroundColor: '#22C55E' }}
+                  onClick={handleChat} // Chat functionality
+                >
                   <Icon name="Chat" size={16} />
                   <span>Chat</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -218,7 +264,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
               } else if (isActiveStepInNormalFlow) {
                 circleBgColor = '#22C55E';
                 circleBorderColor = '#22C55E';
-                iconComponent = <Icon name="Check" size={12} color="white" />; // Changed color to white for checkmark on green circle
+                iconComponent = <Icon name="Check" size={12} color="white" />;
               }
 
               if (index < order.progress.length - 1) {
@@ -240,7 +286,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
                       style={{
                         backgroundColor: circleBgColor,
                         borderColor: circleBorderColor,
-                        minWidth: '20px', // Ensure circles don't shrink too much
+                        minWidth: '20px',
                         minHeight: '20px',
                       }}
                     >
@@ -284,16 +330,25 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
             {/* Location Details */}
             <div className="lg:col-span-1 bg-white rounded-lg shadow-sm p-4">
               <h3 className="text-lg font-semibold mb-4" style={{ color: '#1F2937' }}>Location Details</h3>
-              <img src={order.customerDetails.locationDetails.mapImage} alt="Map" className="w-full h-48 object-cover rounded-lg mb-4" />
-              <div className="space-y-2 text-sm" style={{ color: '#4B5563' }}>
-                <p className="font-medium">ETA: {order.customerDetails.locationDetails.eta}</p>
-                <p>Current Location: {order.customerDetails.locationDetails.currentLocation}</p>
-                <p>Customer Location: {order.customerDetails.locationDetails.customerLocation}</p>
-              </div>
-              <button className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 mt-4 rounded-lg text-white font-medium w-full justify-center"
-                style={{ backgroundColor: '#22C55E' }}>
+              {showLiveMap ? (
+                <LiveMapWidget orderLocation={order.customerDetails.locationDetails} />
+              ) : (
+                <>
+                  <img src="/imges/map.png" alt="map" className="w-full h-48 object-cover rounded-lg mb-4" />
+                  <div className="space-y-2 text-sm" style={{ color: '#4B5563' }}>
+                    <p className="font-medium">ETA: {order.customerDetails.locationDetails.eta}</p>
+                    <p>Current Location: {order.customerDetails.locationDetails.currentLocation}</p>
+                    <p>Customer Location: {order.customerDetails.locationDetails.customerLocation}</p>
+                  </div>
+                </>
+              )}
+              <button
+                className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 mt-4 rounded-lg text-white font-medium w-full justify-center"
+                style={{ backgroundColor: '#22C55E' }}
+                onClick={() => setShowLiveMap(!showLiveMap)} // Toggle map visibility
+              >
                 <Icon name="LocateFixed" size={16} />
-                <span>Track</span>
+                <span>{showLiveMap ? 'Hide Map' : 'Track'}</span>
               </button>
             </div>
 
@@ -307,7 +362,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
                 </div>
                 <div className="flex justify-between" style={{ color: '#4B5563' }}>
                   <span>Shipping Cost</span>
-                  <span className="font-semibold" style={{color: '#22C55E'}}>{order.customerDetails.paymentDetails.shippingCost}</span>
+                  <span className="font-semibold" style={{ color: '#22C55E' }}>{order.customerDetails.paymentDetails.shippingCost}</span>
                 </div>
                 <div className="flex justify-between" style={{ color: '#4B5563' }}>
                   <span>Discount</span>
@@ -325,7 +380,6 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
                   <Icon name="CreditCard" size={24} style={{ color: '#9CA3AF' }} />
                   <span className="font-medium" style={{ color: '#1F2937' }}>{order.customerDetails.paymentDetails.creditCard}</span>
                 </div>
-                {/* <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_set_2014.svg" alt="PayPal" className="h-6" /> */}
               </div>
 
               <div className="mt-4 text-sm" style={{ color: '#6B7280' }}>
@@ -370,7 +424,7 @@ const App = () => {
           eta: '25 min',
           currentLocation: 'Near Beitunia checkpoint',
           customerLocation: 'Al-Tireh St, Ramallah',
-          mapImage: 'map.png',
+          mapImage: 'https://via.placeholder.com/400x200?text=Map+of+Ramallah', // Changed to a placeholder image
         },
         paymentDetails: {
           subtotal: '70.00',
@@ -669,8 +723,6 @@ const App = () => {
     ...o,
     orderId: `DUP1_${o.orderId}`,
     clientName: `${o.clientName} (Dupe1)`,
-    // Ensure customerDetails is also duplicated and has unique data if needed,
-    // or just reference the same details if they are generic.
     customerDetails: {
       ...o.customerDetails,
       id: `DUP1_${o.customerDetails.id}`,
@@ -855,28 +907,21 @@ const App = () => {
             };
           } else {
             // If the order was canceled and a non-canceled step is clicked (to "uncancel" or revert)
+            // This logic allows re-activating a canceled order to a prior valid state if clicked.
             if (order.status === 'Canceled' && newProgressIndex < currentCanceledIndex) {
-              return {
-                ...order,
-                status: newStatus,
-                currentProgressIndex: newProgressIndex,
-              };
+                return {
+                    ...order,
+                    status: newStatus,
+                    currentProgressIndex: newProgressIndex,
+                };
             }
             // Normal progression: only allow moving forward or staying at the same step
-            else if (newProgressIndex >= order.currentProgressIndex) {
-                // Also ensures that if a step after 'Canceled' (if Canceled isn't current) is clicked, it won't jump past it.
-                // This logic may need refinement based on exact desired behavior for re-activating canceled orders.
-                // For now, it prevents "jumping over" canceled if it's already past it in index.
-                if (currentCanceledIndex !== -1 && newProgressIndex > currentCanceledIndex && order.currentProgressIndex <= currentCanceledIndex) {
-                    // Prevent activating steps *after* Canceled if Canceled hasn't been passed yet.
-                    // Or you might want to allow this, depending on business logic.
-                    return order;
-                }
-              return {
-                ...order,
-                status: newStatus,
-                currentProgressIndex: newProgressIndex,
-              };
+            else if (newProgressIndex >= order.currentProgressIndex && order.status !== 'Canceled') {
+                return {
+                    ...order,
+                    status: newStatus,
+                    currentProgressIndex: newProgressIndex,
+                };
             }
             // Do nothing if trying to go backward on an active order or other invalid transitions
             return order;
@@ -949,16 +994,16 @@ const App = () => {
             style={{
               backgroundColor:
                 order.status === 'Picked Up' ? '#FFF7ED' : // bg-orange-100 (light orange)
-                order.status === 'In Transit' ? '#FFFBEB' : // bg-yellow-100 (light yellow)
-                order.status === 'Delivered' ? '#D1FAE5' : // bg-green-100 (light green)
-                order.status === 'Waiting Picked up' ? '#DBEAFE' : // bg-blue-100 (light blue)
-                '#FEE2E2', // default for other statuses like Canceled (red-100)
+                  order.status === 'In Transit' ? '#FFFBEB' : // bg-yellow-100 (light yellow)
+                    order.status === 'Delivered' ? '#D1FAE5' : // bg-green-100 (light green)
+                      order.status === 'Waiting Picked up' ? '#DBEAFE' : // bg-blue-100 (light blue)
+                        '#FEE2E2', // default for other statuses like Canceled (red-100)
               color:
                 order.status === 'Picked Up' ? '#EA580C' : // text-orange-600
-                order.status === 'In Transit' ? '#D97706' : // text-yellow-600
-                order.status === 'Delivered' ? '#059669' : // text-green-600
-                order.status === 'Waiting Picked up' ? '#2563EB' : // text-blue-600
-                '#DC2626', // default for other statuses like Canceled (red-600)
+                  order.status === 'In Transit' ? '#D97706' : // text-yellow-600
+                    order.status === 'Delivered' ? '#059669' : // text-green-600
+                      order.status === 'Waiting Picked up' ? '#2563EB' : // text-blue-600
+                        '#DC2626', // default for other statuses like Canceled (red-600)
             }}
           >
             {order.status}
@@ -968,6 +1013,7 @@ const App = () => {
               className={`flex items-center space-x-1 rtl:space-x-reverse px-3 py-1 rounded-md transition-colors ${!isCallEnabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-green-100'}`}
               style={{ backgroundColor: '#F0FDF4', color: '#065F46' }}
               disabled={!isCallEnabled}
+              onClick={() => alert(`Calling ${order.clientName} for order ${order.orderId}`)} // Simple alert for call
             >
               <Icon name="Phone" size={16} />
               <span>Call</span>
@@ -976,6 +1022,7 @@ const App = () => {
               className={`flex items-center space-x-1 rtl:space-x-reverse px-3 py-1 rounded-md transition-colors ${!isTrackEnabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-green-100'}`}
               style={{ backgroundColor: '#F0FDF4', color: '#065F46' }}
               disabled={!isTrackEnabled}
+              onClick={() => onOpenDetails(order)} // Open modal on Track click
             >
               <Icon name="LocateFixed" size={16} />
               <span>Track</span>
@@ -1002,17 +1049,17 @@ const App = () => {
             let lineColor = '#D1D5DB'; // Default inactive line color
 
             if (isCanceledOrder && isCurrentStepCanceled) {
-                // If the order is Canceled and this is the 'Canceled' step
-                circleBgColor = '#DC2626'; // Red
-                circleBorderColor = '#DC2626'; // Red
-                textColor = '#1F2937';
-                fontWeight = '500';
+              // If the order is Canceled and this is the 'Canceled' step
+              circleBgColor = '#DC2626'; // Red
+              circleBorderColor = '#DC2626'; // Red
+              textColor = '#1F2937';
+              fontWeight = '500';
             } else if (isActiveStepInNormalFlow) {
-                // If it's an active step in a non-canceled order
-                circleBgColor = '#22C55E'; // Green
-                circleBorderColor = '#22C55E';
-                textColor = '#1F2937';
-                fontWeight = '500';
+              // If it's an active step in a non-canceled order
+              circleBgColor = '#22C55E'; // Green
+              circleBorderColor = '#22C55E';
+              textColor = '#1F2937';
+              fontWeight = '500';
             }
 
             // Line color logic
@@ -1032,8 +1079,8 @@ const App = () => {
             return (
               <React.Fragment key={step}>
                 <div
-                    className="flex flex-col items-center flex-1 min-w-0 cursor-pointer" // Added cursor-pointer
-                    onClick={() => onStatusClick(order.orderId, step)} // Added onClick handler
+                  className="flex flex-col items-center flex-1 min-w-0 cursor-pointer" // Added cursor-pointer
+                  onClick={() => onStatusClick(order.orderId, step)} // Added onClick handler
                 >
                   <div
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center`}
@@ -1043,9 +1090,9 @@ const App = () => {
                     }}
                   >
                     {isCurrentStepCanceled && isCanceledOrder ? (
-                        <Icon name="X" size={12} color="white" /> // 'X' for Canceled
+                      <Icon name="X" size={12} color="white" /> // 'X' for Canceled
                     ) : isActiveStepInNormalFlow ? (
-                        <Icon name="Check" size={12} color="white" /> // Check for active non-canceled steps, color white
+                      <Icon name="Check" size={12} color="white" /> // Check for active non-canceled steps, color white
                     ) : null}
                   </div>
                   <p
@@ -1122,13 +1169,13 @@ const App = () => {
             <Icon name="MapPin" size={24} style={{ color: '#DC2626' }} />
           </div>
           <div>
-            <p className="text-lg font-semibold" style={{ color: '#1F2937' }}>10:30 AM - Al-Balou', Ramallah</p> {/* text-gray-800 */}
+            <p className="text-lg font-semibold" style={{ color: '#1F2937' }}>10:30 AM - Al-Balou\', Ramallah</p> {/* text-gray-800 */}
             <p className="text-sm" style={{ color: '#6B7280' }}>Next Delivery</p> {/* text-gray-500 */}
           </div>
         </div>
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <div className="w-12 h-12 flex flex-col items-center justify-center rounded-lg font-bold text-lg relative"
-               style={{ backgroundColor: '#DBEAFE', color: '#2563EB' }}> {/* bg-blue-100 text-blue-700 */}
+            style={{ backgroundColor: '#DBEAFE', color: '#2563EB' }}> {/* bg-blue-100 text-blue-700 */}
             <span className="text-xs absolute top-1" style={{ color: '#6B7280' }}>July</span> {/* text-gray-500 */}
             <span className="mt-3">17</span>
           </div>

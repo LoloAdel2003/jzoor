@@ -178,7 +178,7 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </NavLink>
 
       {/* بيانات المستخدم */}
-      <Link to="/login" className="pt-8 flex no-underline text-black cursor-pointer items-center justify-between">
+      <Link to="/admin/login" className="pt-8 flex no-underline text-black cursor-pointer items-center justify-between">
         <img src="/imges/17 Picture.webp" alt="user" className="w-[40px]" />
         <div className="text-sm">
           <span className="block">Ahmad Kanaan</span>
@@ -186,13 +186,13 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
         <CiLogin className="text-xl" />
       </Link>
 
-      <div className="pt-4 flex cursor-pointer items-center justify-between">
+      <Link to="/admin/shop" className="pt-4 no-underline text-black flex cursor-pointer items-center justify-between">
         <AiOutlineShop className="text-3xl" />
         <div className="text-sm">
           <span className="block">Your Shop</span>
         </div>
         <LuSquareArrowOutUpRight className="text-xl text-gray-700" />
-      </div>
+      </Link>
     </aside>
   );
 };
