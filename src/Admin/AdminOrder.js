@@ -346,8 +346,9 @@ const OrdersDashboard = () => {
 
         {/* Orders Table */}
         {/* Added overflow-x-auto for horizontal scrolling on small screens */}
-        <div className="w-full overflow-x-auto shadow-sm rounded-lg border border-[#E5E7EB]">
-          <table className="min-w-full divide-y divide-[#E5E7EB]">
+        <div className="w-full overflow-x-auto lg:overflow-x-visible" style={{ borderColor: '#E5E7EB', borderRadius: '0.5rem', marginBottom: '1rem' }}>
+          <div className="max-w-[250px] lg:min-w-full">
+          <table className="w-full divide-y divide-[#E5E7EB]">
             <thead className="bg-[#F0FDF4]"> {/* Table header background color */}
               <tr>
                 {/* Checkbox column */}
@@ -439,6 +440,7 @@ const OrdersDashboard = () => {
               )}
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Pagination */}

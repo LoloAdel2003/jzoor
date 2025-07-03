@@ -3,6 +3,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { FaBoxes, FaClipboardList, FaUsers, FaChartLine, FaTruck, FaShoppingCart, FaCheckCircle, FaHourglassHalf, FaTimesCircle, FaEllipsisV } from 'react-icons/fa';
 import LiveMapWidget from './LiveMapWidget'; // تم إضافة هذا الاستيراد
+import { Link } from 'react-router-dom';
 
 // قم بتسجيل مكونات Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -301,7 +302,7 @@ const App = () => {
                 <div className="lg:col-span-2 bg-white rounded-lg shadow-sm p-4">
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-xl font-semibold">Recent Orders</h2>
-                        <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</button>
+                        <Link to="/delivery/Order" className="text-blue-600 no-underline hover:text-blue-700 text-sm font-medium">View All</Link>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="min-w-full divide-y divide-gray-200">

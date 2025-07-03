@@ -79,7 +79,6 @@ import AdminShop from './Admin/AdminShop';
 import AdminNotifications from './Admin/AdminNotification';
 import SellerNotifications from './Seller/SellerNotification';
 import DeliveryNotifications from './Delivery/deliveryNotification';
-// import ScrollRevealWrapper from './assets/ScrollRevealWrapper'; // مكون لتفعيل scrollReveal
 
 const Layout = () => (
   <>
@@ -113,9 +112,7 @@ const App = () => {
 
             <Route path="/productList" element={<ProductList />} />
             <Route path="/giftList" element={<GiftList />} />
-            {/* <Route path="/SellerLogin" element={<SellerLogin />} /> */}
-            {/* <Route path="/SellerDash" element={<SellerDash />} /> */}
-            <Route path="/product/:id" element={<ProductDetails />} />
+               <Route path="/product/:id" element={<ProductDetails />} />
             
                         <Route path="/SellerProduct/:id" element={<SellerProductDetails />} />
 

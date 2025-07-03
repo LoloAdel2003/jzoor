@@ -498,8 +498,9 @@ export function DiscoverProductManagement() {
          
         </div>
 
-        <div className="w-full overflow-x-auto lg:overflow-x-visible rounded-lg shadow-md border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="w-full overflow-x-auto lg:overflow-x-autolg:overflow-x-visible" style={{ borderColor: '#E5E7EB', borderRadius: '0.5rem', marginBottom: '1rem' }}>
+          <div className="max-w-[250px] lg:min-w-full">
+          <table className="w-full divide-y divide-gray-200">
             <thead className="bg-[#F0FDF4]">
               <tr>
                 {['No.', 'Product Id', 'Product Name', 'Date', 'Price', 'QTY', 'Status', 'Action'].map(header => (
@@ -564,6 +565,7 @@ export function DiscoverProductManagement() {
               )}
             </tbody>
           </table>
+          </div>
         </div>
 
         <div className="flex justify-between items-center flex-wrap gap-3 py-3 mt-4">
@@ -620,8 +622,9 @@ export function DiscoverProductManagement() {
  
         </div>
 
-        <div className="w-full overflow-x-auto lg:overflow-x-visible rounded-lg shadow-md border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="w-full overflow-x-auto lg:overflow-x-auto lg:overflow-x-visible" style={{ borderColor: '#E5E7EB', borderRadius: '0.5rem', marginBottom: '1rem' }}>
+          <div className="max-w-[250px] lg:min-w-full">
+          <table className="w-full divide-y divide-gray-200">
             <thead className="bg-[#F0FDF4]">
               <tr>
                 {['No.', 'Product Id', 'Product Name', 'Date', 'Price', 'QTY', 'Status', 'Action'].map(header => (
@@ -686,6 +689,7 @@ export function DiscoverProductManagement() {
               )}
             </tbody>
           </table>
+          </div>
         </div>
 
         <div className="flex justify-between items-center mt-6 flex-wrap gap-3 py-3">

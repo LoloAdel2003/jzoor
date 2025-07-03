@@ -623,7 +623,8 @@ const SellersDashboard = () => {
           </div>
         </div>
 
-        <div className="w-full overflow-x-auto lg:overflow-x-visible rounded-lg shadow-md border border-gray-200">
+        <div className="w-full overflow-x-auto lg:overflow-x-auto lg:overflow-x-visible" style={{ borderColor: '#E5E7EB', borderRadius: '0.5rem', marginBottom: '1rem' }}>
+          <div className="max-w-[250px] lg:min-w-full">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-[#F0FDF4]">
               <tr>
@@ -690,6 +691,7 @@ const SellersDashboard = () => {
               )}
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Pagination */}

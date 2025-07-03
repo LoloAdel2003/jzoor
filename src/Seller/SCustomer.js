@@ -141,7 +141,7 @@ const CustomerDashboard = () => {
 
         <div className="w-full overflow-x-auto lg:overflow-x-visible">
         <div className="max-w-[250px]  lg:min-w-full ">
-          <table className="min-w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
+          <table className="w-full divide-y" style={{ borderColor: '#E5E7EB' }}>
             <thead style={{ backgroundColor: '#F9FAFB' }}>
               <tr>
                 {['Customer ID', 'Name', 'Phone', 'Order Count', 'Total Spend', 'Status', 'Actions'].map(header => (
