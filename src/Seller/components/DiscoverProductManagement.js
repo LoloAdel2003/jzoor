@@ -540,13 +540,13 @@ export function DiscoverProductManagement() {
                         >
                           <IconEye className="w-5 h-5" />
                         </button>
-                        <button
+                        {/* <button
                           className="text-gray-500 hover:text-yellow-600 transition-colors"
                           title="Edit"
                           onClick={() => handleEditProduct(item, 'seller')}
                         >
                           <IconEdit className="w-5 h-5" />
-                        </button>
+                        </button> */}
                         <button
                           className="text-gray-500 hover:text-red-600 transition-colors"
                           title="Delete"
